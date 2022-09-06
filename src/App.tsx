@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './css/common.css'
 import './App.css';
 import ChangePasswordModal from './components/modals/ChangePasswordModal';
 import ProfileSettingsModal from './components/modals/ProfileSettingsModal';

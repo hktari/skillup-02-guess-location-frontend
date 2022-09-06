@@ -1,0 +1,102 @@
+:root {
+    --color-primary: #DE8667;
+    --color-primary-green: #619B8A;
+    --color-dark: #322D38;
+    --color-green-gradient: linear-gradient(90deg, #659E89 0%, #619B8A 32.12%, #A1C181 100%);
+    --color-orange-gradient: linear-gradient(41.75deg, #FE7F2D 22.78%, #FCCA46 87.18%);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                 typography                                 */
+/* -------------------------------------------------------------------------- */
+
+[class*="header"] {
+    font-family: 'Roboto';
+}
+
+.header1 {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 96px;
+    line-height: 112px;
+
+    /* identical to box height, or 117% */
+    letter-spacing: -1.5px;
+
+}
+
+.header2 {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 72px;
+
+    /* identical to box height, or 120% */
+    letter-spacing: -0.5px;
+}
+
+.header3 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 56px;
+}
+
+.header4 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 40px;
+
+    /* identical to box height */
+    letter-spacing: 0.25px;
+}
+
+.header5 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.body {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.body.bold {
+    font-weight: 500;
+}
+
+.caption {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+    /* identical to box he ight */
+    letter-spacing: 0.4px;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                   buttons                                  */
+/* -------------------------------------------------------------------------- */
+
+.btn {
+    border-radius: 4px;
+}
+
+.btn-positive {
+    background: var(--color-primary-green);
+}
+
+.btn-outline {
+    border: 1px solid var(--color-primary-green);
+    color: var(--color-primary-green) ;
+}
