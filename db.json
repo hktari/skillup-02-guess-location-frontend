@@ -1,0 +1,81 @@
+{
+    "users": [
+        {
+            "id": 0,
+            "firstName": "Elanor",
+            "lastName": "Pera",
+            "email": "elanorpera@example.com",
+            "image": "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+        },
+        {
+            "id": 1,
+            "firstName": "Elmer",
+            "lastName": "Laverty",
+            "email": "elmerlaverty@example.com",
+            "image": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+        },
+        {
+            "id": 2,
+            "firstName": "Benny",
+            "lastName": "Spannbauer",
+            "email": "bennyspannbauer@example.com",
+            "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+        }
+    ],
+    "locations": [
+        {
+            "id": 0,
+            "address": "Post St, 1230 SF",
+            "lat": 23.0292992,
+            "long": 23.02312312,
+            "image": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+            "userId": 0,
+            "createdAt": "2022-09-06T13:01:47.776Z"
+        },
+        {
+            "id": 1,
+            "address": "Post St, 1230 SF",
+            "lat": 23.0292992,
+            "long": 23.02312312,
+            "image": "https://images.unsplash.com/photo-1543872084-c7bd3822856f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+            "userId": 0,
+            "createdAt": "2022-09-06T13:01:47.776Z"
+        },
+        {
+            "id": 2,
+            "address": "Post St, 1230 SF",
+            "lat": 23.0292992,
+            "long": 23.02312312,
+            "image": "https://images.unsplash.com/photo-1502899576159-f224dc2349fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+            "userId": 0,
+            "createdAt": "2022-09-06T13:01:47.776Z"
+        },
+        {
+            "id": 3,
+            "address": "Post St, 1230 SF",
+            "lat": 23.0292992,
+            "long": 23.02312312,
+            "image": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+            "userId": 0,
+            "createdAt": "2022-09-06T13:01:47.776Z"
+        },
+        {
+            "id": 4,
+            "address": "Post St, 1230 SF",
+            "lat": 23.0292992,
+            "long": 23.02312312,
+            "image": "https://images.unsplash.com/34/BA1yLjNnQCI1yisIZGEi_2013-07-16_1922_IMG_9873.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
+            "userId": 0,
+            "createdAt": "2022-09-06T13:01:47.776Z"
+        }
+    ],
+    "locationGuess": [
+        {
+            "id": 0,
+            "userId": 0,
+            "locationId": 0,
+            "guessErrorMeters": 34,
+            "createdAt": "2022-09-06T13:01:47.776Z"
+        }
+    ]
+}
