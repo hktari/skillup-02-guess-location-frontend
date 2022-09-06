@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import ChangePasswordModal from './components/modals/ChangePasswordModal';
+import ProfileSettingsModal from './components/modals/ProfileSettingsModal';
+
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isPasswordChangeOpen, setIsPasswordChangeOpen] = useState(false)
+
+  function openModal() {
+    setIsOpen(!isOpen);
+  }
+
+  function openChangePasswordModal() {
+    // setIsOpen(false)
+    setIsPasswordChangeOpen(!isPasswordChangeOpen)
+  }
+
+  function handleCloseChangePassword() {
+    setIsPasswordChangeOpen(false)
+    // setIsOpen(true)
+
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <button onClick={openModal}>Open modal</button>
+      <ProfileSettingsModal isOpen={isOpen} handleClose={openModal} handleChangePassword={openChangePasswordModal} />
+      <ChangePasswordModal isOpen={isPasswordChangeOpen} handleClose={handleCloseChangePassword} />
+    </>
   );
 }
 
