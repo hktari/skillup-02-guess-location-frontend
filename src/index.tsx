@@ -6,14 +6,21 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+import 'material-icons/iconfont/material-icons.css';
+
 import './index.css';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Modal from 'react-modal'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+// https://reactcommunity.org/react-modal/accessibility/
+Modal.setAppElement('#root');
+
 root.render(
   <React.StrictMode>
     <App />
