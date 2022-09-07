@@ -26,6 +26,61 @@
     font-size: 26px;
 }
 
+/* --------------------------- navigation desktop --------------------------- */
+
+.nav-items-desktop {
+    font-size: 16px;
+}
+
+.nav-items-desktop .btn {
+    height: 40px;
+    width: 40px;
+    margin: 0 8px;
+}
+
+.nav-items-desktop .nav-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.nav-items-desktop .nav-item-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-items-desktop .nav-item-list :nth-child(1)>*,
+.nav-item {
+    margin: 0 8px;
+}
+
+/* -------------------------- header type new user -------------------------- */
+
+.nav-items-desktop.new-user .body {
+    color: #000;
+}
+
+.nav-items-desktop.new-user .btn {
+    height: 31px;
+}
+
+/* -------------------------- header type logged in ------------------------- */
+.nav-items-desktop.logged-in {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-items-desktop.logged-in .nav-item {
+    margin: 24px;
+}
+
+.nav-items-desktop.logged-in .nav-buttons {
+    margin-left: 24px;
+}
+
 
 @media screen and (min-width:601px) {
     .header {
