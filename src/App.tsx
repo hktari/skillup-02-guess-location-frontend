@@ -5,6 +5,11 @@ import ChangePasswordModal from './components/modals/ChangePasswordModal';
 import ProfileSettingsModal from './components/modals/ProfileSettingsModal';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import LandingPage from './pages/LandingPage';
+import UserProfilePage from './pages/UserProfilePage';
+import { RequireAuth } from './components/context/AuthProvider';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -26,11 +31,25 @@ function App() {
   }
   return (
     <>
-      <LoginPage />      
-      {/* <button onClick={openModal}>Open modal <span className="material-icons">pie_chart</span></button>
-      <ProfileSettingsModal isOpen={isOpen} handleClose={openModal} handleChangePassword={openChangePasswordModal} />
-      <ChangePasswordModal isOpen={isPasswordChangeOpen} handleClose={handleCloseChangePassword} /> */}
-    </>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<LandingPage />} />
+            <Route path="signup" element={<SignupPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="dashboard" element={
+              <RequireAuth>
+                <LandingPage />
+              </RequireAuth>} />
+            <Route path="userProfile/:id" element={
+              <RequireAuth>
+                <UserProfilePage />
+              </RequireAuth>
+            } />
+          </Route>
+        </Routes>
+      </BrowserRouter>    
+      </>
   );
 }
 
