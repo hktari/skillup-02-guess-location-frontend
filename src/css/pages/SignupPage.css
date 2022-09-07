@@ -1,0 +1,13 @@
+.header3, p.body{
+    text-align: center;
+}
+
+.btn-circle{
+    align-self: center;
+}
+
+@media (min-width: 992px){
+    .container{
+        padding: 0 88px;
+    }
+}
