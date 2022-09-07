@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../css/components/Header.css'
 import logo from '../assets/images/logo.png'
 import avatarPlaceholder from '../assets/images/avatar-placeholder.png'
@@ -6,19 +6,26 @@ import avatarPlaceholder from '../assets/images/avatar-placeholder.png'
 type Props = {}
 
 const Header = (props: Props) => {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  function toggleSidebar() {
+    console.log('toggle sidebar')
+    setSidebarOpen(!sidebarOpen)
+  }
+
   return (
     <>
       <header className='header w3-hide-medium w3-hide-large'>
         <img className='logo-top-left' src={logo} alt="geotagger logo" />
-        <button className='menu-btn'>
+        <button className='menu-btn' onClick={toggleSidebar}>
           <span className="material-icons">
             menu
           </span>
         </button>
       </header>
-      <nav className='side-nav'>
+      <nav className={sidebarOpen ? 'side-nav open' : 'side-nav'} >
         <div className="nav-header">
-          <button className="menu-btn">
+          <button className="menu-btn" onClick={toggleSidebar}>
             <div className="material-icons">close</div>
           </button>
         </div>

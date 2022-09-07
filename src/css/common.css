@@ -190,7 +190,7 @@
 .form input .btn {
     margin: 16px 0;
     border-bottom: none !important;
-}
+} 
 
 .form input:focus {
     border-color: var(--color-primary-green);

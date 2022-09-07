@@ -19,11 +19,16 @@
     color: var(--color-primary-green);
     width: 26px;
     height: 26px;
+    cursor: pointer;
 }
 
 .menu-btn .material-icons {
     font-size: 26px;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                  side nav                                  */
+/* -------------------------------------------------------------------------- */
 
 .side-nav {
     position: absolute;
@@ -34,6 +39,12 @@
     width: 100vw;
     z-index: 99;
     padding: 0 35px;
+    transform: translateX(-100%);
+    transition: 0.5s ease;
+}
+
+.side-nav.open{
+    transform: translateX(0);
 }
 
 .side-nav .nav-header {
