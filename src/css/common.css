@@ -66,6 +66,8 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
+
+    margin: 8px 0;
 }
 
 .body.bold {
@@ -90,6 +92,7 @@
 
 .btn {
     border-radius: 4px;
+    margin: 16px 0;
 }
 
 .btn-positive {
@@ -98,5 +101,72 @@
 
 .btn-outline {
     border: 1px solid var(--color-primary-green);
-    color: var(--color-primary-green) ;
+    color: var(--color-primary-green);
+}
+
+.btn-circle {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    min-height: 64px;
+    min-width: 64px;
+    border: 0;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  container                                 */
+/* -------------------------------------------------------------------------- */
+
+.container {
+    padding: 0 33px;
+}
+
+.container-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    forms                                   */
+/* -------------------------------------------------------------------------- */
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 8px;
+}
+
+.form input {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    height: 38px;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    margin-top: 4px;
+    padding: 0 8px;
+}
+
+.form input:focus {
+    border-color: var(--color-primary-green);
+    outline: 0;
+    background-color: #619B8A33;
 }

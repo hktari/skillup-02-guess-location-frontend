@@ -3,6 +3,7 @@ import './css/common.css'
 import './App.css';
 import ChangePasswordModal from './components/modals/ChangePasswordModal';
 import ProfileSettingsModal from './components/modals/ProfileSettingsModal';
+import SignupPage from './pages/SignupPage';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -24,9 +25,10 @@ function App() {
   }
   return (
     <>
-      <button onClick={openModal}>Open modal <span className="material-icons">pie_chart</span></button>
+      <SignupPage/>
+      {/* <button onClick={openModal}>Open modal <span className="material-icons">pie_chart</span></button>
       <ProfileSettingsModal isOpen={isOpen} handleClose={openModal} handleChangePassword={openChangePasswordModal} />
-      <ChangePasswordModal isOpen={isPasswordChangeOpen} handleClose={handleCloseChangePassword} />
+      <ChangePasswordModal isOpen={isPasswordChangeOpen} handleClose={handleCloseChangePassword} /> */}
     </>
   );
 }
