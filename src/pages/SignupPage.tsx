@@ -1,6 +1,6 @@
 import React from 'react'
 import AsideSectionBrandDesktop from '../components/Signup/AsideSectionBrandDesktop'
-import '../css/SignupPage.css'
+import '../css/pages/SignupPage.css'
 
 type Props = {}
 
