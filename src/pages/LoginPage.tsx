@@ -15,7 +15,6 @@ const LoginPage = (props: Props) => {
     return (
         <div className="w3-row">
             <div className='container container-center w3-mobile w3-half'>
-                <img className='logo-top-left w3-hide-small' src={logo} alt="geotagger logo" />
                 <h1 className='header3'>Sign in</h1>
                 <p className="body">Welcome back to Geotagger. We are glad that you are back.</p>
                 <form className='form' onSubmit={onSubmit}>

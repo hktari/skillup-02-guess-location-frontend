@@ -10,16 +10,6 @@
     margin-top: 8px;
 }
 
-.container{
-    position: relative;
-}
-
-.logo-top-left{
-    height: 40px;
-    position: absolute;
-    top: 46px;
-    left: 70px;
-}
 @media (min-width: 992px){
     .container{
         padding: 0 88px;

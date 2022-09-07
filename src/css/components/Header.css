@@ -1,0 +1,26 @@
+.header {
+    height: 96px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    padding: 0 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo-top-left {
+    width: 140px;
+    height: 33px;
+}
+
+.header .menu-btn {
+    border: 0;
+    background-color: transparent;
+    color: var(--color-primary-green);
+    width: 26px;
+    height: 26px;
+}
+
+.menu-btn .material-icons {
+    font-size: 26px;
+}

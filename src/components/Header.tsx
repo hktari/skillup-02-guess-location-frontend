@@ -6,9 +6,14 @@ type Props = {}
 
 const Header = (props: Props) => {
   return (
-    <div>
-      <img className='logo-top-left ' src={logo} alt="geotagger logo" />
-    </div>
+    <header className='header'>
+      <img className='logo-top-left' src={logo} alt="geotagger logo" />
+      <button className='menu-btn'>
+        <span className="material-icons">
+          menu
+        </span>
+      </button>
+    </header>
   )
 }
 
