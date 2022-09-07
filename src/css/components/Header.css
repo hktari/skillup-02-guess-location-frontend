@@ -31,13 +31,13 @@
 /* -------------------------------------------------------------------------- */
 
 .side-nav {
-    position: absolute;
+    position: absolute; 
     top: 0;
     left: 0;
     background-color: #fff;
     height: 100vh;
     width: 100vw;
-    z-index: 99;
+    z-index: 99; 
     padding: 0 35px;
     transform: translateX(-100%);
     transition: 0.5s ease;

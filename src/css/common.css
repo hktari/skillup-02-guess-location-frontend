@@ -187,10 +187,10 @@
     padding: 0 12px;
 }
 
-.form input .btn {
+.form input.btn {
     margin: 16px 0;
     border-bottom: none !important;
-} 
+}
 
 .form input:focus {
     border-color: var(--color-primary-green);
@@ -222,9 +222,11 @@
 /* -------------------------------------------------------------------------- */
 
 .brand-logo {
-    width: 100%;
+    width: 50%;
     height: 100vh;
-    position: relative;
+    right: 0;
+    top: 0;
+    position: absolute;
 }
 
 .brand-logo .bg-map {

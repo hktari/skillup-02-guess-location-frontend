@@ -15,13 +15,18 @@ const Header = (props: Props) => {
 
   return (
     <>
-      <header className='header w3-hide-medium w3-hide-large'>
+      <header className='header '>
         <img className='logo-top-left' src={logo} alt="geotagger logo" />
-        <button className='menu-btn' onClick={toggleSidebar}>
-          <span className="material-icons">
-            menu
-          </span>
-        </button>
+        <div className="w3-hide-medium w3-hide-large">
+          <button className='menu-btn' onClick={toggleSidebar}>
+            <span className="material-icons">
+              menu
+            </span>
+          </button>
+        </div>
+        <div className="w3-hide-small">
+            <div className="nav-items"> </div>
+        </div>
       </header>
       <nav className={sidebarOpen ? 'side-nav open' : 'side-nav'} >
         <div className="nav-header">
@@ -52,7 +57,6 @@ const Header = (props: Props) => {
           <button className="btn btn-outline btn-block">SIGN IN</button>
         </div>
       </nav>
-      <header className='header'></header>
     </>
   )
 }
