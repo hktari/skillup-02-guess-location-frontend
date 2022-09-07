@@ -14,8 +14,8 @@ const SignupPage = (props: Props) => {
     return (
         <div className="w3-row">
             <div className='container container-center w3-mobile w3-half'>
-                <h1 className='header3'>Sign up</h1>
-                <p className="body">Your name will appear on posts and your public profile</p>
+                <h1 className='header3 text-center'>Sign up</h1>
+                <p className="body text-center">Your name will appear on posts and your public profile</p>
                 <button className='btn btn-circle'>
                     <span className="material-icons">
                         person
@@ -44,7 +44,7 @@ const SignupPage = (props: Props) => {
                 </div>
             </div>
             <div className="w3-half w3-hide-small">
-                <AsideSectionBrandDesktop/>
+                <AsideSectionBrandDesktop />
             </div>
         </div>
     )
