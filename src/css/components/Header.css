@@ -48,9 +48,35 @@
     margin: 0 30px;
 }
 
-.nav-profile{
+.nav-profile {
     display: flex;
     align-items: center;
+}
+
+.nav-items-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 32px 0;
+}
+
+.nav-items-list .nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 16px 0;
+}
+
+.nav-items-list .nav-item-positive {
+    color: var(--color-primary-green);
+}
+
+.nav-item .body {
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.nav-item .material-icons {
+    font-size: 28px;
 }
 
 /* --------------------------------- common --------------------------------- */

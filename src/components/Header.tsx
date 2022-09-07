@@ -23,8 +23,26 @@ const Header = (props: Props) => {
           </button>
         </div>
         <div className="nav-profile">
-          <img className='profile-img' src={avatarPlaceholder} alt="user profile"  />
+          <img className='profile-img' src={avatarPlaceholder} alt="user profile" />
           <span className='body user-name'>Jacob Jones</span>
+        </div>
+        <ul className='nav-items-list'>
+          <li className="nav-item">
+            <span className='body'>Home</span>
+            <span className='material-icons'>chevron_right</span>
+          </li>
+          <li className="nav-item">
+            <span className='body'>Profile Settings</span>
+            <span className='material-icons'>chevron_right</span>
+          </li>
+          <li className="nav-item nav-item-positive">
+            <span className='body'>Logout</span>
+            <span className='material-icons'>chevron_right</span>
+          </li>
+        </ul>
+        <div className="nav-buttons">
+          <button className="btn btn-positive btn-block">SIGN UP</button>
+          <button className="btn btn-outline btn-block">SIGN IN</button>
         </div>
       </nav>
       <header className='header'></header>
