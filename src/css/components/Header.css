@@ -13,7 +13,7 @@
     height: 33px;
 }
 
-.header .menu-btn {
+.menu-btn {
     border: 0;
     background-color: transparent;
     color: var(--color-primary-green);
@@ -23,4 +23,41 @@
 
 .menu-btn .material-icons {
     font-size: 26px;
+}
+
+.side-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    height: 100vh;
+    width: 100vw;
+    z-index: 99;
+    padding: 0 35px;
+}
+
+.side-nav .nav-header {
+    height: 93px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.side-nav .user-name {
+    font-size: 24px;
+    margin: 0 30px;
+}
+
+.nav-profile{
+    display: flex;
+    align-items: center;
+}
+
+/* --------------------------------- common --------------------------------- */
+.profile-img {
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+    object-fit: contain;
+    border-radius: 50%;
 }
