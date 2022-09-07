@@ -4,6 +4,8 @@
     --color-dark: #322D38;
     --color-green-gradient: linear-gradient(90deg, #659E89 0%, #619B8A 32.12%, #A1C181 100%);
     --color-orange-gradient: linear-gradient(41.75deg, #FE7F2D 22.78%, #FCCA46 87.18%);
+    --breakpoint-sm: 601;
+    --breakpoint-md: 992;
 }
 
 
