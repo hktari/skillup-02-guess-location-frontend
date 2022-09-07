@@ -93,15 +93,27 @@
 .btn {
     border-radius: 4px;
     margin: 16px 0;
+    box-shadow: none;
+    border-bottom: none !important;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
 }
 
 .btn-positive {
     background: var(--color-primary-green);
+    color: #fff;
 }
 
 .btn-outline {
     border: 1px solid var(--color-primary-green);
     color: var(--color-primary-green);
+}
+
+.btn-block {
+    width: 100%;
 }
 
 .btn-circle {
@@ -112,10 +124,19 @@
     min-width: 64px;
     border: 0;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #BDBDBD;
+}
+
+.btn-circle .material-icons {
+    font-size: 32px;
+    color: #fff;
 }
 
 .btn:hover {
-    opacity: 0.8;
+    opacity: 0.5;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -160,8 +181,7 @@
     border: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.42);
     border-radius: 4px;
-    margin-bottom: 10px;
-    margin-top: 4px;
+    margin: 8px 0;
     padding: 0 8px;
 }
 
@@ -169,4 +189,16 @@
     border-color: var(--color-primary-green);
     outline: 0;
     background-color: #619B8A33;
+}
+
+.form-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+.link{
+    color: var(--color-primary-green);
+    text-decoration: none;
 }
