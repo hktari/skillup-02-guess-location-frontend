@@ -99,7 +99,7 @@ const Header = (props: Props) => {
         </div>
       </header>
 
-      <nav className={sidebarOpen ? 'side-nav open' : 'side-nav'} hidden={!sidebarOpen}>
+      <nav className={'side-nav w3-animate-left w3-animate-opacity'} hidden={!sidebarOpen}>
         <div className="nav-header">
           <button className="menu-btn" onClick={toggleSidebar}>
             <div className="material-icons">close</div>

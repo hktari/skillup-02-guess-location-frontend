@@ -76,6 +76,10 @@
     font-size: 16px;
 }
 
+.text-positive {
+    color: var(--color-primary-green);
+}
+
 .body.bold {
     font-weight: 500;
 }
@@ -243,6 +247,23 @@
 
 .link-positive {
     color: var(--color-primary-green);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                   section                                  */
+/* -------------------------------------------------------------------------- */
+
+.section {
+    margin: 48px 0
+}
+
+.section .body,
+.header3,
+.header4,
+.header5,
+.btn {
+    margin: 24px 0;
 }
 
 

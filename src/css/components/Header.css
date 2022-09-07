@@ -101,12 +101,6 @@
     width: 100vw;
     z-index: 99;
     padding: 0 35px;
-    transform: translateX(-100%);
-    transition: 0.5s ease;
-}
-
-.side-nav.open {
-    transform: translateX(0);
 }
 
 .side-nav .nav-header {

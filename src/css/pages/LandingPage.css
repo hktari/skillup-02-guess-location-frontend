@@ -1,0 +1,59 @@
+.section.explore .world-map {
+    height: 215px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.section.explore,
+.section.tryit {
+    text-align: center;
+}
+
+.img-list-container {
+    margin-top: 48px;
+}
+
+.img-list-container>* {
+    margin: 18px 0;
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                            location image locked                           */
+/* -------------------------------------------------------------------------- */
+
+.img-locked {
+    position: relative;
+    width: 100%;
+    height: 193px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.img-locked img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.img-locked .img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(102, 159, 137, 0.6) 50%, rgba(159, 193, 129, 0.6) 128%);
+}
+
+.img-locked .material-icons {
+    font-size: 35px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
