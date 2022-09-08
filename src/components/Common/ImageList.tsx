@@ -70,9 +70,12 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0 }: I
                 })
             }
 
-            <button hidden={!canLoadMore} className="btn btn-alt centered btn-wide" onClick={() => onLoadMoreClickedInternal()}>
-                load more
-            </button>
+            <div className="w3-center">
+                <button hidden={!canLoadMore} className="btn btn-outline" onClick={() => onLoadMoreClickedInternal()}>
+                    load more
+                </button>
+
+            </div>
         </div >
     )
 }

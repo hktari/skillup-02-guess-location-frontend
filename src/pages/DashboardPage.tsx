@@ -10,11 +10,25 @@ type Props = {}
 
 const DashboardPage = (props: Props) => {
 
-  const [newUploads, setNewUploads] = useState<LocationImage[]>([])
+  const [locationGuessList, setLocationGuessList] = useState<LocationImage[]>([])
 
   useEffect(() => {
+    async function loadData() {
+      setLocationGuessList(await getLocationGuesses())
+    }
 
+    loadData()
   }, [])
+
+  async function getLocationGuesses() {
+    try {
+      return await locationApi.getBestGuesses(0)
+    } catch (error) {
+      console.error(error)
+      window.alert('Failed to fetch quotes...')
+      return []
+    }
+  }
 
   async function getNewUploads(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
     try {
@@ -31,7 +45,7 @@ const DashboardPage = (props: Props) => {
       <section className="personal">
         <h2 className='header4 text-positive'>Personal best guesses</h2>
         <p className="body">Your personal best guesses appear here. Go on and try to beat your personal records or set a new one!</p>
-        <HorizontalImageList images={newUploads} />
+        <HorizontalImageList images={locationGuessList} />
       </section>
 
       <section className="new-uploads">

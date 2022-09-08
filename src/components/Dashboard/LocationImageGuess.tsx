@@ -9,7 +9,7 @@ type LocationImageGuessProps = {
 
 const LocationImageGuess = ({ img, title, text }: LocationImageGuessProps) => {
     return (
-        <div className='location-img'>
+        <div className='location-img-container location-img-guess'>
             <img src={img} alt={title} />
             <div className="img-overlay"></div>
             <div className="img-overlay-text">{text}</div>

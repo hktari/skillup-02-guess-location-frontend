@@ -1,18 +1,27 @@
 import React from 'react'
+import { LocationImage } from '../../services/interface'
 import LocationImageGuess from './LocationImageGuess'
 
 type HoriznotalImageListProps = {
-    images: any[]
+    images: LocationImage[]
 }
 
 const HoriznotalImageList = ({ images }: HoriznotalImageListProps) => {
 
+    function RenderImageItem({ img: locationImage }: { img: LocationImage }) {
+        return (
+            <div className="img-item">
+                <LocationImageGuess img={locationImage.image}
+                    title={locationImage.address}
+                    text={`${locationImage.guessErrorMeters} m`} />
+            </div>
+        )
+    }
+
     return (
-        <div className='horizontal-image-container'>
+        <div className='horizontal-img-container'>
             {
-                images.map(img => <LocationImageGuess img={img}
-                    title={img.title}
-                    text={`${img.guessError} m`} />)
+                images.map(img => <RenderImageItem img={img} />)
             }
         </div>
     )
