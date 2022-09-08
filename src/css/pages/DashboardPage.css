@@ -1,11 +1,17 @@
-@media (min-width:601px){
-    .dashboard-page-container .header4, .body{
+@media (min-width:601px) {
+
+    .dashboard-page-container .section .header4,
+    .section .body {
         text-align: left;
         margin-left: 0;
         margin-right: 0;
     }
 
-    .dashboard-page-container .img-list-container{
+    .dashboard-page-container .section {
+        margin-top: 24px;
+    }
+
+    .dashboard-page-container .img-list-container {
         margin-top: 24px;
     }
 }

@@ -44,7 +44,7 @@ const DashboardPage = (props: Props) => {
 
   return (
     <div className="container dashboard-page-container">
-      <section className="personal">
+      <section className="section personal">
         <h2 className='header4 text-positive'>Personal best guesses</h2>
         <p className="body">Your personal best guesses appear here. Go on and try to beat your personal records or set a new one!</p>
         <div className="w3-hide-medium w3-hide-large">
@@ -55,7 +55,7 @@ const DashboardPage = (props: Props) => {
         </div>
       </section>
 
-      <section className="new-uploads">
+      <section className="section new-uploads">
         <h2 className="header4 text-positive">
           New uploads
         </h2>
