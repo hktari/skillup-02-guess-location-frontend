@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { ItemList, LocationImage } from '../../services/interface'
+import LocationImageGuess from '../Dashboard/LocationImageGuess'
 import LocationImageLocked from '../Landing/LocationImageLocked'
 
+enum LocationImageType {
+    GuessResult,
+    LocationImage,
+    EditableLocationImage,
+    Locked,
+}
 
 type ImageListProps = {
-    itemsEditable: boolean,
+    itemType: LocationImageType,
     loadMoreItems: (startIdx: number, pageSize: number) => Promise<ItemList<LocationImage>>
     pageSize?: number
     needsUpdate?: number
 }
 
-const ImageList = ({ itemsEditable, loadMoreItems, pageSize = 3, needsUpdate = 0 }: ImageListProps) => {
+const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0 }: ImageListProps) => {
     const [curPage, setCurPage] = useState<number>(1)
     const [items, setItems] = useState<LocationImage[]>([])
     const [canLoadMore, setCanLoadMore] = useState(true)
@@ -35,21 +42,37 @@ const ImageList = ({ itemsEditable, loadMoreItems, pageSize = 3, needsUpdate = 0
     }
 
 
+    function GetLocationImage({ img }: { img: LocationImage }) {
+        switch (itemType) {
+            case LocationImageType.GuessResult:
+                return (<LocationImageGuess text={`${img.guessErrorMeters} m`} title={img.address} img={img} />)
+            case LocationImageType.LocationImage:
+                return <></>;
+            case LocationImageType.EditableLocationImage:
+                return <></>
+            case LocationImageType.Locked:
+                return (<LocationImageLocked title={img.address} img={img} />)
+            default:
+                return <>no image</>
+        }
+    }
 
     return (
         <div className="w3-row img-list-container">
             {
-                // todo: switch on type of image
-                <div className="w3-mobile w3-third img-item">
-                    <LocationImageLocked img={locationImgSample1} title="san francisco" />
-                </div>
-                items.map(i => <)
+                items.map(i => {
+                    return (
+                        <div className="w3-mobile w3-third img-item" >
+                            <GetLocationImage img={i} />
+                        </div>
+                    )
+                })
             }
 
             <button hidden={!canLoadMore} className="btn btn-alt centered btn-wide" onClick={() => onLoadMoreClickedInternal()}>
                 load more
             </button>
-        </div>
+        </div >
     )
 }
 
