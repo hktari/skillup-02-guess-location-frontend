@@ -10,6 +10,7 @@ import Layout from './components/Layout';
 import LandingPage from './pages/LandingPage';
 import UserProfilePage from './pages/UserProfilePage';
 import { RequireAuth } from './components/context/AuthProvider';
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -39,7 +40,7 @@ function App() {
             <Route path="login" element={<LoginPage />} />
             <Route path="dashboard" element={
               <RequireAuth>
-                <LandingPage />
+                <DashboardPage />
               </RequireAuth>} />
             <Route path="userProfile/:id" element={
               <RequireAuth>
