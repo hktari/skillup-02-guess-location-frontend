@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { ItemList, LocationImage } from '../../services/interface'
+import LocationImageComponent from '../Dashboard/LocationImageComponent'
 import LocationImageGuess from '../Dashboard/LocationImageGuess'
 import LocationImageLocked from '../Landing/LocationImageLocked'
 
-enum LocationImageType {
+export enum LocationImageType {
     GuessResult,
     LocationImage,
     EditableLocationImage,
@@ -25,7 +26,7 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0 }: I
     async function onLoadMoreClicked(page?: number) {
         const list = await loadMoreItems((page ?? curPage - 1) * pageSize, pageSize)
 
-        setItems(items.concat(list.quotes))
+        setItems(items.concat(list.items))
         setCurPage(list.startIdx / list.pageSize + 1)
         setCanLoadMore(+list.startIdx + +list.pageSize < +list.totalItems)
     }
@@ -47,7 +48,7 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0 }: I
             case LocationImageType.GuessResult:
                 return (<LocationImageGuess text={`${img.guessErrorMeters} m`} title={img.address} img={img} />)
             case LocationImageType.LocationImage:
-                return <></>;
+                return (<LocationImageComponent locationImage={img} />);
             case LocationImageType.EditableLocationImage:
                 return <></>
             case LocationImageType.Locked:

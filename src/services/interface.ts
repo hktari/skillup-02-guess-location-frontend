@@ -1,4 +1,4 @@
-export interface LocationImage {
+interface LocationImage {
     id: any,
     address: string,
     lat: number,
@@ -11,9 +11,16 @@ export interface LocationImage {
 
 
 
-export interface ItemList<TItem> {
+interface ItemList<TItem> {
     startIdx: number,
     pageSize: number,
     totalItems: number,
-    quotes: TItem[]
+    items: TItem[]
 }
+
+export type {
+    LocationImage,
+    ItemList
+}
+
+

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import ImageList, { LocationImageType } from '../components/Common/ImageList'
 import HorizontalImageList from '../components/Dashboard/HorizontalImageList'
 import '../css/pages/DashboardPage.css'
-import { LocationImage } from '../services/interface'
+import { ItemList, LocationImage } from '../services/interface'
 import locationApi from '../services/locationApi'
+import { EmptyList } from '../util/LocationImageUtil'
 
 type Props = {}
 
@@ -12,13 +14,17 @@ const DashboardPage = (props: Props) => {
 
   useEffect(() => {
 
-    async function getLocations() {
-      setNewUploads(await locationApi.getAll())
-    }
-
-    getLocations()
   }, [])
 
+  async function getNewUploads(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
+    try {
+      return await locationApi.getAll(startIdx, pageSize)
+    } catch (error) {
+      console.error(error)
+      window.alert('Failed to fetch quotes...')
+      return EmptyList()
+    }
+  }
 
   return (
     <div className="container dashboard-page-container">
@@ -35,7 +41,8 @@ const DashboardPage = (props: Props) => {
         <p className="body">
           New uploads from users. Try to guess all the locations by pressing on a picture.
         </p>
-
+        <ImageList itemType={LocationImageType.LocationImage} needsUpdate={0} pageSize={4}
+          loadMoreItems={getNewUploads} />
 
       </section>
 

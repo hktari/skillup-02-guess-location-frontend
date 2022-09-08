@@ -1,10 +1,15 @@
-import { LocationImage } from "./interface"
+import { ItemList, LocationImage } from './interface'
 
-async function getAll(): Promise<LocationImage[]> {
+async function getAll(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
     const req = await fetch('http://localhost:5983/locations')
-    return (await req.json()) as LocationImage[]
+    const items = await req.json()
+    return {
+        startIdx: startIdx,
+        totalItems: items.length,
+        pageSize: items.length,
+        items: items as LocationImage[]
+    }
 }
-
 
 export default {
     getAll

@@ -23,7 +23,7 @@ const Header = (props: Props) => {
   }
 
   function isLoggedIn() {
-    return false;
+    return false
   }
 
   function getNavItemsType(pagePath: string) {
