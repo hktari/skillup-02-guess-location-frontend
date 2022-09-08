@@ -373,10 +373,11 @@
     height: 100vw;
     overflow-y: auto;
     overflow-x: hidden;
-    -ms-overflow-style: none;
+
     /* IE and Edge */
-    scrollbar-width: none;
+    -ms-overflow-style: none;
     /* Firefox */
+    scrollbar-width: none;
 
     padding-top: calc(3* 33px);
     margin: -25px 0 -100px;

@@ -11,9 +11,7 @@ const HoriznotalImageList = ({ images }: HoriznotalImageListProps) => {
     function RenderImageItem({ img: locationImage }: { img: LocationImage }) {
         return (
             <div className="img-item">
-                <LocationImageGuess img={locationImage.image}
-                    title={locationImage.address}
-                    text={`${locationImage.guessErrorMeters} m`} />
+                <LocationImageGuess locationImage={locationImage} />
             </div>
         )
     }

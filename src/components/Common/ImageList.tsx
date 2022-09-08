@@ -46,7 +46,7 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0 }: I
     function GetLocationImage({ img }: { img: LocationImage }) {
         switch (itemType) {
             case LocationImageType.GuessResult:
-                return (<LocationImageGuess text={`${img.guessErrorMeters} m`} title={img.address} img={img} />)
+                return (<LocationImageGuess locationImage={img} />)
             case LocationImageType.LocationImage:
                 return (<LocationImageComponent locationImage={img} />);
             case LocationImageType.EditableLocationImage:

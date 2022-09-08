@@ -14,19 +14,21 @@ const DashboardPage = (props: Props) => {
 
   useEffect(() => {
     async function loadData() {
-      setLocationGuessList(await getLocationGuesses())
+      const locationGuessList = await getLocationGuesses(0, 10)
+      setLocationGuessList(locationGuessList.items)
     }
 
     loadData()
   }, [])
 
-  async function getLocationGuesses() {
+  async function getLocationGuesses(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
     try {
-      return await locationApi.getBestGuesses(0)
+      // todo: user id
+      return await locationApi.getBestGuesses(0, startIdx, pageSize)
     } catch (error) {
       console.error(error)
       window.alert('Failed to fetch quotes...')
-      return []
+      return EmptyList()
     }
   }
 
@@ -45,7 +47,12 @@ const DashboardPage = (props: Props) => {
       <section className="personal">
         <h2 className='header4 text-positive'>Personal best guesses</h2>
         <p className="body">Your personal best guesses appear here. Go on and try to beat your personal records or set a new one!</p>
-        <HorizontalImageList images={locationGuessList} />
+        <div className="w3-hide-medium w3-hide-large">
+          <HorizontalImageList images={locationGuessList} />
+        </div>
+        <div className="w3-hide-small">
+          <ImageList itemType={LocationImageType.GuessResult} needsUpdate={0} pageSize={3} loadMoreItems={getLocationGuesses} />
+        </div>
       </section>
 
       <section className="new-uploads">

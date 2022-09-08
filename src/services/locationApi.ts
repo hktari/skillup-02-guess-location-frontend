@@ -11,9 +11,8 @@ async function getAll(startIdx: number, pageSize: number): Promise<ItemList<Loca
     }
 }
 
-async function getBestGuesses(userId: any) : Promise<LocationImage[]> {
-    const itemList = await getAll(0, 0)
-    return itemList.items
+async function getBestGuesses(userId: any, startIdx: number, pageSize: number) : Promise<ItemList<LocationImage>> {
+    return await getAll(0, 0)
 }
 
 export default {

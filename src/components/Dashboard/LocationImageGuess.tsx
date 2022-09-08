@@ -1,18 +1,17 @@
 import React from 'react'
 import '../../css/components/Dashboard/LocationImageGuess.css'
+import { LocationImage } from '../../services/interface'
 
 type LocationImageGuessProps = {
-    img: any,
-    title: string,
-    text: string
+    locationImage: LocationImage
 }
 
-const LocationImageGuess = ({ img, title, text }: LocationImageGuessProps) => {
+const LocationImageGuess = ({ locationImage }: LocationImageGuessProps) => {
     return (
         <div className='location-img-container location-img-guess'>
-            <img src={img} alt={title} />
+            <img src={locationImage.image} alt={locationImage.address} />
             <div className="img-overlay"></div>
-            <div className="img-overlay-text">{text}</div>
+            <div className="img-overlay-text">{locationImage.guessErrorMeters} m</div>
         </div>
     )
 }
