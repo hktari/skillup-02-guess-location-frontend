@@ -11,6 +11,7 @@ import LandingPage from './pages/LandingPage';
 import UserProfilePage from './pages/UserProfilePage';
 import { RequireAuth } from './components/context/AuthProvider';
 import DashboardPage from './pages/DashboardPage';
+import AddLocationPage from './pages/AddLocationPage';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -38,19 +39,27 @@ function App() {
             <Route index element={<LandingPage />} />
             <Route path="signup" element={<SignupPage />} />
             <Route path="login" element={<LoginPage />} />
+
             <Route path="dashboard" element={
               <RequireAuth>
                 <DashboardPage />
               </RequireAuth>} />
-            <Route path="userProfile/:id" element={
+            <Route path="user-profile/:id" element={
               <RequireAuth>
                 <UserProfilePage />
               </RequireAuth>
             } />
+
+            <Route path="add-location" element={
+              <RequireAuth>
+                <AddLocationPage />
+              </RequireAuth>
+            } />
+
           </Route>
         </Routes>
-      </BrowserRouter>    
-      </>
+      </BrowserRouter>
+    </>
   );
 }
 

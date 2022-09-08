@@ -1,0 +1,85 @@
+.add-location-page .pick-image {
+    height: 186px;
+    background-color: lightgray;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-location-page .pick-image .material-icons {
+    font-size: 80px;
+}
+
+.add-location-page .pick-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.add-location-page .btn-container {
+    display: flex;
+    margin: 16px 0;
+}
+
+.add-location-page .btn-container .btn-positive {
+    flex: 1;
+    margin: 0;
+    margin-right: 31px;
+}
+
+.add-location-page .btn-container .btn-cancel {
+    margin: 0;
+
+}
+
+.add-location-page .map-container {
+    height: 195px;
+    background-color: gray;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.location-address {
+    margin-top: 16px;
+}
+
+
+@media (min-width: 601px) {
+    .add-location-page .pick-image {
+        height: 280px;
+        margin: 12px 0;
+    }
+
+    .add-location-page .map-container {
+        height: 197px;
+        margin: 24px 0;
+    }
+
+    .add-location-page .btn-container{
+        justify-content: flex-end;
+    }
+    .add-location-page .btn-container .btn-positive {
+        max-width: 200px;
+    }
+
+    .add-location-page .add-new{
+        width: auto;
+        display: block;
+        margin-right: 0;
+    }
+}
+
+
+/* --------------------------------- common --------------------------------- */
+.btn-cancel {
+    width: 40px;
+    height: 40px;
+
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #9B6161;
+}
