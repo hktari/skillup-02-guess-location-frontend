@@ -12,6 +12,7 @@ import UserProfilePage from './pages/UserProfilePage';
 import { RequireAuth } from './components/context/AuthProvider';
 import DashboardPage from './pages/DashboardPage';
 import AddLocationPage from './pages/AddLocationPage';
+import EditLocationPage from './pages/EditLocationPage';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -50,12 +51,18 @@ function App() {
               </RequireAuth>
             } />
 
-            <Route path="add-location" element={
-              <RequireAuth>
-                <AddLocationPage />
-              </RequireAuth>
-            } />
-
+            <Route path='location'>
+              <Route path="add" element={
+                <RequireAuth>
+                  <AddLocationPage />
+                </RequireAuth>
+              } />
+              <Route path="edit" element={
+                <RequireAuth>
+                  <EditLocationPage />
+                </RequireAuth>
+              } />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

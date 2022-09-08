@@ -51,7 +51,7 @@ const DashboardPage = (props: Props) => {
           <HorizontalImageList images={locationGuessList} />
         </div>
         <div className="w3-hide-small">
-          <ImageList itemType={LocationImageType.GuessResult} needsUpdate={0} pageSize={3} loadMoreItems={getLocationGuesses} />
+          <ImageList itemType={LocationImageType.EditableLocationImage} needsUpdate={0} pageSize={3} loadMoreItems={getLocationGuesses} />
         </div>
       </section>
 

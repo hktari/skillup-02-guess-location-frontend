@@ -3,6 +3,7 @@ import { ItemList, LocationImage } from '../../services/interface'
 import LocationImageComponent from '../Dashboard/LocationImageComponent'
 import LocationImageGuess from '../Dashboard/LocationImageGuess'
 import LocationImageLocked from '../Landing/LocationImageLocked'
+import EditableLocationImage from '../Profile/EditableLocationImage'
 
 export enum LocationImageType {
     GuessResult,
@@ -50,7 +51,7 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0 }: I
             case LocationImageType.LocationImage:
                 return (<LocationImageComponent locationImage={img} />);
             case LocationImageType.EditableLocationImage:
-                return <></>
+                return (<EditableLocationImage locationImage={img} />);
             case LocationImageType.Locked:
                 return (<LocationImageLocked title={img.address} img={img} />)
             default:

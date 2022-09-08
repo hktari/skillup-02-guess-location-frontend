@@ -5,14 +5,10 @@ type AddLocationPageProps = {}
 
 const AddLocationPage = (props: AddLocationPageProps) => {
     const [image, setImage] = useState<any>(null)
-    const [searchTerm, setSearchTerm] = useState('')
+    const [searchTerm, setSearchTerm] = useState('Klopeinersee, Austria')
     const [address, setAddress] = useState('')
     const [lastChangeTime, setLastChangeTime] = useState(Date.now())
     const [prevAddress, setPrevAddress] = useState('')
-    
-    useEffect(() => {
-        setImage("https://images.unsplash.com/photo-1543872084-c7bd3822856f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80")
-    }, [])
 
     const selectedImageRef = useRef<HTMLInputElement | null>(null);
 
@@ -36,8 +32,8 @@ const AddLocationPage = (props: AddLocationPageProps) => {
 
     useEffect(() => {
         const monitorAddress = setInterval(() => {
-            console.log('ping')
-            if (prevAddress !== address && Date.now() - lastChangeTime > 3000) {
+            const searchDelayMs = 1500
+            if (prevAddress !== address && address.trim().length > 0 && Date.now() - lastChangeTime > searchDelayMs) {
                 setPrevAddress(address)
                 setSearchTerm(encodeURIComponent(address))
             }
@@ -49,8 +45,7 @@ const AddLocationPage = (props: AddLocationPageProps) => {
     }, [lastChangeTime, prevAddress, address])
 
     function onAddressChange(event: React.ChangeEvent<HTMLInputElement>) {
-        console.log('change')
-        if(prevAddress !== event.target.value){
+        if (prevAddress !== event.target.value) {
             setLastChangeTime(Date.now())
         }
 
