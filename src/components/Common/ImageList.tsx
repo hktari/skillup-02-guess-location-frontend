@@ -70,7 +70,7 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0 }: I
                 })
             }
 
-            <div className="w3-center">
+            <div className="w3-center w3-col">
                 <button hidden={!canLoadMore} className="btn btn-outline" onClick={() => onLoadMoreClickedInternal()}>
                     load more
                 </button>

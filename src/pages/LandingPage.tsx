@@ -10,7 +10,7 @@ type Props = {}
 
 const LandingPage = (props: Props) => {
   return (
-    <div className="container content-container">
+    <div className="container content-container landing-page-container">
       <section className="section explore">
         <div className="w3-row">
           <div className="w3-third">

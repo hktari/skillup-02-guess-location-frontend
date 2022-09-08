@@ -9,12 +9,9 @@
     text-align: center;
 }
 
-.img-list-container {
-    margin-top: 48px;
-}
 
-.img-list-container>* {
-    margin: 18px 0;
+.landing-page-container .img-list-container {
+    margin-top: 48px;
 }
 
 @media (min-width: 601px) {

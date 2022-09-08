@@ -120,6 +120,7 @@
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
+    cursor: pointer;
 
     display: inline-block;
 }
@@ -279,6 +280,16 @@
     max-width: 600px;
 }
 
+@media (min-width:601px) {
+
+    .section .body,
+    .header3,
+    .header4,
+    .header5,
+    .btn {
+        margin: 12px auto;
+    }
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                 Brand Logo                                */
@@ -369,6 +380,8 @@
     line-height: 36px;
 }
 
+/* -------------------------- horizontal image list ------------------------- */
+
 .horizontal-img-container {
     height: 100vw;
     overflow-y: auto;
@@ -393,4 +406,9 @@
     width: calc(100vw - 2 * 33px);
     margin-bottom: 135px;
     transform: rotate(90deg);
+}
+
+/* ------------------------------- image list ------------------------------- */
+.img-list-container>* {
+    margin: 18px 0;
 }
