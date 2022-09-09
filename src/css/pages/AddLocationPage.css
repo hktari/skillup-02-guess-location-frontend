@@ -34,13 +34,6 @@
 
 }
 
-.add-location-page .map-container {
-    height: 195px;
-    background-color: gray;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
 .location-address {
     margin-top: 16px;
 }

@@ -11,6 +11,7 @@ const EditLocationPage = () => {
     const [image, setImage] = useState<any>(null)
     const selectedImageRef = useRef<HTMLInputElement | null>(null);
 
+    const navigate = useNavigate()
     const location = useLocation()
     const locationImage = location.state as LocationImage;
 
@@ -27,6 +28,15 @@ const EditLocationPage = () => {
             }
             setImage(URL.createObjectURL(event.target.files[0]));
         }
+    }
+
+    function onSave(){
+        // todo: do request
+        navigate('/dashboard')
+    }
+
+    function onCancel(){
+        navigate('/dashboard')
     }
 
     return (
@@ -50,9 +60,9 @@ const EditLocationPage = () => {
                                 onChange={onImagePicked} />
                         </button>
                     </div>
-                    <button className="btn btn-positive w3-col s6 m2">SAVE</button>
+                    <button onClick={onSave} className="btn btn-positive w3-col s6 m2">SAVE</button>
                     <div className="w3-col s6 m2">
-                        <button className="btn btn-outline  ">Cancel</button>
+                        <button onClick={onCancel} className="btn btn-outline w3-right">Cancel</button>
                     </div>
                 </div>
             </section>

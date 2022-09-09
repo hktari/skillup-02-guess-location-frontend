@@ -13,6 +13,7 @@ import { RequireAuth } from './components/context/AuthProvider';
 import DashboardPage from './pages/DashboardPage';
 import AddLocationPage from './pages/AddLocationPage';
 import EditLocationPage from './pages/EditLocationPage';
+import GuessLocationPage from './pages/GuessLocationPage';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -60,6 +61,11 @@ function App() {
               <Route path="edit" element={
                 <RequireAuth>
                   <EditLocationPage />
+                </RequireAuth>
+              } />
+              <Route path="guess" element={
+                <RequireAuth>
+                  <GuessLocationPage />
                 </RequireAuth>
               } />
             </Route>

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import MapComponent from '../components/Common/MapComponent'
 import '../css/pages/AddLocationPage.css'
 
 type AddLocationPageProps = {}
@@ -6,10 +7,6 @@ type AddLocationPageProps = {}
 const AddLocationPage = (props: AddLocationPageProps) => {
     const [image, setImage] = useState<any>(null)
     const [searchTerm, setSearchTerm] = useState('Klopeinersee, Austria')
-    const [address, setAddress] = useState('')
-    const [lastChangeTime, setLastChangeTime] = useState(Date.now())
-    const [prevAddress, setPrevAddress] = useState('')
-
     const selectedImageRef = useRef<HTMLInputElement | null>(null);
 
     function onImagePicked(event: any) {
@@ -28,29 +25,6 @@ const AddLocationPage = (props: AddLocationPageProps) => {
     function clearImage() {
         const selectedImgEl: HTMLImageElement = document.getElementById('selectedImage') as HTMLImageElement
         selectedImgEl.src = '';
-    }
-
-    useEffect(() => {
-        const monitorAddress = setInterval(() => {
-            const searchDelayMs = 1500
-            if (prevAddress !== address && address.trim().length > 0 && Date.now() - lastChangeTime > searchDelayMs) {
-                setPrevAddress(address)
-                setSearchTerm(encodeURIComponent(address))
-            }
-        }, 1000)
-
-        return () => {
-            clearInterval(monitorAddress)
-        }
-    }, [lastChangeTime, prevAddress, address])
-
-    function onAddressChange(event: React.ChangeEvent<HTMLInputElement>) {
-        if (prevAddress !== event.target.value) {
-            setLastChangeTime(Date.now())
-        }
-
-        setPrevAddress(address)
-        setAddress(event.target.value)
     }
 
     return (
@@ -73,17 +47,7 @@ const AddLocationPage = (props: AddLocationPageProps) => {
                     </button>
                     <button onClick={clearImage} className="btn btn-cancel"><span className="material-icons">close</span></button>
                 </div>
-                <div className="map-container">
-                    <iframe width="100%" height="100%" style={{ border: 0 }} loading="lazy" src={`https://www.google.com/maps/embed/v1/search?q=${searchTerm}&key=AIzaSyDNRcu5VIhm_sgBSdZPHG6SAe9UClEFS4U`}></iframe>
-                </div>
-                <div className="location-address">
-                    <label htmlFor='address' className="body">Location</label>
-                    <input id='address' className='input input-border' type="text"
-                        placeholder='Enter Address'
-                        onChange={onAddressChange}
-                        value={address} />
-                </div>
-
+                <MapComponent searchTerm={searchTerm} />
                 <button className="btn btn-positive btn-block add-new">ADD NEW</button>
             </section>
         </div>
