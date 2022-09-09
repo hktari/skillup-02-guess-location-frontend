@@ -1,17 +1,43 @@
-import React from 'react'
+import maplibregl from 'maplibre-gl';
+import React, { useEffect, useRef } from 'react';
+
 import '../../css/components/common/MapComponent.css'
+import { Map } from 'maplibre-gl';
 
-type MapComponentProps = {
-    searchTerm: string
+
+
+interface MapComponentProps {
+    searchTerm: string,
+    mapIsReadyCallback?: (map: Map) => void
 }
 
-const MapComponent = ({ searchTerm }: MapComponentProps) => {
-    const searchTermEncoded = encodeURIComponent(searchTerm)
-    return (
-        <div className="map-container">
-            <iframe width="100%" height="100%" style={{ border: 0 }} loading="lazy" src={`https://www.google.com/maps/embed/v1/search?q=${searchTermEncoded}&key=AIzaSyDNRcu5VIhm_sgBSdZPHG6SAe9UClEFS4U`}></iframe>
-        </div>
-    )
-}
+const MyMap = ({ searchTerm, mapIsReadyCallback }: MapComponentProps) => {
+    const mapContainer = useRef(null);
 
-export default MapComponent
+    useEffect(() => {
+        const myAPIKey = process.env.REACT_APP_OSM_API_KEY;
+        const mapStyle =
+            'https://maps.geoapify.com/v1/styles/klokantech-basic/style.json';
+
+        const initialState = {
+            lng: 15.233140,
+            lat: 46.154340,
+            zoom: 14,
+        };
+
+        const map = new Map({
+            container: mapContainer.current!,
+            style: `${mapStyle}?apiKey=${myAPIKey}`,
+            center: [initialState.lng, initialState.lat],
+            zoom: initialState.zoom,
+        });
+
+        map.addControl(new maplibregl.NavigationControl());
+
+        mapIsReadyCallback && mapIsReadyCallback(map);
+    }, [mapContainer.current]);
+
+    return <div className="map-container" ref={mapContainer}></div>;
+};
+
+export default MyMap;
