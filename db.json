@@ -78,7 +78,42 @@
             "id": 0,
             "userId": 0,
             "locationId": 0,
-            "guessErrorMeters": 34,
+            "guessErrorMeters": 3,
+            "createdAt": "2022-09-06T13:01:47.776Z"
+        },
+        {
+            "id": 1,
+            "userId": 1,
+            "locationId": 0,
+            "guessErrorMeters": 334,
+            "createdAt": "2022-09-06T13:01:47.776Z"
+        },
+        {
+            "id": 2,
+            "userId": 2,
+            "locationId": 0,
+            "guessErrorMeters": 534,
+            "createdAt": "2022-09-06T13:01:47.776Z"
+        },
+        {
+            "id": 3,
+            "userId": 3,
+            "locationId": 0,
+            "guessErrorMeters": 634,
+            "createdAt": "2022-09-06T13:01:47.776Z"
+        },
+        {
+            "id": 4,
+            "userId": 4,
+            "locationId": 0,
+            "guessErrorMeters": 1234,
+            "createdAt": "2022-09-06T13:01:47.776Z"
+        },
+        {
+            "id": 5,
+            "userId": 5,
+            "locationId": 0,
+            "guessErrorMeters": 12234,
             "createdAt": "2022-09-06T13:01:47.776Z"
         }
     ]
