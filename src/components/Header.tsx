@@ -97,7 +97,7 @@ const Header = (props: Props) => {
               </li>
             </ul>
             <div className="nav-buttons">
-              <button className='btn btn-circle btn-gray'>
+              <button className='btn btn-circle btn-gray' onClick={navigateToUserProfile}>
                 <img src={user?.image ?? avatarPlaceholder} alt="user profile" className="profile-img" />
               </button>
               <button className="btn btn-circle btn-positive">
