@@ -3,6 +3,7 @@ import '../css/components/Header.css'
 import logo from '../assets/images/logo.png'
 import avatarPlaceholder from '../assets/images/avatar-placeholder.png'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
+import { useAuth } from './context/AuthProvider'
 
 type Props = {}
 
@@ -17,6 +18,7 @@ const Header = (props: Props) => {
 
   const location = useLocation()
   const navigate = useNavigate()
+  const { user } = useAuth()
 
   function toggleSidebar() {
     console.log('toggle sidebar')
@@ -50,7 +52,7 @@ const Header = (props: Props) => {
 
   const navItemsType = getNavItemsType(location.pathname)
 
-  function navigateToUserProfile(){
+  function navigateToUserProfile() {
     navigate('user-profile', {
       state: user
     })
@@ -96,7 +98,7 @@ const Header = (props: Props) => {
             </ul>
             <div className="nav-buttons">
               <button className='btn btn-circle btn-gray'>
-                <img src={avatarPlaceholder} alt="user profile" className="profile-img" />
+                <img src={user?.image ?? avatarPlaceholder} alt="user profile" className="profile-img" />
               </button>
               <button className="btn btn-circle btn-positive">
                 <span className="material-icons">add</span>
@@ -113,8 +115,8 @@ const Header = (props: Props) => {
           </button>
         </div>
         <div className="nav-profile" onClick={navigateToUserProfile}>
-          <img className='profile-img' src={avatarPlaceholder} alt="user profile" />
-          <span className='body user-name'>Jacob Jones</span>
+          <img className='profile-img' src={user?.image ?? avatarPlaceholder} alt="user profile" />
+          <span className='body user-name'>{user?.firstName} {user?.lastName}</span>
         </div>
         <ul className='nav-items-list'>
           <li className="nav-item">

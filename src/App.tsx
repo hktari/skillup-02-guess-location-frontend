@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './css/common.css'
 import './App.css';
 import ChangePasswordModal from './components/modals/ChangePasswordModal';
@@ -9,11 +9,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import LandingPage from './pages/LandingPage';
 import UserProfilePage from './pages/UserProfilePage';
-import { RequireAuth } from './components/context/AuthProvider';
+import AuthProvider, { RequireAuth, useAuth } from './components/context/AuthProvider';
 import DashboardPage from './pages/DashboardPage';
 import AddLocationPage from './pages/AddLocationPage';
 import EditLocationPage from './pages/EditLocationPage';
 import GuessLocationPage from './pages/GuessLocationPage';
+import authApi from './services/authApi';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -33,45 +34,48 @@ function App() {
     // setIsOpen(true)
 
   }
+
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<LandingPage />} />
-            <Route path="signup" element={<SignupPage />} />
-            <Route path="login" element={<LoginPage />} />
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<LandingPage />} />
+              <Route path="signup" element={<SignupPage />} />
+              <Route path="login" element={<LoginPage />} />
 
-            <Route path="dashboard" element={
-              <RequireAuth>
-                <DashboardPage />
-              </RequireAuth>} />
-            <Route path="user-profile/:id" element={
-              <RequireAuth>
-                <UserProfilePage />
-              </RequireAuth>
-            } />
+              <Route path="dashboard" element={
+                <RequireAuth>
+                  <DashboardPage />
+                </RequireAuth>} />
+              <Route path="user-profile" element={
+                <RequireAuth>
+                  <UserProfilePage />
+                </RequireAuth>
+              } />
 
-            <Route path='location'>
-              <Route path="add" element={
-                <RequireAuth>
-                  <AddLocationPage />
-                </RequireAuth>
-              } />
-              <Route path="edit" element={
-                <RequireAuth>
-                  <EditLocationPage />
-                </RequireAuth>
-              } />
-              <Route path="guess" element={
-                <RequireAuth>
-                  <GuessLocationPage />
-                </RequireAuth>
-              } />
+              <Route path='location'>
+                <Route path="add" element={
+                  <RequireAuth>
+                    <AddLocationPage />
+                  </RequireAuth>
+                } />
+                <Route path="edit" element={
+                  <RequireAuth>
+                    <EditLocationPage />
+                  </RequireAuth>
+                } />
+                <Route path="guess" element={
+                  <RequireAuth>
+                    <GuessLocationPage />
+                  </RequireAuth>
+                } />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </>
   );
 }

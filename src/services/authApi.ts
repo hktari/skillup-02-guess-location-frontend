@@ -14,13 +14,13 @@ function logout() {
 
 }
 
-async function updateProfile(email: string, firstName: string, lastName: string, image: string) : Promise<User> {
+async function updateProfile(email: string, firstName: string, lastName: string, imageBase64: string) : Promise<User> {
     return Promise.resolve({
         id: 0,
         email,
         firstName,
         lastName,
-        image
+        image: imageBase64
     })
 }
 

@@ -1,0 +1,15 @@
+ .user-profile .user-profile-img img {
+     width: 64px;
+     height: 64px;
+     border-radius: 50%;
+     margin-right: 24px;
+ }
+
+ .user-profile .user-name{
+    line-height: 64px;
+    margin: 0;
+ }
+
+ .user-profile .best-guesses{
+     margin-top: 48px;
+ }

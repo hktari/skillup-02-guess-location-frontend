@@ -106,7 +106,7 @@
 
 .btn {
     height: 40px;
-    width: 137px;
+    min-width: 137px;
     margin: 8px 0;
     padding: 0 33px;
     border: 0;
@@ -421,5 +421,5 @@ input:focus {
 
 /* ------------------------------- image list ------------------------------- */
 .img-list-container>* {
-    margin: 18px 0;
+    margin: 9px 0;
 }

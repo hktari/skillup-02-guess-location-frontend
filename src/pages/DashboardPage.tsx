@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ImageList, { LocationImageType } from '../components/Common/ImageList'
+import { useAuth } from '../components/context/AuthProvider'
 import HorizontalImageList from '../components/Dashboard/HorizontalImageList'
 import '../css/pages/DashboardPage.css'
 import { ItemList, LocationImage } from '../services/interface'
@@ -41,6 +42,17 @@ const DashboardPage = (props: Props) => {
       return EmptyList()
     }
   }
+
+  const { login } = useAuth()
+  // todo: remove after testing
+  useEffect(() => {
+    async function doLogin() {
+      await login('', '')
+    }
+    doLogin()
+  }, [])
+
+
 
   return (
     <div className="container dashboard-page-container">
