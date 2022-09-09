@@ -1,42 +1,41 @@
 import React from 'react'
 import { Navigate, useLocation } from 'react-router-dom';
-// import authApi from '../services/authApi'
-// import { User } from '../services/interface';
+import authApi from '../../services/authApi';
+import { User } from '../../services/interface';
 
 export interface AuthContextType {
-    // user: User | null;
-    // login: (username: string, pwd: string) => Promise<User>;
-    // logout: () => Promise<any>;
-    // isLoggedIn: () => boolean
-    // updateProfile: (email: string, username: string, userProfileImg: any) => void
+    user: User | null;
+    login: (username: string, pwd: string) => Promise<User>;
+    logout: () => void;
+    isLoggedIn: () => boolean
+    updateProfile: (email: string, firstName: string, lastName: string, imageBase64: string) => void
 }
 
 var AuthContext = React.createContext<AuthContextType>({ user: null, login: null!, logout: null!, isLoggedIn: () => false, updateProfile: null! });
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
-    // let [user, setUser] = React.useState<User | null>(null);
+    let [user, setUser] = React.useState<User | null>(null);
 
-    // let login = async (username: string, pwd: string) => {
-    //     const user = await authApi.login(username, pwd)
-    //     setUser(user);
-    //     localStorage.setItem("user", JSON.stringify(user));
-    //     return user;
-    // }
-    // let logout = async () => {
-    //     await authApi.logout()
-    //     setUser(null);
-    //     localStorage.setItem("user", "");
-    // };
+    let login = async (username: string, pwd: string) => {
+        const user = await authApi.login(username, pwd)
+        setUser(user);
+        localStorage.setItem("user", JSON.stringify(user));
+        return user;
+    }
+    let logout = () => {
+        authApi.logout()
+        setUser(null);
+        localStorage.setItem("user", "");
+    };
 
-    // const updateProfile = async (email: string, username: string, userProfileImg: any) => {
-    //     const userUpdate = await authApi.updateProfile(email, username, userProfileImg)
-    //     setUser(userUpdate)
-    // }
+    const updateProfile = async (email: string, firstName: string, lastName: string, imageBase64: string) => {
+        const userUpdate = await authApi.updateProfile(email, firstName, lastName, imageBase64)
+        setUser(userUpdate)
+    }
 
-    // let isLoggedIn = () => user !== null;
+    let isLoggedIn = () => user !== null;
 
-    // let value = { user, login, logout, isLoggedIn, updateProfile };
-    let value = {}
+    let value = { user, login, logout, isLoggedIn, updateProfile };
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 

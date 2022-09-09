@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import '../css/components/Header.css'
 import logo from '../assets/images/logo.png'
 import avatarPlaceholder from '../assets/images/avatar-placeholder.png'
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
 
 type Props = {}
 
@@ -16,6 +16,7 @@ const Header = (props: Props) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const location = useLocation()
+  const navigate = useNavigate()
 
   function toggleSidebar() {
     console.log('toggle sidebar')
@@ -48,6 +49,12 @@ const Header = (props: Props) => {
   }
 
   const navItemsType = getNavItemsType(location.pathname)
+
+  function navigateToUserProfile(){
+    navigate('user-profile', {
+      state: user
+    })
+  }
 
   return (
     <>
@@ -105,7 +112,7 @@ const Header = (props: Props) => {
             <div className="material-icons">close</div>
           </button>
         </div>
-        <div className="nav-profile">
+        <div className="nav-profile" onClick={navigateToUserProfile}>
           <img className='profile-img' src={avatarPlaceholder} alt="user profile" />
           <span className='body user-name'>Jacob Jones</span>
         </div>
