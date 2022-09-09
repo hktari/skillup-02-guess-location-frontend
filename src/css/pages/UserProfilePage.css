@@ -13,3 +13,9 @@
  .user-profile .best-guesses{
      margin-top: 48px;
  }
+
+ .best-guesses .location-img-container{
+     max-width: 310px;
+ }
+
+  

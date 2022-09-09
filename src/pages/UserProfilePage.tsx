@@ -38,22 +38,27 @@ const UserProfilePage = () => {
 
   return (
     <div className='container'>
-      <section className="section user-profile">
+      <section className="section user-profile w3-row">
         <div className="user-profile-img w3-left">
           <img src={user.image} alt="profile" />
         </div>
         <p className="user-name header5 w3-left">{user.firstName} {user.lastName}</p>
       </section>
 
-      <section className="section best-guesses w3-row">
-        <h2 className='header5 text-positive'>{isLoggedInUser() ? 'My best guesses' : 'Best guesses'} </h2>
-        <ImageList itemType={LocationImageType.GuessResult} pageSize={3} loadMoreItems={loadBestGuesses} />
+      <section className="section best-guesses">
+        <h2 className='header5 text-positive w3-left'>{isLoggedInUser() ? 'My best guesses' : 'Best guesses'} </h2>
+        <ImageList itemType={LocationImageType.GuessResult}
+          pageSize={4}
+          colsPerRow={4}
+          loadMoreItems={loadBestGuesses} />
       </section>
 
       <section className="section uploads">
-        <h2 className="header5 test-positive">{isLoggedInUser() ? 'My uploads' : 'Uploads'}</h2>
+        <h2 className="header5 text-positive w3-left">{isLoggedInUser() ? 'My uploads' : 'Uploads'}</h2>
         <ImageList itemType={isLoggedInUser() ? LocationImageType.EditableLocationImage : LocationImageType.LocationImage}
-          pageSize={4} loadMoreItems={loadUploads} />
+          pageSize={4}
+          colsPerRow={4}
+          loadMoreItems={loadUploads} />
       </section>
     </div>
   )

@@ -7,12 +7,12 @@ async function getAll(startIdx: number, pageSize: number): Promise<ItemList<Loca
         startIdx: startIdx,
         totalItems: items.length,
         pageSize: items.length,
-        items: items as LocationImage[]
+        items: items.splice(0, pageSize)
     }
 }
 
 async function getBestGuesses(userId: any, startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
-    return await getAll(0, 0)
+    return await getAll(startIdx, pageSize)
 }
 
 async function getUploads(userId: string | number, startIdx: number, pageSize: number) {
@@ -22,7 +22,7 @@ async function getUploads(userId: string | number, startIdx: number, pageSize: n
         startIdx,
         totalItems: uploads.length,
         pageSize,
-        items: uploads
+        items: uploads.splice(0, pageSize)
     }
 }
 

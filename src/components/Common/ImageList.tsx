@@ -15,11 +15,12 @@ export enum LocationImageType {
 type ImageListProps = {
     itemType: LocationImageType,
     loadMoreItems: (startIdx: number, pageSize: number) => Promise<ItemList<LocationImage>>
-    pageSize?: number
+    pageSize?: number,
+    colsPerRow?: number,
     needsUpdate?: number
 }
 
-const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0 }: ImageListProps) => {
+const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0, colsPerRow = 3 }: ImageListProps) => {
     const [curPage, setCurPage] = useState<number>(1)
     const [items, setItems] = useState<LocationImage[]>([])
     const [canLoadMore, setCanLoadMore] = useState(true)
@@ -64,8 +65,8 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0 }: I
             {
                 items.map((item, index) => {
                     return (
-                        <div key={index} className="w3-mobile w3-third img-item" >
-                            <GetLocationImage key={item.id} img={item} />
+                        <div key={index} className={`w3-mobile img-item ${colsPerRow === 3 ? 'w3-third' : 'w3-quarter'}`} >
+                            < GetLocationImage key={item.id} img={item} />
                         </div>
                     )
                 })
