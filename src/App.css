@@ -1,5 +1,5 @@
 @import '~maplibre-gl/dist/maplibre-gl.css';
-
+@import "~@geoapify/geocoder-autocomplete/styles/minimal.css";
 
 * {
   box-sizing: border-box;

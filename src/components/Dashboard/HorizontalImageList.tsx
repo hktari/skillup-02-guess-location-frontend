@@ -19,7 +19,7 @@ const HoriznotalImageList = ({ images }: HoriznotalImageListProps) => {
     return (
         <div className='horizontal-img-container'>
             {
-                images.map(img => <RenderImageItem img={img} />)
+                images.map(img => <RenderImageItem key={`horizontal-img-list-${img.id}`} img={img} />)
             }
         </div>
     )

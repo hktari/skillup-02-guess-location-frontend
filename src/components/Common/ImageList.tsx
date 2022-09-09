@@ -62,10 +62,10 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0 }: I
     return (
         <div className="w3-row img-list-container">
             {
-                items.map(i => {
+                items.map((item, index) => {
                     return (
-                        <div className="w3-mobile w3-third img-item" >
-                            <GetLocationImage img={i} />
+                        <div key={index} className="w3-mobile w3-third img-item" >
+                            <GetLocationImage key={item.id} img={item} />
                         </div>
                     )
                 })

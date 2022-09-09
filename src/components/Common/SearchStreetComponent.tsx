@@ -1,45 +1,37 @@
 import React, { useEffect, useState } from 'react'
+import osmApi from '../../services/osmApi'
+import { GeocoderAutocomplete } from '@geoapify/geocoder-autocomplete';
+import '../../css/components/common/SearchStreetComponent.css'
 
 type SearchStreetComponentProps = {
-    onAddressPicked: (addressInfo: any) => void
-}
+    onAddressPicked: (addressInfo: any) => void}
 
-const SearchStreetComponent = ({ onAddressPicked }: SearchStreetComponentProps) => {
+const SearchStreetComponent = ({ onAddressPicked}: SearchStreetComponentProps) => {
     const [searchTerm, setAddress] = useState('')
     const [lastChangeTime, setLastChangeTime] = useState(Date.now())
     const [prevSearchTerm, setPrevAddress] = useState('')
 
+
     useEffect(() => {
-        const monitorAddress = setInterval(() => {
-            const searchDelayMs = 1000
-            if (prevSearchTerm !== searchTerm && searchTerm.trim().length > 0 && Date.now() - lastChangeTime > searchDelayMs) {
-                setPrevAddress(searchTerm)
-                searchForAddress(searchTerm)
-                onAddressPicked(searchTerm)
-            }
-        }, 100)
+        console.log('rendering geocoder input')
+        const autocomplete = new GeocoderAutocomplete(
+            document.getElementById("autocomplete")!,
+            process.env.REACT_APP_OSM_API_KEY!,
+            { /* Geocoder options */ });
 
-        return () => {
-            clearInterval(monitorAddress)
-        }
-    }, [lastChangeTime, prevSearchTerm, searchTerm])
+        autocomplete.on('select', (location) => {
+            // check selected location here 
+            console.log('selected', location)
+        });
 
-    function onAddressChange(event: React.ChangeEvent<HTMLInputElement>) {
-        if (prevSearchTerm !== event.target.value) {
-            setLastChangeTime(Date.now())
-        }
-
-        setPrevAddress(searchTerm)
-        setAddress(event.target.value)
-    }
+        autocomplete.on('suggestions', (suggestions) => {
+            // process suggestions here
+        });
+    }, [])
 
     return (
-        <div className="location-address">
+        <div id="autocomplete" className="autocomplete-container location-address">
             <label htmlFor='address' className="body">Location</label>
-            <input id='address' className='input input-border' type="text"
-                placeholder='Enter Address'
-                onChange={onAddressChange}
-                value={searchTerm} />
         </div>
     )
 }
