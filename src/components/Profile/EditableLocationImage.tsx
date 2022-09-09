@@ -1,6 +1,7 @@
-import React, { EventHandler } from 'react'
+import React, { EventHandler, useState } from 'react'
 import { Link as div, useNavigate } from 'react-router-dom'
 import { LocationImage } from '../../services/interface'
+import DeleteLocationModal from '../modals/DeleteLocationModal'
 
 type EditableLocationImageProps = {
     locationImage: LocationImage
@@ -8,6 +9,7 @@ type EditableLocationImageProps = {
 
 const EditableLocationImage = ({ locationImage }: EditableLocationImageProps) => {
 
+    const [deleteImageModalOpen, setDeleteImageModalOpen] = useState<boolean>(false)
     const navigate = useNavigate()
 
     function onClick(ev: React.MouseEvent<HTMLDivElement>) {
@@ -19,6 +21,7 @@ const EditableLocationImage = ({ locationImage }: EditableLocationImageProps) =>
 
     function onDeleteLocation(event: React.MouseEvent<HTMLButtonElement>) {
         event.stopPropagation()
+        setDeleteImageModalOpen(true);
     }
 
     function onEditLocation(event: React.MouseEvent<HTMLButtonElement>) {
@@ -30,6 +33,10 @@ const EditableLocationImage = ({ locationImage }: EditableLocationImageProps) =>
 
     function toggleHoverOnParent(ev: React.MouseEvent<HTMLButtonElement>, noHover: boolean) {
         ev.currentTarget.parentElement?.classList.toggle('no-hover', noHover)
+    }
+
+    function deleteImage() {
+        console.log('deleting image')
     }
 
     return (
@@ -47,6 +54,14 @@ const EditableLocationImage = ({ locationImage }: EditableLocationImageProps) =>
                 onClick={onEditLocation} className="btn btn-edit">
                 <span className="material-icons">edit</span>
             </button>
+            <DeleteLocationModal locationImage={locationImage}
+                isOpen={deleteImageModalOpen}
+                onChoicePicked={(areYouSure, _) => {
+                    if (areYouSure) {
+                        deleteImage()
+                    }
+                }}
+                handleClose={() => setDeleteImageModalOpen(false)} />
         </div>
     )
 }

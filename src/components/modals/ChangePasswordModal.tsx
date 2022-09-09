@@ -1,10 +1,6 @@
 import Modal from 'react-modal'
 import React from 'react'
-
-interface ModalProps {
-    isOpen: boolean,
-    handleClose: VoidFunction
-}
+import { ModalProps } from '../ComponentInterface'
 
 interface ChangePasswordModalProps extends ModalProps {
 
