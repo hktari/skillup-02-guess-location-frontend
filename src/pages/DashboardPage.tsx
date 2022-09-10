@@ -43,14 +43,14 @@ const DashboardPage = (props: Props) => {
     }
   }
 
-  const { login } = useAuth()
-  // todo: remove after testing
-  useEffect(() => {
-    async function doLogin() {
-      await login('', '')
-    }
-    doLogin()
-  }, [])
+  // const { login } = useAuth()
+  // // todo: remove after testing
+  // useEffect(() => {
+  //   async function doLogin() {
+  //     await login('', '')
+  //   }
+  //   doLogin()
+  // }, [])
 
 
 

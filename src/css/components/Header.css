@@ -92,6 +92,11 @@
 /*                                  side nav                                  */
 /* -------------------------------------------------------------------------- */
 
+body.no-scroll{
+    height: 100vh;
+    overflow-y: hidden;
+}
+
 .side-nav {
     position: absolute;
     top: 0;
@@ -101,6 +106,7 @@
     width: 100vw;
     z-index: 99;
     padding: 0 35px;
+    overflow: hidden;
 }
 
 .side-nav .nav-header {
@@ -131,6 +137,7 @@
     align-items: center;
     justify-content: space-between;
     margin: 16px 0;
+    transition: 0.5s ease-in;
 }
 
 .nav-items-list .nav-item-positive {
@@ -144,6 +151,10 @@
 
 .nav-item .material-icons {
     font-size: 28px;
+}
+
+.nav-items-list .nav-item:active{
+    background-color: #4a4a4a99;
 }
 
 /* --------------------------------- common --------------------------------- */

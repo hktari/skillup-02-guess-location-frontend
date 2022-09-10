@@ -18,15 +18,15 @@ const Header = (props: Props) => {
 
   const location = useLocation()
   const navigate = useNavigate()
-  const { user } = useAuth()
+  const { user, isLoggedIn, logout } = useAuth()
+
 
   function toggleSidebar() {
     console.log('toggle sidebar')
-    setSidebarOpen(!sidebarOpen)
-  }
+    const body = document.querySelector('body')
+    body?.classList.toggle('no-scroll', !sidebarOpen)
 
-  function isLoggedIn() {
-    return false
+    setSidebarOpen(!sidebarOpen)
   }
 
   function getNavItemsType(pagePath: string) {
@@ -43,19 +43,39 @@ const Header = (props: Props) => {
     return val
   }
 
-  function logout() {
-
+  function onLogout() {
+    logout()
+    navigate('/login')
+    toggleSidebar()
   }
-  function profileSettings() {
 
+  function showProfileSettings() {
+
+    toggleSidebar()
   }
 
   const navItemsType = getNavItemsType(location.pathname)
+  console.log('HEADER TYPE', navItemsType)
 
   function navigateToUserProfile() {
     navigate('user-profile', {
       state: user
     })
+    toggleSidebar()
+  }
+
+  function navigateHome() {
+    navigate('/dashboard')
+    toggleSidebar()
+  }
+
+  function navigateToSignup() {
+    navigate('/signup')
+    toggleSidebar()
+  }
+  function navigateToLogin() {
+    navigate('/login')
+    toggleSidebar()
   }
 
   return (
@@ -71,7 +91,7 @@ const Header = (props: Props) => {
         </div>
         <div className="w3-hide-small">
 
-          {/* <nav className="nav-items-desktop new-user"
+          <nav className="nav-items-desktop new-user"
             hidden={navItemsType !== HeaderNavItemsType.NewUser}>
             <ul className="nav-item-list">
               <li className="nav-item">
@@ -82,33 +102,36 @@ const Header = (props: Props) => {
                 <Link to='signup' className="btn text-small btn-positive">SIGN UP</Link>
               </li>
             </ul>
-          </nav> */}
-          {/* hidden={navItemsType !== HeaderNavItemsType.LoggedIn} */}
-          <nav className="nav-items-desktop logged-in" >
-            <ul className='nav-item-list'>
-              <li className="nav-item">
-                <Link className='link' to='/'>Home</Link>
-              </li>
-              <li className="nav-item">
-                <button className='link' onClick={profileSettings}>Profile Settings</button>
-              </li>
-              <li className="nav-item">
-                <button className='link' onClick={logout}>Logout</button>
-              </li>
-            </ul>
-            <div className="nav-buttons">
-              <button className='btn btn-circle btn-gray' onClick={navigateToUserProfile}>
-                <img src={user?.image ?? avatarPlaceholder} alt="user profile" className="profile-img" />
-              </button>
-              <button className="btn btn-circle btn-positive">
-                <span className="material-icons">add</span>
-              </button>
+          </nav>
+
+
+          <nav className="nav-items-desktop logged-in">
+            <div hidden={navItemsType !== HeaderNavItemsType.LoggedIn}>
+              <ul className='nav-item-list w3-red'>
+                <li className="nav-item">
+                  <Link className='link' to='/'>Home</Link>
+                </li>
+                <li className="nav-item">
+                  <button className='link' onClick={showProfileSettings}>Profile Settings</button>
+                </li>
+                <li className="nav-item">
+                  <button className='link' onClick={onLogout}>Logout</button>
+                </li>
+              </ul>
+              <div className="nav-buttons">
+                <button className='btn btn-circle btn-gray' onClick={navigateToUserProfile}>
+                  <img src={user?.image ?? avatarPlaceholder} alt="user profile" className="profile-img" />
+                </button>
+                <button className="btn btn-circle btn-positive">
+                  <span className="material-icons">add</span>
+                </button>
+              </div>
             </div>
           </nav>
         </div>
       </header>
 
-      <nav className={'side-nav w3-animate-left w3-animate-opacity'} hidden={!sidebarOpen}>
+      <nav className={'side-nav w3-animate-left w3-animate-opacity w3-hide-medium w3-hide-large'} hidden={!sidebarOpen}>
         <div className="nav-header">
           <button className="menu-btn" onClick={toggleSidebar}>
             <div className="material-icons">close</div>
@@ -119,22 +142,24 @@ const Header = (props: Props) => {
           <span className='body user-name'>{user?.firstName} {user?.lastName}</span>
         </div>
         <ul className='nav-items-list'>
-          <li className="nav-item">
+          <li className="nav-item link" onClick={navigateHome}>
             <span className='body'>Home</span>
             <span className='material-icons'>chevron_right</span>
           </li>
-          <li className="nav-item">
+          <li className="nav-item link" onClick={showProfileSettings}>
             <span className='body'>Profile Settings</span>
             <span className='material-icons'>chevron_right</span>
           </li>
-          <li className="nav-item nav-item-positive">
+          <li className="nav-item nav-item-positive link" onClick={onLogout}>
             <span className='body'>Logout</span>
             <span className='material-icons'>chevron_right</span>
           </li>
         </ul>
-        <div className="nav-buttons">
-          <button className="btn btn-positive btn-block">SIGN UP</button>
-          <button className="btn btn-outline btn-block">SIGN IN</button>
+        <div hidden={navItemsType === HeaderNavItemsType.LoggedIn}>
+          <div className="nav-buttons">
+            <button onClick={navigateToSignup} className="btn btn-positive btn-block">SIGN UP</button>
+            <button onClick={navigateToLogin} className="btn btn-outline btn-block">SIGN IN</button>
+          </div>
         </div>
       </nav>
     </>
