@@ -1,9 +1,29 @@
-.btn-circle{
+.btn-circle {
     align-self: center;
 }
 
-@media (min-width: 992px){
-    .signup.container{
-        padding: 0 88px;
-    }
+.select-profile-img {
+    width: 64px;
+    height: 64px;
+    position: relative;
+    border-radius: 64px;
+    overflow: hidden;
+    border: 0;
+    margin: 24px auto;
+}
+
+.select-profile-img .material-icons{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.select-profile-img img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
 }

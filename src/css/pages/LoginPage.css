@@ -5,9 +5,3 @@
 .form{
     margin-top: 8px;
 }
-
-@media (min-width: 992px){
-    .login.container{
-        padding: 0 88px;
-    }
-}
