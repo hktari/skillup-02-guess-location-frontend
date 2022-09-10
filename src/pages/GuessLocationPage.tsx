@@ -42,21 +42,36 @@ const GuessLocationPage = () => {
 
     return (
         <div className='container'>
-            <section className="section guess-location">
-                <h2 className="header4">Take a <span className="text-positive">guess</span> !</h2>
-                <LocationImageComponent locationImage={locationImage} />
-                <MapComponent searchTerm={searchTerm} />
-                <SearchStreetComponent onAddressPicked={onAddressPicked} />
-                <div className="error-distance w3-margin-top">
-                    <label className='body' htmlFor="errorDistance">Error distance</label>
-                    <div className='input input-border' id="errorDistance" >{errorDistance}</div>
+            <div className="w3-row">
+                <div className="w3-col s12 m8">
+                    <section className="section guess-location">
+                        <h2 className="header4">Take a <span className="text-positive">guess</span> !</h2>
+                        <div className="w3-margin-top">
+                            <LocationImageComponent interactable={false} locationImage={locationImage} />
+                        </div>
+                        <MapComponent searchTerm={searchTerm} />
+                        <div className="input-container">
+                            <div className="search-street">
+                                <SearchStreetComponent onAddressPicked={onAddressPicked} />
+                            </div>
+                            <div className="error-distance w3-margin-top">
+                                <label className='body' htmlFor="errorDistance">Error distance</label>
+                                <div className='input input-border' id="errorDistance" >{errorDistance}</div>
+                            </div>
+                        </div>
+                        <button disabled={!inputEnabled} onClick={onGuessClicked}
+                            className="btn btn-positive w3-right w3-margin-top">GUESS</button>
+                    </section>
                 </div>
-                <button disabled={!inputEnabled} onClick={onGuessClicked} className="btn btn-positive w3-right">GUESS</button>
-            </section>
-            <section className="section leaderboards">
-                <h2 className="header4">Leaderboard</h2>
-                <LeaderboardComponent locationImageId={locationImage.id} />
-            </section>
+                <div className="w3-col s12 m4">
+                    <section className="section leaderboards">
+                        <h2 className="header4">Leaderboard</h2>
+                        <div className="w3-margin-top">
+                            <LeaderboardComponent locationImageId={locationImage.id} />
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
     )
 }

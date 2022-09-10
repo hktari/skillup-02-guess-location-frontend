@@ -3,7 +3,7 @@
 }
 
 @media (min-width: 992px){
-    .container{
+    .signup.container{
         padding: 0 88px;
     }
 }

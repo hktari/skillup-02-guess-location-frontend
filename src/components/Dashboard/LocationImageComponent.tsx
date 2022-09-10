@@ -4,10 +4,10 @@ import { LocationImage } from '../../services/interface'
 
 type LocationImageProps = {
     locationImage: LocationImage,
-
+    interactable?: boolean
 }
 
-const LocationImageComponent = ({ locationImage }: LocationImageProps) => {
+const LocationImageComponent = ({ locationImage, interactable = true }: LocationImageProps) => {
     const navigate = useNavigate()
 
     function onClick(ev: React.MouseEvent<HTMLAnchorElement>) {
@@ -18,8 +18,10 @@ const LocationImageComponent = ({ locationImage }: LocationImageProps) => {
         })
     }
     return (
-        <div className='location-img-container'>
-            <Link onClick={onClick} to={`/location/guess/${locationImage.id}`}>
+        <div className={`location-img-container ${!interactable ? 'no-interact' : ''}`}>
+            <Link
+                onClick={onClick}
+                to={`/location/guess/${locationImage.id}`}>
                 <img src={locationImage.image} alt={locationImage.address} />
             </Link>
         </div>

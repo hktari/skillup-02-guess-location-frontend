@@ -3,3 +3,27 @@
     width: 100%;
     height: 46px;
 }
+
+@media (min-width:601px){
+    .guess-location{
+        margin-right: 24px;
+    }
+
+    .location-img-container img{
+        height: 324px;
+    }
+
+    .input-container{
+        display: flex;
+    
+    }
+    .input-container .search-street{
+        order: 2;
+        flex-grow: 1;
+    }
+    .input-container .error-distance{
+        order: 1;
+        min-width: 212px;
+        margin-right: 24px;
+    }
+}

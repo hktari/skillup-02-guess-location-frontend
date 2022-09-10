@@ -7,7 +7,7 @@
 }
 
 @media (min-width: 992px){
-    .container{
+    .login.container{
         padding: 0 88px;
     }
 }

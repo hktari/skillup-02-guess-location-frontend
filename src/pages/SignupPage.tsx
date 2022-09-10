@@ -13,7 +13,7 @@ const SignupPage = (props: Props) => {
 
     return (
         <div className="w3-row">
-            <div className='container container-center w3-mobile w3-half'>
+            <div className='container container-center signup w3-mobile w3-half'>
                 <h1 className='header3 text-center'>Sign up</h1>
                 <p className="body text-center">Your name will appear on posts and your public profile</p>
                 <button className='btn btn-circle'>
