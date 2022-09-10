@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AsideSectionBrandDesktop from '../components/Signup/AsideSectionBrandDesktop'
 import '../css/pages/LoginPage.css'
 import logo from '../assets/images/logo.png'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../components/context/AuthProvider'
 
 type Props = {}
 
 const LoginPage = (props: Props) => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const navigate = useNavigate()
 
-    function onSubmit(event: React.FormEvent) {
+    const { login } = useAuth()
+
+    async function onSubmit(event: React.FormEvent) {
         event.preventDefault()
-        console.log('sign up')
+        try {
+            await login(email, password)
+            navigate('/')                
+        } catch (error) {
+            console.error(error)
+            window.alert('Login failed. Please try again')
+        }
     }
 
     return (
@@ -19,11 +32,18 @@ const LoginPage = (props: Props) => {
                 <p className="body text-center">Welcome back to Geotagger. We are glad that you are back.</p>
                 <form className='form' onSubmit={onSubmit}>
                     <label htmlFor="email">Email</label>
-                    <input className='input-border' type="text" id="email" />
-                    <label htmlFor="password">Password</label>
-                    <input className='input-border' type="password" id="password" />
+                    <input className='input-border' type="text"
+                        value={email} id="email"
+                        onChange={(e) => setEmail(e.currentTarget.value)} />
 
-                    <input type="submit" className='btn btn-positive btn-block' value='SIGN IN' />
+                    <label htmlFor="password">Password</label>
+                    <input className='input-border' type="password"
+                        value={password} id="password"
+                        onChange={(e) => setPassword(e.currentTarget.value)} />
+
+                    <input type="submit"
+                        className='btn btn-positive btn-block'
+                        value='SIGN IN' />
                 </form>
                 <div className="form-footer">
                     Do you want to ceate an account ?<a href="/signup" className='link'>Sign up</a>
