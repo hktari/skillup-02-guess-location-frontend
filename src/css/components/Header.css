@@ -65,10 +65,6 @@
     color: #000;
 }
 
-.nav-items-desktop.new-user .btn {
-    height: 31px;
-}
-
 /* -------------------------- header type logged in ------------------------- */
 .nav-items-desktop.logged-in {
     display: flex;

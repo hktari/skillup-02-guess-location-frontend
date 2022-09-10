@@ -18,7 +18,7 @@ const LoginPage = (props: Props) => {
         event.preventDefault()
         try {
             await login(email, password)
-            navigate('/')                
+            navigate('/')
         } catch (error) {
             console.error(error)
             window.alert('Login failed. Please try again')
@@ -27,7 +27,7 @@ const LoginPage = (props: Props) => {
 
     return (
         <div className="w3-row">
-            <div className='container container-center w3-mobile w3-half login'>
+            <div className="w3-half w3-container w3-padding-large w3-padding-64">
                 <h1 className='header3 text-center'>Sign in</h1>
                 <p className="body text-center">Welcome back to Geotagger. We are glad that you are back.</p>
                 <form className='form' onSubmit={onSubmit}>
