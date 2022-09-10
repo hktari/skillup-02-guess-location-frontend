@@ -105,9 +105,9 @@ const Header = (props: Props) => {
           </nav>
 
 
-          <nav className="nav-items-desktop logged-in">
-            <div hidden={navItemsType !== HeaderNavItemsType.LoggedIn}>
-              <ul className='nav-item-list w3-red'>
+          <div hidden={navItemsType !== HeaderNavItemsType.LoggedIn}>
+            <nav className="nav-items-desktop logged-in">
+              <ul className='nav-item-list'>
                 <li className="nav-item">
                   <Link className='link' to='/'>Home</Link>
                 </li>
@@ -126,8 +126,9 @@ const Header = (props: Props) => {
                   <span className="material-icons">add</span>
                 </button>
               </div>
-            </div>
-          </nav>
+            </nav>
+          </div>
+
         </div>
       </header>
 

@@ -136,14 +136,19 @@
 }
 
 .btn-circle {
-    border-radius: 50%;
-    width: 64px;
-    height: 64px;
+    min-width: auto;
     border: 0;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0;
+}
+
+.btn-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .btn-gray {

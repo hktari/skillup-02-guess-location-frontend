@@ -35,6 +35,8 @@
 .nav-items-desktop .btn {
     height: 40px;
     width: 40px;
+    border-radius: 64px;
+    padding: 0;
     margin: 0 8px;
 }
 
