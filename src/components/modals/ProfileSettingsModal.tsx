@@ -46,13 +46,13 @@ const ProfileSettingsModal = ({ isOpen, handleClose, handleChangePassword, onCha
                 <input className='input' type="text" id="email" value={user?.email} disabled={true} />
 
                 <div className="w3-row w3-padding-16">
-                    <div className="w3-col s5 m12">
+                    <div className="input-half w3-col w3-half">
                         <label className='label' htmlFor="firstName">First Name</label>
                         <input className='input' type="text" id='firstName' value={firstName}
                             onChange={e => setFirstName(e.currentTarget.value)} />
                     </div>
-                    <div className="w3-col s2 w3-hide-medium w3-hide-large"><br /></div>
-                    <div className="w3-col s5 m12">
+
+                    <div className="input-half w3-col w3-half">
                         <label className='label' htmlFor="lastName">Last Name</label>
                         <input className='input' type="text" id='lastName' value={lastName}
                             onChange={e => setLastName(e.currentTarget.value)} />
@@ -66,7 +66,7 @@ const ProfileSettingsModal = ({ isOpen, handleClose, handleChangePassword, onCha
 
             <div className="modal-footer w3-margin-top">
                 <input type='submit' className="btn btn-positive" value='SUBMIT' />
-                <button onClick={handleClose} className="btn btn-outline">Cancel</button>
+                <button onClick={handleClose} className="btn btn-title-only">Cancel</button>
             </div>
         </Modal>
     )

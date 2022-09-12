@@ -183,7 +183,7 @@
     background-color: var(--color-primary-green);
 }
 
-.btn-title-only{
+.btn-title-only {
     border: 0;
     color: #000;
     background-color: transparent;
@@ -240,7 +240,7 @@
     padding: 25px;
     overflow: auto;
     outline: none;
-    background: #FFFFFF;    
+    background: #FFFFFF;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
 }
@@ -258,14 +258,23 @@
     background-color: transparent;
 }
 
-.modal-footer{
+.modal-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-@media (min-width: 601px){
-    .modal .modal-footer{
+
+@media (min-width: 601px) {
+    .modal .input-half:nth-child(1) {
+        padding-right: 16px;
+    }
+
+    .modal .input-half:nth-child(2) {
+        padding-left: 16px;
+    }
+
+    .modal .modal-footer {
         justify-content: start;
 
     }
