@@ -32,7 +32,23 @@ interface ItemList<TItem> {
     items: TItem[]
 }
 
+interface ApiResult {
+    errors?: []
+}
+
+interface JWT {
+    token: string,
+    expiresAt: Date
+}
+
+interface LoginApiResult extends ApiResult {
+    user: User,
+    jwt: JWT
+}
+
 export type {
+    ApiResult,
+    LoginApiResult,
     LocationImage,
     ItemList,
     LeaderboardItem,

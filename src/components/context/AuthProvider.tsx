@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate, useLocation } from 'react-router-dom';
-import authApi, { ApiResult } from '../../services/authApi';
-import { User } from '../../services/interface';
+import authApi from '../../services/authApi';
+import { ApiResult, User } from '../../services/interface';
 
 export interface AuthContextType {
     user: User | null;
@@ -15,19 +15,30 @@ export interface AuthContextType {
 
 var AuthContext = React.createContext<AuthContextType>({ user: null, login: null!, logout: null!, isLoggedIn: () => false, updateProfile: null!, updateProfileImage: null!, changePassword: null! });
 
+
+function getUserCredentialsOrNull() {
+    const jwtJSON = localStorage.getItem('jwt')
+    return jwtJSON ? JSON.parse(jwtJSON) : null
+}
+
 function AuthProvider({ children }: { children: React.ReactNode }) {
-    let [user, setUser] = React.useState<User | null>(null);
+    let [user, setUser] = React.useState<User | null>(getUserCredentialsOrNull());
 
     let login = async (username: string, pwd: string) => {
-        const user = await authApi.login(username, pwd)
-        setUser(user);
-        localStorage.setItem("user", JSON.stringify(user));
-        return user;
+        const { user, jwt, errors } = await authApi.login(username, pwd)
+        if (!errors) {
+            setUser(user);
+            localStorage.setItem("jwt", JSON.stringify(jwt));
+            return user
+        } else {
+            throw new Error(errors.join(', '))
+        }
     }
+
     let logout = () => {
         authApi.logout()
         setUser(null);
-        localStorage.setItem("user", "");
+        localStorage.setItem("jwt", "");
     };
 
     const updateProfile = async (firstName: string, lastName: string) => {
@@ -68,16 +79,16 @@ export function useAuth() {
 }
 
 export function RequireAuth({ children }: { children: JSX.Element }) {
-    // let auth = useAuth();
-    // let location = useLocation();
+    let auth = useAuth();
+    let location = useLocation();
 
-    // if (!auth.isLoggedIn()) {
-    //     // Redirect them to the /login page, but save the current location they were
-    //     // trying to go to when they were redirected. This allows us to send them
-    //     // along to that page after they login, which is a nicer user experience
-    //     // than dropping them off on the home page.
-    //     return <Navigate to="/login" state={{ from: location }} replace />;
-    // }
+    if (!auth.isLoggedIn()) {
+        // Redirect them to the /login page, but save the current location they were
+        // trying to go to when they were redirected. This allows us to send them
+        // along to that page after they login, which is a nicer user experience
+        // than dropping them off on the home page.
+        return <Navigate to="/login" state={{ from: location }} replace />;
+    }
 
     return children;
 }
