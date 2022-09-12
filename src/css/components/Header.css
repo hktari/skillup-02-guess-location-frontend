@@ -8,9 +8,20 @@
     align-items: center;
 }
 
-.header .logo-top-left {
-    width: 140px;
+.header .mobile{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    width:  141px;
     height: 33px;
+
+}
+.header .mobile .add-location{
+    height: 40px;
+    width: 40px;
 }
 
 .menu-btn {
@@ -29,10 +40,12 @@
     font-size: 26px;
 }
 
-@media (min-width:601px) {
-    .header {
-        padding: 0 70px;
-    }
+.header .desktop{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 70px;        
 }
 
 /* --------------------------- navigation desktop --------------------------- */

@@ -83,7 +83,6 @@ const Header = (props: Props) => {
 
   function navigateToAddLocation() {
     navigate('/location/add')
-    toggleSidebar()
   }
 
   const [profileSettingsOpen, setProfileSettingsOpen] = useState(false)
@@ -109,16 +108,26 @@ const Header = (props: Props) => {
 
   return (
     <>
-      <header className='header '>
-        <img className='logo-top-left' src={logo} alt="geotagger logo" />
-        <div className="w3-hide-medium w3-hide-large">
+      <header className='header'>
+
+        {/* mobile header */}
+        <div className="mobile w3-hide-medium w3-hide-large">
+          <button className="add-location btn btn-circle btn-positive" onClick={navigateToAddLocation}>
+            <span className="material-icons">add</span>
+          </button>
+
+          <img className='logo' src={logo} alt="geotagger logo" />
+
           <button className='menu-btn' onClick={toggleSidebar}>
             <span className="material-icons">
               menu
             </span>
           </button>
         </div>
-        <div className="w3-hide-small">
+        <div className="desktop w3-hide-small">
+          <div className="">
+            <img className='logo' src={logo} alt="geotagger logo" />
+          </div>
 
           <nav className="nav-items-desktop new-user"
             hidden={navItemsType !== HeaderNavItemsType.NewUser}>
@@ -163,6 +172,7 @@ const Header = (props: Props) => {
         </div>
       </header>
 
+      {/* todo: move to seperate file */}
       <nav className={'side-nav w3-animate-left w3-animate-opacity w3-hide-medium w3-hide-large'} hidden={!sidebarOpen}>
         <div className="nav-header">
           <button className="menu-btn" onClick={toggleSidebar}>
@@ -195,7 +205,7 @@ const Header = (props: Props) => {
         </div>
       </nav>
 
-
+      {/* todo:  move to seperate file*/}
       <div id='all-modals'>
         <ProfileSettingsModal isOpen={profileSettingsOpen}
           handleClose={() => setProfileSettingsOpen(false)}
