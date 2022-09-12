@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ItemList, LocationImage } from '../../services/interface'
+import { useLocationsContext } from '../context/LocationProvider'
 import LocationImageComponent from '../Dashboard/LocationImageComponent'
 import LocationImageGuess from '../Dashboard/LocationImageGuess'
 import LocationImageLocked from '../Landing/LocationImageLocked'
@@ -25,13 +26,24 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0, col
     const [items, setItems] = useState<LocationImage[]>([])
     const [canLoadMore, setCanLoadMore] = useState(true)
 
-    async function loadItems() {
+    async function loadItems(shouldConcatItems: boolean = true) {
         const list = await loadMoreItems((curPage - 1) * pageSize, pageSize)
-        console.log('list', list.startIdx, list.pageSize, list.totalItems)
-        setItems(items.concat(list.items))
+        if (shouldConcatItems) {
+            setItems(items.concat(list.items))
+        } else {
+            setItems(list.items)
+        }
         setCurPage(list.startIdx / list.pageSize + 1)
         setCanLoadMore(+list.startIdx + +list.pageSize < +list.totalItems)
     }
+
+
+    const { updateIndicatorIdx } = useLocationsContext();
+
+    //   refresh list
+    useEffect(() => {
+        loadItems(false)
+    }, [updateIndicatorIdx])
 
     // initialize
     useEffect(() => {
@@ -40,7 +52,7 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0, col
     }, [needsUpdate])
 
     useEffect(() => {
-        loadItems()        
+        loadItems()
     }, [curPage])
 
     function onLoadMoreClickedInternal() {

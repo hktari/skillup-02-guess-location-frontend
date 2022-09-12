@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import ImageList, { LocationImageType } from '../components/Common/ImageList'
 import { ItemList, LocationImage, User } from '../services/interface'
@@ -6,13 +6,12 @@ import locationApi from '../services/locationApi'
 import { EmptyList } from '../util/LocationImageUtil'
 import '../css/pages/UserProfilePage.css'
 import { useAuth } from '../components/context/AuthProvider'
+import { useLocationsContext } from '../components/context/LocationProvider'
 
 const UserProfilePage = () => {
   const location = useLocation()
   const user = location.state as User
   const authContext = useAuth()
-
-  console.log('user-profile page', user)
 
   async function loadBestGuesses(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
     try {

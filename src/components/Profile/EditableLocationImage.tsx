@@ -1,6 +1,8 @@
 import React, { EventHandler, useState } from 'react'
-import { Link as div, useNavigate } from 'react-router-dom'
+import { Link as div, useLocation, useNavigate } from 'react-router-dom'
 import { LocationImage } from '../../services/interface'
+import locationApi from '../../services/locationApi'
+import { useLocationsContext } from '../context/LocationProvider'
 import DeleteLocationModal from '../modals/DeleteLocationModal'
 
 type EditableLocationImageProps = {
@@ -10,6 +12,7 @@ type EditableLocationImageProps = {
 const EditableLocationImage = ({ locationImage }: EditableLocationImageProps) => {
 
     const [deleteImageModalOpen, setDeleteImageModalOpen] = useState<boolean>(false)
+    const { deleteLocation } = useLocationsContext()
     const navigate = useNavigate()
 
     function onClick(ev: React.MouseEvent<HTMLDivElement>) {
@@ -35,8 +38,14 @@ const EditableLocationImage = ({ locationImage }: EditableLocationImageProps) =>
         ev.currentTarget.parentElement?.classList.toggle('no-hover', noHover)
     }
 
-    function deleteImage() {
-        console.log('deleting image')
+    async function deleteImage() {
+        try {
+            await deleteLocation(locationImage.id)
+        } catch (error) {
+            console.error(error)
+            window.alert('Failed to delete image')
+        }
+
     }
 
     return (
@@ -54,12 +63,13 @@ const EditableLocationImage = ({ locationImage }: EditableLocationImageProps) =>
                 onClick={onEditLocation} className="btn btn-edit">
                 <span className="material-icons">edit</span>
             </button>
-            <DeleteLocationModal locationImage={locationImage}
+            <DeleteLocationModal
                 isOpen={deleteImageModalOpen}
-                onChoicePicked={(areYouSure, _) => {
+                onChoicePicked={(areYouSure) => {
                     if (areYouSure) {
                         deleteImage()
                     }
+                    setDeleteImageModalOpen(false)
                 }}
                 handleClose={() => setDeleteImageModalOpen(false)} />
         </div>

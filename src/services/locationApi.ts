@@ -1,3 +1,4 @@
+import { ApiResult } from './authApi'
 import { ItemList, LeaderboardItem, LocationImage } from './interface'
 
 async function getAll(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
@@ -56,7 +57,17 @@ async function getLeaderboard(locationId: string | number, startIdx: number = 0,
     }
 }
 
+async function deleteLocation(locationId: string | number): Promise<ApiResult> {
+    const req = await fetch('http://localhost:5983/locations/' + locationId, {
+        method: 'DELETE'
+    })
+
+    return {
+    }
+}
+
 const locationApi = {
+    deleteLocation,
     getAll,
     getLeaderboard,
     getUploads,

@@ -15,6 +15,7 @@ import AddLocationPage from './pages/AddLocationPage';
 import EditLocationPage from './pages/EditLocationPage';
 import GuessLocationPage from './pages/GuessLocationPage';
 import authApi from './services/authApi';
+import LocationProvider from './components/context/LocationProvider';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -38,43 +39,45 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<LandingPage />} />
-              <Route path="signup" element={<SignupPage />} />
-              <Route path="login" element={<LoginPage />} />
+        <LocationProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<LandingPage />} />
+                <Route path="signup" element={<SignupPage />} />
+                <Route path="login" element={<LoginPage />} />
 
-              <Route path="dashboard" element={
-                <RequireAuth>
-                  <DashboardPage />
-                </RequireAuth>} />
-              <Route path="user-profile" element={
-                <RequireAuth>
-                  <UserProfilePage />
-                </RequireAuth>
-              } />
+                <Route path="dashboard" element={
+                  <RequireAuth>
+                    <DashboardPage />
+                  </RequireAuth>} />
+                <Route path="user-profile" element={
+                  <RequireAuth>
+                    <UserProfilePage />
+                  </RequireAuth>
+                } />
 
-              <Route path='location'>
-                <Route path="add" element={
-                  <RequireAuth>
-                    <AddLocationPage />
-                  </RequireAuth>
-                } />
-                <Route path="edit" element={
-                  <RequireAuth>
-                    <EditLocationPage />
-                  </RequireAuth>
-                } />
-                <Route path="guess" element={
-                  <RequireAuth>
-                    <GuessLocationPage />
-                  </RequireAuth>
-                } />
+                <Route path='location'>
+                  <Route path="add" element={
+                    <RequireAuth>
+                      <AddLocationPage />
+                    </RequireAuth>
+                  } />
+                  <Route path="edit" element={
+                    <RequireAuth>
+                      <EditLocationPage />
+                    </RequireAuth>
+                  } />
+                  <Route path="guess" element={
+                    <RequireAuth>
+                      <GuessLocationPage />
+                    </RequireAuth>
+                  } />
+                </Route>
               </Route>
-            </Route>
-          </Routes>
-        </BrowserRouter>
+            </Routes>
+          </BrowserRouter>
+        </LocationProvider>
       </AuthProvider>
     </>
   );
