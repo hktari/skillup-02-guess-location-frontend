@@ -2,14 +2,14 @@ import React, { useRef, useState } from 'react'
 import { fileToBase64 } from '../../util/fileUtil';
 
 type PickImageComponentProps = {
-    onImagePicked: (imageBase64: string) => void
+    onImagePicked: (imageBase64: string) => void,
+    image?: string
 
 }
 
-const PickImageComponent = ({ onImagePicked }: PickImageComponentProps) => {
-    const [selectedImage, setSelectedImage] = useState('')
+const PickImageComponent = ({ onImagePicked, image = '' }: PickImageComponentProps) => {
+    const [selectedImage, setSelectedImage] = useState(image)
     const selectedImageRef = useRef<HTMLInputElement | null>(null);
-
 
     async function handleOnImagePicked(event: any) {
         if (event.target && event.target.files.length > 0) {

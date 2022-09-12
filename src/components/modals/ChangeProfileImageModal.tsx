@@ -9,7 +9,7 @@ interface ChangeProfileImageModalProps extends ModalProps {
 }
 
 const ChangeProfileImageModal = ({ onFinished, isOpen, handleClose }: ChangeProfileImageModalProps) => {
-    const { updateProfileImage } = useAuth()
+    const { user, updateProfileImage } = useAuth()
     const selectedImageBase64 = useRef<string>('')
 
     async function performUpdate() {
@@ -29,10 +29,12 @@ const ChangeProfileImageModal = ({ onFinished, isOpen, handleClose }: ChangeProf
             isOpen={isOpen}>
             <h1 className="header4">Profile <span className="text-positive">settings.</span></h1>
             <p className="body">Change your profile photo</p>
-            <PickImageComponent onImagePicked={img => {
-                selectedImageBase64.current = img
-            }
-            } />
+            <PickImageComponent
+                image={user?.image ?? ''}
+                onImagePicked={img => {
+                    selectedImageBase64.current = img
+                }
+                } />
             <button className="btn btn-positive btn-block">UPLOAD NEW IMAGE</button>
 
             <button onClick={performUpdate} className="btn btn-positive w3-left">SUBMIT</button>
