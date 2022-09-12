@@ -25,9 +25,9 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0, col
     const [items, setItems] = useState<LocationImage[]>([])
     const [canLoadMore, setCanLoadMore] = useState(true)
 
-    async function onLoadMoreClicked(page?: number) {
-        const list = await loadMoreItems((page ?? curPage - 1) * pageSize, pageSize)
-
+    async function loadItems() {
+        const list = await loadMoreItems((curPage - 1) * pageSize, pageSize)
+        console.log('list', list.startIdx, list.pageSize, list.totalItems)
         setItems(items.concat(list.items))
         setCurPage(list.startIdx / list.pageSize + 1)
         setCanLoadMore(+list.startIdx + +list.pageSize < +list.totalItems)
@@ -36,12 +36,15 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0, col
     // initialize
     useEffect(() => {
         setItems([])
-        onLoadMoreClicked()
+        loadItems()
     }, [needsUpdate])
 
+    useEffect(() => {
+        loadItems()        
+    }, [curPage])
 
     function onLoadMoreClickedInternal() {
-        onLoadMoreClicked(curPage + 1);
+        setCurPage(curPage + 1)
     }
 
 
@@ -72,8 +75,8 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0, col
                 })
             }
 
-            <div className="w3-center w3-col">
-                <button hidden={!canLoadMore} className="btn btn-outline" onClick={() => onLoadMoreClickedInternal()}>
+            <div hidden={!canLoadMore} className="w3-center w3-col">
+                <button className="btn btn-outline" onClick={() => onLoadMoreClickedInternal()}>
                     load more
                 </button>
 

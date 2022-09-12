@@ -35,7 +35,7 @@ const DashboardPage = (props: Props) => {
 
   async function getNewUploads(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
     try {
-      return await locationApi.getAll(startIdx, pageSize)
+      return await locationApi.getNewUploads(startIdx, pageSize)
     } catch (error) {
       console.error(error)
       window.alert('Failed to fetch quotes...')
