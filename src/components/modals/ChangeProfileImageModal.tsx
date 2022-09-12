@@ -14,7 +14,6 @@ const ChangeProfileImageModal = ({ onFinished, isOpen, handleClose }: ChangeProf
 
     async function performUpdate() {
         try {
-            console.log('performing profile image update', selectedImageBase64.current)
             await updateProfileImage(selectedImageBase64.current)
             onFinished && onFinished({ message: 'Profile image saved' })
         } catch (error: any) {
@@ -30,7 +29,10 @@ const ChangeProfileImageModal = ({ onFinished, isOpen, handleClose }: ChangeProf
             isOpen={isOpen}>
             <h1 className="header4">Profile <span className="text-positive">settings.</span></h1>
             <p className="body">Change your profile photo</p>
-            <PickImageComponent onImagePicked={img => selectedImageBase64.current = img} />
+            <PickImageComponent onImagePicked={img => {
+                selectedImageBase64.current = img
+            }
+            } />
             <button className="btn btn-positive btn-block">UPLOAD NEW IMAGE</button>
 
             <button onClick={performUpdate} className="btn btn-positive w3-left">SUBMIT</button>

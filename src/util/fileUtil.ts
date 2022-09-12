@@ -3,11 +3,9 @@ function fileToBase64(file: File): Promise<string> {
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-            console.log(reader.result);
             resolve(reader.result as string)
         };
         reader.onerror = function (error) {
-            console.log('Error: ', error);
             reject(error)
         };
     })

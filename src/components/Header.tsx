@@ -27,7 +27,6 @@ const Header = (props: Props) => {
 
 
   function toggleSidebar() {
-    console.log('toggle sidebar')
     const body = document.querySelector('body')
     body?.classList.toggle('no-scroll', !sidebarOpen)
 
@@ -60,7 +59,6 @@ const Header = (props: Props) => {
   }
 
   const navItemsType = getNavItemsType(location.pathname)
-  console.log('HEADER TYPE', navItemsType)
 
   function navigateToUserProfile() {
     navigate('user-profile', {
@@ -200,7 +198,7 @@ const Header = (props: Props) => {
           onChangeProfileImage={() => {
             setChangeProfileImageOpen(true)
           }} />
-          
+
         <ChangeProfileImageModal
           isOpen={changeProfileImageOpen}
           handleClose={() => setChangeProfileImageOpen(false)}

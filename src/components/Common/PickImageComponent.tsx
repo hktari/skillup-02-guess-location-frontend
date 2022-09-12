@@ -6,13 +6,13 @@ type PickImageComponentProps = {
 
 }
 
-const PickImageComponent = (props: PickImageComponentProps) => {
+const PickImageComponent = ({ onImagePicked }: PickImageComponentProps) => {
     const [selectedImage, setSelectedImage] = useState('')
     const selectedImageRef = useRef<HTMLInputElement | null>(null);
 
 
-    async function onImagePicked(event: any) {
-        if (event.target.files.length > 0) {
+    async function handleOnImagePicked(event: any) {
+        if (event.target && event.target.files.length > 0) {
             setSelectedImage(event.target.files[0]);
 
             const selectedImgEl: HTMLImageElement = document.getElementById('selectedImage') as HTMLImageElement
@@ -36,7 +36,7 @@ const PickImageComponent = (props: PickImageComponentProps) => {
             <img id='selectedImage' src={selectedImage} alt="" hidden={!selectedImage} />
             <input accept="image/png, image/jpeg" type='file' id='image'
                 ref={selectedImageRef} style={{ display: 'none' }}
-                onChange={onImagePicked} />
+                onChange={handleOnImagePicked} />
         </button>
     )
 }
