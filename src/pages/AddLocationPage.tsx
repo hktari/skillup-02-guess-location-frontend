@@ -7,24 +7,24 @@ type AddLocationPageProps = {}
 const AddLocationPage = (props: AddLocationPageProps) => {
     const [image, setImage] = useState<any>(null)
     const [searchTerm, setSearchTerm] = useState('Klopeinersee, Austria')
-    const selectedImageRef = useRef<HTMLInputElement | null>(null);
+    const selectedImageRef = useRef<HTMLInputElement | null>(null)
 
     function onImagePicked(event: any) {
         if (event.target.files.length > 0) {
-            setImage(event.target.files[0]);
+            setImage(event.target.files[0])
 
             const selectedImgEl: HTMLImageElement = document.getElementById('selectedImage') as HTMLImageElement
 
-            selectedImgEl.src = URL.createObjectURL(event.target.files[0]);
+            selectedImgEl.src = URL.createObjectURL(event.target.files[0])
             selectedImgEl.onload = () => {
-                URL.revokeObjectURL(selectedImgEl.src);
+                URL.revokeObjectURL(selectedImgEl.src)
             }
         }
     }
 
     function clearImage() {
         const selectedImgEl: HTMLImageElement = document.getElementById('selectedImage') as HTMLImageElement
-        selectedImgEl.src = '';
+        selectedImgEl.src = ''
     }
 
     return (

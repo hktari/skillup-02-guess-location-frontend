@@ -9,11 +9,11 @@ type EditLocationPageProps = {
 
 const EditLocationPage = () => {
     const [image, setImage] = useState<any>(null)
-    const selectedImageRef = useRef<HTMLInputElement | null>(null);
+    const selectedImageRef = useRef<HTMLInputElement | null>(null)
 
     const navigate = useNavigate()
     const location = useLocation()
-    const locationImage = location.state as LocationImage;
+    const locationImage = location.state as LocationImage
 
     useEffect(() => {
         setImage(locationImage.image)
@@ -24,9 +24,9 @@ const EditLocationPage = () => {
         if (event.target.files.length > 0) {
             const selectedImgEl: HTMLImageElement = document.getElementById('selectedImage') as HTMLImageElement
             selectedImgEl.onload = () => {
-                URL.revokeObjectURL(selectedImgEl.src);
+                URL.revokeObjectURL(selectedImgEl.src)
             }
-            setImage(URL.createObjectURL(event.target.files[0]));
+            setImage(URL.createObjectURL(event.target.files[0]))
         }
     }
 

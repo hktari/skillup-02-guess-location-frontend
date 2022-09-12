@@ -64,4 +64,4 @@ const authApi = {
     signup
 }
 
-export default authApi;
+export default authApi

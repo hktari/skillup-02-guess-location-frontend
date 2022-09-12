@@ -5,7 +5,7 @@ async function searchForAddress(searchText: string) {
     const result = await fetch(url.replace('{searchText}', encodeURIComponent(searchText)))
     const resultObj = await result.json()
 
-    return resultObj;
+    return resultObj
 }
 
 const osmApi = {

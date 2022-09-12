@@ -41,10 +41,10 @@ async function getUploads(userId: string | number, startIdx: number, pageSize: n
 async function getLeaderboard(locationId: string | number, startIdx: number = 0, pageSize: number = -1) {
     const req = await fetch(`http://localhost:5983/locationGuess?locationId=${locationId}&_expand=user&_sort=guessErrorMeters&_order=asc`)
     const items: LeaderboardItem[] = JSON.parse(await req.text(), function (key, value) {
-        if (key == "createdAt") {
-            return new Date(value);
+        if (key === 'createdAt') {
+            return new Date(value)
         } else {
-            return value;
+            return value
         }
     })
 
@@ -56,7 +56,7 @@ async function getLeaderboard(locationId: string | number, startIdx: number = 0,
     }
 }
 
-export default {
+const locationApi = {
     getAll,
     getLeaderboard,
     getUploads,
@@ -64,3 +64,4 @@ export default {
     getBestGuesses
 }
 
+export default locationApi
