@@ -1,12 +1,13 @@
 import Modal from 'react-modal'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { ModalProps } from '../ComponentInterface'
 import { useAuth } from '../context/AuthProvider'
+import InfoModal from './InfoModal'
 
 interface ChangePasswordModalProps extends ModalProps {
 
 }
-const ChangePasswordModal = ({ isOpen, handleClose }: ChangePasswordModalProps) => {
+const ChangePasswordModal = ({ isOpen, onFinished, handleClose }: ChangePasswordModalProps) => {
     const { user, changePassword } = useAuth()
 
     const [newPassword, setNewPassword] = useState('')
@@ -14,14 +15,18 @@ const ChangePasswordModal = ({ isOpen, handleClose }: ChangePasswordModalProps) 
 
     const confirmPasswordEl = useRef<HTMLInputElement>(null)
 
+    useEffect(() => {
+        // reset
+        setNewPassword('')
+        setNewPasswordConfirm('')
+    }, [isOpen])
+
     async function performChangePassword() {
         try {
-            console.log('performing password change')
             if (newPassword === newPasswordConfirm) {
                 await changePassword(newPassword)
-                handleClose()
+                onFinished && onFinished({ message: 'Your settings are saved' })
             } else {
-                console.log('passwords dont match', confirmPasswordEl.current)
                 confirmPasswordEl.current?.setCustomValidity('passwords dont match')
                 confirmPasswordEl.current?.reportValidity()
 
@@ -38,7 +43,7 @@ const ChangePasswordModal = ({ isOpen, handleClose }: ChangePasswordModalProps) 
     return (
         <Modal
             className="modal modal-change-password"
-            overlayClassName="modal-no-overlay"
+            overlayClassName="modal-overlay"
             onRequestClose={handleClose}
             contentLabel="Tiny nomadic modal popover"
             isOpen={isOpen}>

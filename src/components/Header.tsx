@@ -6,6 +6,8 @@ import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { useAuth } from './context/AuthProvider'
 import ProfileSettingsModal from './modals/ProfileSettingsModal'
 import ChangePasswordModal from './modals/ChangePasswordModal'
+import { ModalResult } from './ComponentInterface'
+import InfoModal, { InfoModalProps } from './modals/InfoModal'
 
 type Props = {}
 
@@ -83,6 +85,10 @@ const Header = (props: Props) => {
   const [profileSettingsOpen, setProfileSettingsOpen] = useState(false)
   const [changePasswordOpen, setChangePasswordOpen] = useState(false)
   const [changeProfileImageOpen, setchangeProfileImageOpen] = useState(false)
+
+  const [infoModalTitle, setInfoModalTitle] = useState('')
+  const [infoModalMessage, setInfoModalMessage] = useState('')
+  const [infoModalOpen, setInfoModalOpen] = useState(false)
 
   return (
     <>
@@ -174,9 +180,28 @@ const Header = (props: Props) => {
 
 
       <div id='all-modals'>
-        <ProfileSettingsModal isOpen={profileSettingsOpen} handleClose={() => setProfileSettingsOpen(false)}
+        <ProfileSettingsModal isOpen={profileSettingsOpen}
+          handleClose={() => setProfileSettingsOpen(false)}
           handleChangePassword={() => { setChangePasswordOpen(true) }} />
-        <ChangePasswordModal isOpen={changePasswordOpen} handleClose={() => setChangePasswordOpen(false)} />
+
+        <ChangePasswordModal isOpen={changePasswordOpen}
+          handleClose={() => setChangePasswordOpen(false)}
+          onFinished={(result) => {
+            if (!result.errors) {
+              setInfoModalTitle('Information changed.')
+              setInfoModalMessage('Password changed.')
+            } else {
+              setInfoModalTitle('Error occured.')
+              setInfoModalMessage(result.errors.join('<br/>'))
+            }
+            setInfoModalOpen(true)
+
+            setChangePasswordOpen(false)
+          }
+          }
+        />
+        <InfoModal isOpen={infoModalOpen} handleClose={() => setInfoModalOpen(false)}
+          title={infoModalTitle} message={infoModalMessage} />
       </div>
     </>
   )
