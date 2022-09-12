@@ -1,6 +1,8 @@
 ## TODO
-Styled Components
-dialog library
-install fonts
-install icon library
+guess location img link
+load more duplicates items
+home goes to /dashboard
+mobile header alignment
+
+profile settings
 

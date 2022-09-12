@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link as button, useNavigate } from 'react-router-dom'
 import '../../css/components/Dashboard/LocationImageGuess.css'
 import { LocationImage } from '../../services/interface'
 
@@ -8,14 +8,22 @@ type LocationImageGuessProps = {
 }
 
 const LocationImageGuess = ({ locationImage }: LocationImageGuessProps) => {
+    const navigate = useNavigate()
+
+    function navigateToGuessLocation() {
+        navigate('/location/guess', {
+            state: locationImage
+        })
+    }
+
     return (
-        <div className='location-img-container location-img-guess'>
-            <Link to={`/location/guess/${locationImage.id}`}>
+        <button onClick={navigateToGuessLocation} className='link'>
+            <div className='location-img-container location-img-guess'>
                 <img src={locationImage.image} alt={locationImage.address} />
                 <div className="img-overlay"></div>
                 <div className="img-overlay-text">{locationImage.guessErrorMeters} m</div>
-            </Link>
-        </div>
+            </div>
+        </button>
     )
 }
 
