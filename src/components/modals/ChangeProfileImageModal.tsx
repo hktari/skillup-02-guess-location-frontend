@@ -26,6 +26,7 @@ const ChangeProfileImageModal = ({ onFinished, isOpen, handleClose }: ChangeProf
             className="modal modal-change-profile-image"
             overlayClassName="modal-overlay"
             onRequestClose={handleClose}
+            shouldCloseOnOverlayClick={false}
             isOpen={isOpen}>
             <h1 className="header4">Profile <span className="text-positive">settings.</span></h1>
             <p className="body">Change your profile photo</p>

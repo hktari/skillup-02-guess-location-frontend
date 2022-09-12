@@ -38,7 +38,6 @@ const ProfileSettingsModal = ({ isOpen, handleClose, handleChangePassword, onCha
             overlayClassName="modal-overlay"
             onRequestClose={handleClose}
             shouldCloseOnOverlayClick={false}
-            contentLabel="Tiny nomadic modal popover"
             isOpen={isOpen}>
             <h1 className='header4 w3-margin-bottom'>Profile <span className="text-positive">Settings</span></h1>
             <p className="body w3-padding-16">Change your information</p>

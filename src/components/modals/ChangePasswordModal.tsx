@@ -16,7 +16,6 @@ const ChangePasswordModal = ({ isOpen, onFinished, handleClose }: ChangePassword
     const confirmPasswordEl = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
-        // reset
         setNewPassword('')
         setNewPasswordConfirm('')
     }, [isOpen])
@@ -45,20 +44,21 @@ const ChangePasswordModal = ({ isOpen, onFinished, handleClose }: ChangePassword
             className="modal modal-change-password"
             overlayClassName="modal-overlay"
             onRequestClose={handleClose}
-            contentLabel="Tiny nomadic modal popover"
+            shouldCloseOnOverlayClick={false}
             isOpen={isOpen}>
-            <h1>Profile <em>settings</em></h1>
-            <small>Change your password</small>
+            <h1 className='header4'>Profile <span className="text-positive">settings</span></h1>
+            <p className='body w3-padding-16'>Change your password</p>
             <form>
-                <label htmlFor="newPassword">New Password</label>
-                <input type="password" id="newPassword"
+                <label className='label' htmlFor="newPassword">New Password</label>
+                <input className="input" type="password" id="newPassword"
                     value={newPassword} onChange={e => {
                         setNewPassword(e.currentTarget.value)
                         clearValidityMessages()
                     }} />
 
-                <label htmlFor="confirmNewPassword">Confirm New Password</label>
-                <input type="password" id="confirmNewPassword"
+                <div className="w3-margin-top"></div>
+                <label className='label' htmlFor="confirmNewPassword">Confirm New Password</label>
+                <input className="input" type="password" id="confirmNewPassword"
                     ref={confirmPasswordEl} value={newPasswordConfirm}
                     onChange={e => {
                         setNewPasswordConfirm(e.currentTarget.value)
@@ -66,8 +66,11 @@ const ChangePasswordModal = ({ isOpen, onFinished, handleClose }: ChangePassword
                     }} />
             </form>
 
-            <button onClick={performChangePassword} className="btn btn-positive">SUBMIT</button>
-            <button onClick={handleClose} className="btn btn-outline">Cancel</button>
+            <div className="w3-margin-top"></div>
+            <div className="modal-footer w3-margin-top">
+                <button className="btn btn-positive" onClick={performChangePassword}>SUBMIT</button>
+                <button className="btn btn-outline" onClick={handleClose} >Cancel</button>
+            </div>
         </Modal>
     )
 }
