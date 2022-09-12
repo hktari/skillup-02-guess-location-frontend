@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Navigate, useLocation } from 'react-router-dom';
-import { ApiResult } from '../../services/authApi';
+import { ApiResult } from '../../services/interface';
 import locationApi from '../../services/locationApi';
 
 export interface LocationContextType {

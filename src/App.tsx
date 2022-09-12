@@ -38,9 +38,9 @@ function App() {
 
   return (
     <>
-      <AuthProvider>
-        <LocationProvider>
-          <BrowserRouter>
+      <BrowserRouter>
+        <AuthProvider>
+          <LocationProvider>
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<LandingPage />} />
@@ -76,9 +76,9 @@ function App() {
                 </Route>
               </Route>
             </Routes>
-          </BrowserRouter>
-        </LocationProvider>
-      </AuthProvider>
+          </LocationProvider>
+        </AuthProvider>
+      </BrowserRouter>
     </>
   );
 }

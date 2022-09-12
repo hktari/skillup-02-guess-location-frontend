@@ -1,4 +1,4 @@
-import { LoginApiResult, User } from '../services/interface'
+import { ApiResult, LoginApiResult, User } from '../services/interface'
 
 async function login(email: string, password: string): Promise<LoginApiResult> {
     return Promise.resolve(

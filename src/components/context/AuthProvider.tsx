@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import authApi from '../../services/authApi';
 import { ApiResult, JWT, User } from '../../services/interface';
 import userApi from '../../services/userApi';
@@ -21,9 +21,15 @@ function validTokenExists() {
     const jwtJSON = localStorage.getItem('jwt')
 
     if (jwtJSON) {
-        const jwt = JSON.parse(jwtJSON) as JWT
+        const jwt = JSON.parse(jwtJSON, (key, val) => {
+            if(key === 'expiresAt'){
+                return new Date(val)
+            }
+            return val
+        }) as JWT
+
         console.log('Checking for token expiry jwt', jwt)
-        return jwt.expiresAt.getTime() < Date.now()
+        return jwt.expiresAt && jwt.expiresAt.getTime() > Date.now()
     }
 
     return false
@@ -31,19 +37,22 @@ function validTokenExists() {
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
     let [user, setUser] = React.useState<User | null>(null);
-
+    const navigate = useNavigate()
 
     // get user profile on app start if valid token exists
     useEffect(() => {
         async function getUserProfile() {
             try {
                 setUser(await userApi.getMyUserProfile())
+                console.log('navigating to dashboard')
+                navigate('/dashboard')
             } catch (error) {
                 console.error('Failed to get user profilo info', error)
             }
         }
 
         if (validTokenExists()) {
+            console.log('logging in user...')
             getUserProfile()
         }
     }, [])

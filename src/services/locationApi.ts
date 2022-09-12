@@ -1,5 +1,4 @@
-import { ApiResult } from './authApi'
-import { ItemList, LeaderboardItem, LocationImage } from './interface'
+import { ApiResult, ItemList, LeaderboardItem, LocationImage } from './interface'
 
 async function getAll(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
     const req = await fetch('http://localhost:5983/locations')
