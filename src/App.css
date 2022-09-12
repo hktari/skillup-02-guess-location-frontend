@@ -11,17 +11,36 @@ html {
   padding: 0;
   font-family: 'Roboto', sans-serif;
   overflow-x: hidden;
+  height: 100%;
 }
 
+#root{
+  height: 100%;
+}
 button {
   font-family: inherit;
+}
+
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: calc(-1 * var(--footer-height));
+}
+
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+
+.footer,
+.page-wrap:after {
+  height: var(--footer-height);
 }
 
 .footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
   padding: 0 16px;
 
   font-family: inherit;
@@ -38,8 +57,8 @@ button {
   letter-spacing: 1.5px;
 }
 
-@media (min-width:992px){
-  .footer{
+@media (min-width:992px) {
+  .footer {
     padding: 0 72px;
   }
 }

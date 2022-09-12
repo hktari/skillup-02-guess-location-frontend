@@ -6,6 +6,7 @@
     --color-orange-gradient: linear-gradient(41.75deg, #FE7F2D 22.78%, #FCCA46 87.18%);
     --breakpoint-sm: 601;
     --breakpoint-md: 992;
+    --footer-height: 60px;
 }
 
 

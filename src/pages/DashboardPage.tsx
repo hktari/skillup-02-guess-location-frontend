@@ -43,17 +43,6 @@ const DashboardPage = (props: Props) => {
     }
   }
 
-  // const { login } = useAuth()
-  // // todo: remove after testing
-  // useEffect(() => {
-  //   async function doLogin() {
-  //     await login('', '')
-  //   }
-  //   doLogin()
-  // }, [])
-
-
-
   return (
     <div className="container dashboard-page-container">
       <section className="section personal">

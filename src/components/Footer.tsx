@@ -12,9 +12,11 @@ const Footer = (props: FooterProps) => {
     }
 
     return (
-        <footer className='footer' hidden={!shouldShowFooter()}>
-            <span className='brand-name'>Geotagger</span>
-            <small>All Rights Reserved | skillupmentorcom</small>
+        <footer hidden={!shouldShowFooter()} >
+            <div className="footer">
+                <span className='brand-name'>Geotagger</span>
+                <small>All Rights Reserved | skillupmentorcom</small>
+            </div>
         </footer>
     )
 }

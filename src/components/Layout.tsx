@@ -9,7 +9,7 @@ import Modals from './Modals'
 const Layout = () => {
     return (
         <>
-            <div className="page-wrapper">
+            <div className="page-wrap">
                 <Header />
                 <main>
                     <Outlet />

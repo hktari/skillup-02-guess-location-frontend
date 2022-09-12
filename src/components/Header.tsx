@@ -81,6 +81,11 @@ const Header = (props: Props) => {
     toggleSidebar()
   }
 
+  function navigateToAddLocation() {
+    navigate('/location/add')
+    toggleSidebar()
+  }
+
   const [profileSettingsOpen, setProfileSettingsOpen] = useState(false)
   const [changePasswordOpen, setChangePasswordOpen] = useState(false)
 
@@ -148,7 +153,7 @@ const Header = (props: Props) => {
                 <button className='btn btn-circle btn-gray' onClick={navigateToUserProfile}>
                   <img src={user?.image ?? avatarPlaceholder} alt="user profile" className="profile-img" />
                 </button>
-                <button className="btn btn-circle btn-positive">
+                <button onClick={navigateToAddLocation} className="btn btn-circle btn-positive">
                   <span className="material-icons">add</span>
                 </button>
               </div>
