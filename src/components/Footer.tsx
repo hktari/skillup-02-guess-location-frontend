@@ -8,15 +8,13 @@ const Footer = (props: FooterProps) => {
     const location = useLocation()
 
     function shouldShowFooter() {
-        return !location.pathname.includes('signup') && location.pathname.includes('login')
+        return !(location.pathname.includes('signup') || location.pathname.includes('login'))
     }
 
     return (
-        <footer hidden={!shouldShowFooter()}>
-            <div>
-                <i className="bi bi-quote"></i>
-                <small>All Rights Reserved | skillupmentorcom</small>
-            </div>
+        <footer className='footer' hidden={!shouldShowFooter()}>
+            <span className='brand-name'>Geotagger</span>
+            <small>All Rights Reserved | skillupmentorcom</small>
         </footer>
     )
 }
