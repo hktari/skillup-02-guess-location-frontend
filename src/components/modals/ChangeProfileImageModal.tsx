@@ -29,7 +29,7 @@ const ChangeProfileImageModal = ({ onFinished, isOpen, handleClose }: ChangeProf
             shouldCloseOnOverlayClick={false}
             isOpen={isOpen}>
             <h1 className="header4">Profile <span className="text-positive">settings.</span></h1>
-            <p className="body">Change your profile photo</p>
+            <p className="body w3-padding-24 ">Change your profile photo</p>
             <PickImageComponent
                 image={user?.image ?? ''}
                 onImagePicked={img => {
@@ -37,9 +37,11 @@ const ChangeProfileImageModal = ({ onFinished, isOpen, handleClose }: ChangeProf
                 }
                 } />
 
-            <button onClick={performUpdate} className="btn btn-positive w3-left">SUBMIT</button>
-            <button onClick={handleClose} className="btn btn-outline w3-right">Cancel</button>
-
+            <div className="w3-margin-top"><br /></div>
+            <div className="modal-footer w3-margin-top">
+                <button onClick={performUpdate} className="btn btn-positive w3-left">SUBMIT</button>
+                <button onClick={handleClose} className="btn btn-title-only w3-right">Cancel</button>
+            </div>
         </Modal>
     )
 }

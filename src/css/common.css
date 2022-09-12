@@ -183,6 +183,13 @@
     background-color: var(--color-primary-green);
 }
 
+.btn-title-only{
+    border: 0;
+    color: #000;
+    background-color: transparent;
+    outline: 0;
+}
+
 .btn-cancel {
     display: flex;
     justify-content: center;
@@ -255,6 +262,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@media (min-width: 601px){
+    .modal .modal-footer{
+        justify-content: start;
+
+    }
 }
 
 /* -------------------------------------------------------------------------- */

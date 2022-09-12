@@ -69,7 +69,7 @@ const ChangePasswordModal = ({ isOpen, onFinished, handleClose }: ChangePassword
             <div className="w3-margin-top"></div>
             <div className="modal-footer w3-margin-top">
                 <button className="btn btn-positive" onClick={performChangePassword}>SUBMIT</button>
-                <button className="btn btn-outline" onClick={handleClose} >Cancel</button>
+                <button className="btn btn-title-only" onClick={handleClose} >Cancel</button>
             </div>
         </Modal>
     )
