@@ -4,6 +4,8 @@ import logo from '../assets/images/logo.png'
 import avatarPlaceholder from '../assets/images/avatar-placeholder.png'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { useAuth } from './context/AuthProvider'
+import ProfileSettingsModal from './modals/ProfileSettingsModal'
+import ChangePasswordModal from './modals/ChangePasswordModal'
 
 type Props = {}
 
@@ -50,7 +52,7 @@ const Header = (props: Props) => {
   }
 
   function showProfileSettings() {
-
+    setProfileSettingsOpen(true)
     toggleSidebar()
   }
 
@@ -77,6 +79,10 @@ const Header = (props: Props) => {
     navigate('/login')
     toggleSidebar()
   }
+
+  const [profileSettingsOpen, setProfileSettingsOpen] = useState(false)
+  const [changePasswordOpen, setChangePasswordOpen] = useState(false)
+  const [changeProfileImageOpen, setchangeProfileImageOpen] = useState(false)
 
   return (
     <>
@@ -165,6 +171,13 @@ const Header = (props: Props) => {
           </div>
         </div>
       </nav>
+
+
+      <div id='all-modals'>
+        <ProfileSettingsModal isOpen={profileSettingsOpen} handleClose={() => setProfileSettingsOpen(false)}
+          handleChangePassword={() => { setChangePasswordOpen(true) }} />
+        <ChangePasswordModal isOpen={changePasswordOpen} handleClose={() => setChangePasswordOpen(false)} />
+      </div>
     </>
   )
 }
