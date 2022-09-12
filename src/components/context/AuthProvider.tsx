@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Navigate, useLocation } from 'react-router-dom';
 import authApi from '../../services/authApi';
-import { ApiResult, User } from '../../services/interface';
+import { ApiResult, JWT, User } from '../../services/interface';
+import userApi from '../../services/userApi';
 
 export interface AuthContextType {
     user: User | null;
@@ -16,13 +17,38 @@ export interface AuthContextType {
 var AuthContext = React.createContext<AuthContextType>({ user: null, login: null!, logout: null!, isLoggedIn: () => false, updateProfile: null!, updateProfileImage: null!, changePassword: null! });
 
 
-function getUserCredentialsOrNull() {
+function validTokenExists() {
     const jwtJSON = localStorage.getItem('jwt')
-    return jwtJSON ? JSON.parse(jwtJSON) : null
+
+    if (jwtJSON) {
+        const jwt = JSON.parse(jwtJSON) as JWT
+        console.log('Checking for token expiry jwt', jwt)
+        return jwt.expiresAt.getTime() < Date.now()
+    }
+
+    return false
 }
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
-    let [user, setUser] = React.useState<User | null>(getUserCredentialsOrNull());
+    let [user, setUser] = React.useState<User | null>(null);
+
+
+    // get user profile on app start if valid token exists
+    useEffect(() => {
+        async function getUserProfile() {
+            try {
+                setUser(await userApi.getMyUserProfile())
+            } catch (error) {
+                console.error('Failed to get user profilo info', error)
+            }
+        }
+
+        if (validTokenExists()) {
+            getUserProfile()
+        }
+    }, [])
+
+
 
     let login = async (username: string, pwd: string) => {
         const { user, jwt, errors } = await authApi.login(username, pwd)

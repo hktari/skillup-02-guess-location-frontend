@@ -47,6 +47,7 @@ interface LoginApiResult extends ApiResult {
 }
 
 export type {
+    JWT,
     ApiResult,
     LoginApiResult,
     LocationImage,
