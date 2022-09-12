@@ -2,6 +2,37 @@
     align-self: center;
 }
 
+.signup {
+    display: flex;
+}
+
+.signup-left-half {
+    margin: 0 auto;
+    padding: 64px 34px;
+}
+
+.signup-right-half {
+    display: none;
+}
+
+@media (min-width: 601px) {
+    .signup {
+        overflow-y: none;
+    }
+
+    .signup-right-half {
+        display: block;
+        flex: 50%;
+    }
+}
+
+@media (min-width:992px) {
+    .signup-left-half {
+        flex: 50%;
+        padding: 48px 88px;
+    }
+}
+
 .select-profile-img {
     width: 64px;
     height: 64px;
@@ -12,7 +43,7 @@
     margin: 24px auto;
 }
 
-.select-profile-img .material-icons{
+.select-profile-img .material-icons {
     position: absolute;
     top: 50%;
     left: 50%;

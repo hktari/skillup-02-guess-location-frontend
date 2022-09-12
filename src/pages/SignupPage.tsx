@@ -35,8 +35,8 @@ const SignupPage = (props: Props) => {
     }
 
     return (
-        <div className="w3-row">
-            <div className="w3-half w3-container w3-padding-large w3-padding-64">
+        <div className="signup">
+            <div className="signup-left-half">
                 <h1 className='header3 text-center'>Sign up</h1>
                 <p className="body text-center">Your name will appear on posts and your public profile</p>
                 <PickImageComponent onImagePicked={(img) => selectedImageBase64.current = img} />
@@ -67,7 +67,7 @@ const SignupPage = (props: Props) => {
                     Already have an account ? <Link to="/login" className='link'>Login</Link>
                 </div>
             </div>
-            <div className="w3-half w3-hide-small">
+            <div className="signup-right-half">
                 <AsideSectionBrandDesktop />
             </div>
         </div>
