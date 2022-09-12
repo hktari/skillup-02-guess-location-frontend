@@ -1,6 +1,6 @@
 
 interface ModalResult {
-    message: string,
+    message?: string,
     errors?: string[]
 }
 

@@ -8,10 +8,11 @@ interface ModalProps {
 }
 
 export interface ProfileSettingsModalProps extends ModalProps {
-    handleChangePassword: VoidFunction
+    handleChangePassword: VoidFunction,
+    onChangeProfileImage: VoidFunction
 }
 
-const ProfileSettingsModal = ({ isOpen, handleClose, handleChangePassword }: ProfileSettingsModalProps) => {
+const ProfileSettingsModal = ({ isOpen, handleClose, handleChangePassword, onChangeProfileImage }: ProfileSettingsModalProps) => {
     const { user, updateProfile } = useAuth()
     const [firstName, setFirstName] = useState<string>(user?.firstName ?? '')
     const [lastName, setLastName] = useState<string>(user?.lastName ?? '')
@@ -54,7 +55,7 @@ const ProfileSettingsModal = ({ isOpen, handleClose, handleChangePassword }: Pro
                 <label htmlFor="lastName">Last Name</label>
 
                 <button onClick={handleChangePasswordInternal} className="btn btn-alt">Change password</button>
-                <button className="btn btn-positive">Change Profile Picture</button>
+                <button onClick={onChangeProfileImage} className="btn btn-positive">Change Profile Picture</button>
             </form>
 
             <div className="modal-footer">

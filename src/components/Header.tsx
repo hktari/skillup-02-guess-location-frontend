@@ -8,6 +8,7 @@ import ProfileSettingsModal from './modals/ProfileSettingsModal'
 import ChangePasswordModal from './modals/ChangePasswordModal'
 import { ModalResult } from './ComponentInterface'
 import InfoModal, { InfoModalProps } from './modals/InfoModal'
+import ChangeProfileImageModal from './modals/ChangeProfileImageModal'
 
 type Props = {}
 
@@ -84,11 +85,24 @@ const Header = (props: Props) => {
 
   const [profileSettingsOpen, setProfileSettingsOpen] = useState(false)
   const [changePasswordOpen, setChangePasswordOpen] = useState(false)
-  const [changeProfileImageOpen, setchangeProfileImageOpen] = useState(false)
+
+  const [changeProfileImageOpen, setChangeProfileImageOpen] = useState(false)
+
 
   const [infoModalTitle, setInfoModalTitle] = useState('')
   const [infoModalMessage, setInfoModalMessage] = useState('')
   const [infoModalOpen, setInfoModalOpen] = useState(false)
+
+  function handleModalResult(result: ModalResult) {
+    if (!result.errors) {
+      setInfoModalTitle('Information changed.')
+      setInfoModalMessage('Password changed.')
+    } else {
+      setInfoModalTitle('Error occured.')
+      setInfoModalMessage(result.errors.join('<br/>'))
+    }
+    setInfoModalOpen(true)
+  }
 
   return (
     <>
@@ -182,23 +196,26 @@ const Header = (props: Props) => {
       <div id='all-modals'>
         <ProfileSettingsModal isOpen={profileSettingsOpen}
           handleClose={() => setProfileSettingsOpen(false)}
-          handleChangePassword={() => { setChangePasswordOpen(true) }} />
+          handleChangePassword={() => { setChangePasswordOpen(true) }}
+          onChangeProfileImage={() => {
+            setChangeProfileImageOpen(true)
+          }} />
+          
+        <ChangeProfileImageModal
+          isOpen={changeProfileImageOpen}
+          handleClose={() => setChangeProfileImageOpen(false)}
+          onFinished={result => {
+            setChangeProfileImageOpen(false)
+            handleModalResult(result)
+          }}
+        />
 
         <ChangePasswordModal isOpen={changePasswordOpen}
           handleClose={() => setChangePasswordOpen(false)}
           onFinished={(result) => {
-            if (!result.errors) {
-              setInfoModalTitle('Information changed.')
-              setInfoModalMessage('Password changed.')
-            } else {
-              setInfoModalTitle('Error occured.')
-              setInfoModalMessage(result.errors.join('<br/>'))
-            }
-            setInfoModalOpen(true)
-
             setChangePasswordOpen(false)
-          }
-          }
+            handleModalResult(result)
+          }}
         />
         <InfoModal isOpen={infoModalOpen} handleClose={() => setInfoModalOpen(false)}
           title={infoModalTitle} message={infoModalMessage} />
