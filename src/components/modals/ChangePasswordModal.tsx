@@ -1,15 +1,40 @@
 import Modal from 'react-modal'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { ModalProps } from '../ComponentInterface'
+import { useAuth } from '../context/AuthProvider'
 
 interface ChangePasswordModalProps extends ModalProps {
 
 }
 const ChangePasswordModal = ({ isOpen, handleClose }: ChangePasswordModalProps) => {
-    function handleSubmit() {
-        handleClose()
+    const { user, changePassword } = useAuth()
+
+    const [newPassword, setNewPassword] = useState('')
+    const [newPasswordConfirm, setNewPasswordConfirm] = useState('')
+
+    const confirmPasswordEl = useRef<HTMLInputElement>(null)
+
+    async function performChangePassword() {
+        try {
+            console.log('performing password change')
+            if (newPassword === newPasswordConfirm) {
+                await changePassword(newPassword)
+                handleClose()
+            } else {
+                console.log('passwords dont match', confirmPasswordEl.current)
+                confirmPasswordEl.current?.setCustomValidity('passwords dont match')
+                confirmPasswordEl.current?.reportValidity()
+
+            }
+        } catch (error) {
+            window.alert(error)
+        }
     }
 
+    function clearValidityMessages() {
+        confirmPasswordEl.current?.setCustomValidity('')
+        confirmPasswordEl.current?.reportValidity()
+    }
     return (
         <Modal
             className="modal modal-change-password"
@@ -20,17 +45,23 @@ const ChangePasswordModal = ({ isOpen, handleClose }: ChangePasswordModalProps) 
             <h1>Profile <em>settings</em></h1>
             <small>Change your password</small>
             <form>
-                <input type="password" id="password" />
-                <label htmlFor="password">Current Password</label>
-
-                <input type="password" id="newPassword" />
                 <label htmlFor="newPassword">New Password</label>
+                <input type="password" id="newPassword"
+                    value={newPassword} onChange={e => {
+                        setNewPassword(e.currentTarget.value)
+                        clearValidityMessages()
+                    }} />
 
-                <input type="password" id="confirmNewPassword" />
                 <label htmlFor="confirmNewPassword">Confirm New Password</label>
+                <input type="password" id="confirmNewPassword"
+                    ref={confirmPasswordEl} value={newPasswordConfirm}
+                    onChange={e => {
+                        setNewPasswordConfirm(e.currentTarget.value)
+                        clearValidityMessages()
+                    }} />
             </form>
 
-            <button onClick={handleSubmit} className="btn btn-positive">SUBMIT</button>
+            <button onClick={performChangePassword} className="btn btn-positive">SUBMIT</button>
             <button onClick={handleClose} className="btn btn-outline">Cancel</button>
         </Modal>
     )
