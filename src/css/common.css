@@ -233,6 +233,11 @@
 /*                                   modals                                   */
 /* -------------------------------------------------------------------------- */
 
+.ReactModalPortal{
+    position: relative;
+    z-index: 99;
+}
+
 .modal {
     position: fixed;
     top: 50%;

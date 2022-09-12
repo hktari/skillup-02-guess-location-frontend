@@ -111,10 +111,13 @@ const Header = (props: Props) => {
       <header className='header'>
 
         {/* mobile header */}
+
         <div className="mobile w3-hide-medium w3-hide-large">
-          <button className="add-location btn btn-circle btn-positive" onClick={navigateToAddLocation}>
-            <span className="material-icons">add</span>
-          </button>
+          <div hidden={navItemsType !== HeaderNavItemsType.LoggedIn}>
+            <button className="add-location btn btn-circle btn-positive" onClick={navigateToAddLocation}>
+              <span className="material-icons">add</span>
+            </button>
+          </div>
 
           <img className='logo' src={logo} alt="geotagger logo" />
 

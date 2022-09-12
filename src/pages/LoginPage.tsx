@@ -19,7 +19,7 @@ const LoginPage = (props: Props) => {
         event.preventDefault()
         try {
             await login(email, password)
-            navigate('/')
+            navigate('/dashboard')
         } catch (error) {
             console.error(error)
             window.alert('Login failed. Please try again')

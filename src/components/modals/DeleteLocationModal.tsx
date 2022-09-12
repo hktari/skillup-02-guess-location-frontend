@@ -25,12 +25,15 @@ const DeleteLocationModal = ({ locationImage, isOpen, onChoicePicked, handleClos
             isOpen={isOpen}>
             <h1 className='header4'>Are you sure ?</h1>
             <p className="body">This location will be deleted. There is no undo of this action.</p>
-            <button
-                onClick={(ev) => onChoicePickedInternal(ev, true)}
-                className="btn btn-positive">SUBMIT</button>
-            <button
-                onClick={(ev) => onChoicePickedInternal(ev, false)}
-                className="btn btn-outline">Cancel</button>
+            <div className="w3-padding"></div>
+            <div className="modal-footer">
+                <button
+                    onClick={(ev) => onChoicePickedInternal(ev, true)}
+                    className="btn btn-positive">SUBMIT</button>
+                <button
+                    onClick={(ev) => onChoicePickedInternal(ev, false)}
+                    className="btn btn-outline">Cancel</button>
+            </div>
         </Modal>)
 }
 
