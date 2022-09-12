@@ -40,26 +40,33 @@ const ProfileSettingsModal = ({ isOpen, handleClose, handleChangePassword, onCha
             shouldCloseOnOverlayClick={false}
             contentLabel="Tiny nomadic modal popover"
             isOpen={isOpen}>
-            <h1>Profile <em>Settings.</em></h1>
-            <small>Change your information</small>
+            <h1 className='header4 w3-margin-bottom'>Profile <span className="text-positive">Settings</span></h1>
+            <p className="body w3-padding-16">Change your information</p>
             <form className='form' onSubmit={onSubmit}>
-                <input type="text" id="email" value={user?.email} disabled={true} />
-                <label htmlFor="email">Email</label>
+                <label className='label' htmlFor="email">Email</label>
+                <input className='input' type="text" id="email" value={user?.email} disabled={true} />
 
-                <input type="text" id='firstName' value={firstName}
-                    onChange={e => setFirstName(e.currentTarget.value)} />
-                <label htmlFor="firstName">First Name</label>
+                <div className="w3-row w3-padding-16">
+                    <div className="w3-col s5 m12">
+                        <label className='label' htmlFor="firstName">First Name</label>
+                        <input className='input' type="text" id='firstName' value={firstName}
+                            onChange={e => setFirstName(e.currentTarget.value)} />
+                    </div>
+                    <div className="w3-col s2 w3-hide-medium w3-hide-large"><br /></div>
+                    <div className="w3-col s5 m12">
+                        <label className='label' htmlFor="lastName">Last Name</label>
+                        <input className='input' type="text" id='lastName' value={lastName}
+                            onChange={e => setLastName(e.currentTarget.value)} />
+                    </div>
+                </div>
 
-                <input type="text" id='lastName' value={lastName}
-                    onChange={e => setLastName(e.currentTarget.value)} />
-                <label htmlFor="lastName">Last Name</label>
-
-                <button onClick={handleChangePasswordInternal} className="btn btn-alt">Change password</button>
-                <button onClick={onChangeProfileImage} className="btn btn-positive">Change Profile Picture</button>
+                <button className="btn btn-alt w3-margin-top" style={{ backgroundColor: '#233D4D', color: '#fff' }}
+                    onClick={handleChangePasswordInternal}>Change password</button>
+                <button className="btn btn-positive" onClick={onChangeProfileImage}>Change profile picture</button>
             </form>
 
-            <div className="modal-footer">
-                <input type='submit' className="btn btn-positive" value='Submit' />
+            <div className="modal-footer w3-margin-top">
+                <input type='submit' className="btn btn-positive" value='SUBMIT' />
                 <button onClick={handleClose} className="btn btn-outline">Cancel</button>
             </div>
         </Modal>

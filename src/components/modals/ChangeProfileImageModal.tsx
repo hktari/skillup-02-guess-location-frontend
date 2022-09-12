@@ -35,7 +35,6 @@ const ChangeProfileImageModal = ({ onFinished, isOpen, handleClose }: ChangeProf
                     selectedImageBase64.current = img
                 }
                 } />
-            <button className="btn btn-positive btn-block">UPLOAD NEW IMAGE</button>
 
             <button onClick={performUpdate} className="btn btn-positive w3-left">SUBMIT</button>
             <button onClick={handleClose} className="btn btn-outline w3-right">Cancel</button>
