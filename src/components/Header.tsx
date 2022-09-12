@@ -95,8 +95,10 @@ const Header = (props: Props) => {
             hidden={navItemsType !== HeaderNavItemsType.NewUser}>
             <ul className="nav-item-list">
               <li className="nav-item">
-                <Link to='login' className="body text-small link">Sign in</Link>
-                <span>or</span>
+                <p className='sign-in-text'>
+                  <Link to='login' className="body text-small link">Sign in</Link>
+                  <span>or</span>
+                </p>
               </li>
               <li className="nav-item">
                 <Link to='signup' className="btn text-small btn-positive">SIGN UP</Link>
@@ -109,7 +111,7 @@ const Header = (props: Props) => {
             <nav className="nav-items-desktop logged-in">
               <ul className='nav-item-list'>
                 <li className="nav-item">
-                  <Link className='link' to='/'>Home</Link>
+                  <Link className='link' to='/dashboard'>Home</Link>
                 </li>
                 <li className="nav-item">
                   <button className='link' onClick={showProfileSettings}>Profile Settings</button>
