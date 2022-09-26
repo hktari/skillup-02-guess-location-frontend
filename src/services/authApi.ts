@@ -1,20 +1,12 @@
-import { ApiResult, LoginApiResult, User } from '../services/interface'
+import { ApiResult, JWT, LoginApiResult, User } from '../services/interface'
+import restClient from './httpService'
+const axios = require('axios')
 
-async function login(email: string, password: string): Promise<LoginApiResult> {
-    return Promise.resolve(
-        {
-            jwt: {
-                token: "3a01a40d-2c6a-43d5-aee7-bb1983c6e776",
-                expiresAt: new Date(Date.now() + 1000 * 60 * 60),
-            },
-            user: {
-                id: 0,
-                firstName: 'Jacob',
-                lastName: 'Jones',
-                email: 'jabobjones@example.com',
-                image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80'
-            }
-        })
+async function login(email: string, password: string): Promise<JWT> {
+    return await restClient.post('/login', {
+        email,
+        password
+    })
 }
 
 async function signup(email: string, firstName: string, lastName: string, password: string, imageBase64: string) {
@@ -52,10 +44,8 @@ async function updateProfileImage(email: string, imageBase64: string): Promise<U
     })
 }
 
-async function changePassword(email: string, newPassword: string): Promise<ApiResult> {
-    return Promise.resolve({
-
-    })
+async function changePassword(email: string, newPassword: string) : Promise<void> {
+    return Promise.resolve()
 }
 
 const authApi = {

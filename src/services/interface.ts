@@ -32,18 +32,16 @@ interface ItemList<TItem> {
     items: TItem[]
 }
 
-interface ApiResult {
-    errors?: []
+interface ApiResult<TPayload> {
+    errors?: string[]
+    payload: TPayload
 }
-
 interface JWT {
-    token: string,
+    access_token: string,
     expiresAt: Date
 }
 
-interface LoginApiResult extends ApiResult {
-    user: User,
-    jwt: JWT
+interface LoginApiResult extends ApiResult<JWT> {
 }
 
 export type {
