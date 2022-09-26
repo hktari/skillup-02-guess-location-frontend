@@ -1,67 +1,46 @@
 import { ApiResult, ItemList, LeaderboardItem, LocationImage } from './interface'
+import axios from './httpService'
 
 async function getAll(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
-    const req = await fetch('http://localhost:5983/locations')
-    const items = await req.json()
-    return {
-        startIdx: startIdx,
-        totalItems: items.length,
-        pageSize: items.length,
-        items: items.splice(0, pageSize)
-    }
+    return axios.get('/location', { params: { startIdx, pageSize } })
 }
 
 async function getNewUploads(startIdx: number, pageSize: number) {
-    console.log('startIdx & pageSize', startIdx, pageSize)
-    const req = await fetch('http://localhost:5983/locations')
-    const items = await req.json()
-    return {
-        startIdx: startIdx,
-        totalItems: items.length,
-        pageSize: pageSize,
-        items: items.splice(startIdx, pageSize)
-    }
+    return getAll(startIdx, pageSize)
 }
 
 async function getBestGuesses(userId: any, startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
-    return await getAll(startIdx, pageSize)
+    const user = await axios.get(`user/${userId}`)
+    return {
+        startIdx,
+        pageSize,
+        totalItems: user.guesses.length,
+        items: user.guesses
+    }
 }
 
 async function getUploads(userId: string | number, startIdx: number, pageSize: number) {
-    const req = await fetch(`http://localhost:5983/locations?_userId=${userId}`)
-    const uploads = await req.json()
+    const user = await axios.get(`user/${userId}`)
     return {
         startIdx,
-        totalItems: uploads.length,
         pageSize,
-        items: uploads.splice(startIdx, pageSize)
+        totalItems: user.locations.length,
+        items: user.locations
     }
 }
 
 async function getLeaderboard(locationId: string | number, startIdx: number = 0, pageSize: number = -1) {
-    const req = await fetch(`http://localhost:5983/locationGuess?locationId=${locationId}&_expand=user&_sort=guessErrorMeters&_order=asc`)
-    const items: LeaderboardItem[] = JSON.parse(await req.text(), function (key, value) {
-        if (key === 'createdAt') {
-            return new Date(value)
-        } else {
-            return value
-        }
-    })
-
+    const location = await axios.get('/location' + locationId)
     return {
-        startIdx: startIdx,
-        totalItems: items.length,
-        pageSize: items.length,
-        items: items
+        startIdx,
+        pageSize,
+        totalItems: location.guesses.length,
+        items: location.guesses
     }
 }
 
-async function deleteLocation(locationId: string | number): Promise<void> {
-    const req = await fetch('http://localhost:5983/locations/' + locationId, {
-        method: 'DELETE'
-    })
-
-    return Promise.resolve()
+function deleteLocation(locationId: string | number): Promise<void> {
+    return axios.delete('/location/' + locationId)
 }
 
 const locationApi = {
