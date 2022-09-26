@@ -13,6 +13,8 @@ const DashboardPage = (props: Props) => {
 
   const [locationGuessList, setLocationGuessList] = useState<LocationImage[]>([])
 
+  const { user } = useAuth()
+
   useEffect(() => {
     async function loadData() {
       const locationGuessList = await getLocationGuesses(0, 10)
@@ -24,8 +26,7 @@ const DashboardPage = (props: Props) => {
 
   async function getLocationGuesses(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
     try {
-      // todo: user id
-      return await locationApi.getBestGuesses(0, startIdx, pageSize)
+      return await locationApi.getBestGuesses(user?.id, startIdx, pageSize)
     } catch (error) {
       console.error(error)
       window.alert('Failed to fetch quotes...')

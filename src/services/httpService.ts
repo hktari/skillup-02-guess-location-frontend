@@ -25,4 +25,8 @@ axios.interceptors.response.use(function (response: any) {
 //     return status < 500; // Resolve only if the status code is less than 500
 // }
 
+export function setAuthBearer(token: string) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+}
+
 export default axios

@@ -3,7 +3,7 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import authApi from '../../services/authApi';
 import { ApiResult, JWT, User } from '../../services/interface';
 import userApi from '../../services/userApi';
-import apiClient from '../../services/httpService'
+import apiClient, { setAuthBearer } from '../../services/httpService'
 
 export interface AuthContextType {
     user: User | null;
@@ -18,7 +18,7 @@ export interface AuthContextType {
 var AuthContext = React.createContext<AuthContextType>({ user: null, login: null!, logout: null!, isLoggedIn: () => false, updateProfile: null!, updateProfileImage: null!, changePassword: null! });
 
 
-function validTokenExists() {
+function getValidTokenOrNull() {
     const jwtJSON = localStorage.getItem('jwt')
 
     if (jwtJSON) {
@@ -32,19 +32,25 @@ function validTokenExists() {
         }) as JWT
 
         console.log('Checking for token expiry jwt', jwt)
-        return jwt.expiresAt && jwt.expiresAt.getTime() > Date.now()
+        if (jwt.expiresAt && jwt.expiresAt.getTime() > Date.now()) {
+            return jwt.access_token
+        } else {
+            return null
+        }
     }
 
-    return false
+    return null
 }
+
 function setAccessToken(jwt: JWT) {
     localStorage.setItem("jwt", JSON.stringify(jwt));
     console.log('setting access token to', jwt)
-    apiClient.defaults.headers.common['Authorization'] = `Bearer ${jwt.access_token}`;
+    setAuthBearer(jwt.access_token)
 }
+
 function clearAccessToken() {
     localStorage.setItem("jwt", "");
-    apiClient.defaults.headers.common['Authorization'] = '';
+    setAuthBearer('')
 }
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -64,8 +70,10 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
             }
         }
 
-        if (validTokenExists()) {
+        const accessToken = getValidTokenOrNull()
+        if (accessToken) {
             console.log('logging in user...')
+            setAuthBearer(accessToken)
             getUserProfile()
         }
     }, [])
@@ -78,6 +86,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
         console.log('retrieving user profile')
         const user = await userApi.getMyUserProfile()
+        console.debug('got user', user)
         setUser(user);
         return user
     }
