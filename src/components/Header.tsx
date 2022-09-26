@@ -163,7 +163,7 @@ const Header = (props: Props) => {
               </ul>
               <div className="nav-buttons">
                 <button className='btn btn-circle btn-gray' onClick={navigateToUserProfile}>
-                  <img src={user?.image ?? avatarPlaceholder} alt="user profile" className="profile-img" />
+                  <img src={user?.imageUrl ?? avatarPlaceholder} alt="user profile" className="profile-img" />
                 </button>
                 <button onClick={navigateToAddLocation} className="btn btn-circle btn-positive">
                   <span className="material-icons">add</span>
@@ -183,7 +183,7 @@ const Header = (props: Props) => {
           </button>
         </div>
         <div className="nav-profile" onClick={navigateToUserProfile}>
-          <img className='profile-img' src={user?.image ?? avatarPlaceholder} alt="user profile" />
+          <img className='profile-img' src={user?.imageUrl ?? avatarPlaceholder} alt="user profile" />
           <span className='body user-name'>{user?.firstName} {user?.lastName}</span>
         </div>
         <ul className='nav-items-list'>

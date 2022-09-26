@@ -3,7 +3,7 @@ interface LocationImage {
     address: string,
     lat: number,
     long: number,
-    image: string,
+    imageUrl: string,
     userId: number,
     createdAt: Date,
     guessErrorMeters?: number
@@ -11,7 +11,7 @@ interface LocationImage {
 
 interface User {
     id: string | number,
-    image: string,
+    imageUrl: string,
     firstName: string,
     lastName: string,
     email: string

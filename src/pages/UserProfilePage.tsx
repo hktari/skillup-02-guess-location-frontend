@@ -40,7 +40,7 @@ const UserProfilePage = () => {
       <div className='container'>
         <section className="section user-profile w3-row">
           <div className="user-profile-img w3-left">
-            <img src={user.image} alt="profile" />
+            <img src={user.imageUrl} alt="profile" />
           </div>
           <p className="user-name header5 w3-left">{user.firstName} {user.lastName}</p>
         </section>

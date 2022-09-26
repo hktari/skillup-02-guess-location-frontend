@@ -22,7 +22,7 @@ const LocationImageComponent = ({ locationImage, interactable = true }: Location
             <Link
                 onClick={onClick}
                 to={`/location/guess/${locationImage.id}`}>
-                <img src={locationImage.image} alt={locationImage.address} />
+                <img src={locationImage.imageUrl} alt={locationImage.address} />
             </Link>
         </div>
     )

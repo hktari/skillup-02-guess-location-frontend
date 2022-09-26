@@ -31,7 +31,7 @@ const ChangeProfileImageModal = ({ onFinished, isOpen, handleClose }: ChangeProf
             <h1 className="header4">Profile <span className="text-positive">settings.</span></h1>
             <p className="body w3-padding-24 ">Change your profile photo</p>
             <PickImageComponent
-                image={user?.image ?? ''}
+                image={user?.imageUrl ?? ''}
                 onImagePicked={img => {
                     selectedImageBase64.current = img
                 }

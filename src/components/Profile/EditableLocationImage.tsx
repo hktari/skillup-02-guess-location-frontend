@@ -50,7 +50,7 @@ const EditableLocationImage = ({ locationImage }: EditableLocationImageProps) =>
 
     return (
         <div onClick={onClick} className='location-img-container editable'>
-            <img src={locationImage.image} alt={locationImage.address} />
+            <img src={locationImage.imageUrl} alt={locationImage.address} />
             <button
                 onMouseOver={ev => toggleHoverOnParent(ev, true)}
                 onMouseLeave={ev => toggleHoverOnParent(ev, false)}

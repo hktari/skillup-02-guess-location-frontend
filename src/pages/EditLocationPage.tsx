@@ -16,7 +16,7 @@ const EditLocationPage = () => {
     const locationImage = location.state as LocationImage
 
     useEffect(() => {
-        setImage(locationImage.image)
+        setImage(locationImage.imageUrl)
     }, [location.state])
 
 

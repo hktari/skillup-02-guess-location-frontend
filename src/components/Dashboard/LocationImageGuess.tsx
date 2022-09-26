@@ -19,7 +19,7 @@ const LocationImageGuess = ({ locationImage }: LocationImageGuessProps) => {
     return (
         <button onClick={navigateToGuessLocation} className='link'>
             <div className='location-img-container location-img-guess'>
-                <img src={locationImage.image} alt={locationImage.address} />
+                <img src={locationImage.imageUrl} alt={locationImage.address} />
                 <div className="img-overlay"></div>
                 <div className="img-overlay-text">{locationImage.guessErrorMeters} m</div>
             </div>

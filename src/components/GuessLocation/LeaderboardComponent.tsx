@@ -33,7 +33,7 @@ const LeaderboardComponent = ({ locationImageId }: LeaderboardComponentProps) =>
         return (
             <div className="leaderboard-item">
                 <div className={'rank ' + getRankStyle(rank)}>{rank}</div>
-                <div className="user-profile-img"><img src={item.user?.image}
+                <div className="user-profile-img"><img src={item.user?.imageUrl}
                     alt={item.user?.firstName} /></div>
                 <div className="details">
                     <span className="username">{item.user?.firstName} {item.user?.lastName}</span>
