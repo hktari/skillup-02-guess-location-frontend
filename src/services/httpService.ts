@@ -1,18 +1,20 @@
 const axios = require('axios').default;
 
 console.debug('api endpoint', process.env.REACT_APP_API)
-const restClient = axios.create({
-    baseURL: process.env.REACT_APP_API,
-    timeout: 3000,
-});
+axios.defaults.baseURL = process.env.REACT_APP_API
 
-restClient.default.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+// axios.transformResponse = [function (data: any) {
+//     // Do whatever you want to transform the data
+
+//     return data;
+// }],
 
 // Add a response interceptor
-restClient.interceptors.response.use(function (response: any) {
+axios.interceptors.response.use(function (response: any) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    return { payload: response.data };
+    return { ...response.data };
 }, function (error: any) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
@@ -23,4 +25,4 @@ restClient.interceptors.response.use(function (response: any) {
 //     return status < 500; // Resolve only if the status code is less than 500
 // }
 
-export default restClient
+export default axios

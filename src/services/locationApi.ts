@@ -56,13 +56,12 @@ async function getLeaderboard(locationId: string | number, startIdx: number = 0,
     }
 }
 
-async function deleteLocation(locationId: string | number): Promise<ApiResult> {
+async function deleteLocation(locationId: string | number): Promise<void> {
     const req = await fetch('http://localhost:5983/locations/' + locationId, {
         method: 'DELETE'
     })
 
-    return {
-    }
+    return Promise.resolve()
 }
 
 const locationApi = {

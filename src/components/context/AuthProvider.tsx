@@ -22,6 +22,8 @@ function validTokenExists() {
     const jwtJSON = localStorage.getItem('jwt')
 
     if (jwtJSON) {
+        console.log('parsing jwt from local storage', jwtJSON)
+
         const jwt = JSON.parse(jwtJSON, (key, val) => {
             if (key === 'expiresAt') {
                 return new Date(val)
@@ -36,7 +38,8 @@ function validTokenExists() {
     return false
 }
 function setAccessToken(jwt: JWT) {
-    localStorage.setItem("jwt", JSON.stringify(jwt.access_token));
+    localStorage.setItem("jwt", JSON.stringify(jwt));
+    console.log('setting access token to', jwt)
     apiClient.defaults.headers.common['Authorization'] = `Bearer ${jwt.access_token}`;
 }
 function clearAccessToken() {
@@ -71,9 +74,11 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
     let login = async (username: string, pwd: string) => {
         const jwt = await authApi.login(username, pwd)
+        setAccessToken(jwt)
+
+        console.log('retrieving user profile')
         const user = await userApi.getMyUserProfile()
         setUser(user);
-        setAccessToken(jwt)
         return user
     }
 

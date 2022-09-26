@@ -3,7 +3,7 @@ import restClient from './httpService'
 const axios = require('axios')
 
 async function login(email: string, password: string): Promise<JWT> {
-    return await restClient.post('/login', {
+    return await restClient.post('/auth/login', {
         email,
         password
     })
