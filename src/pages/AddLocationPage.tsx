@@ -99,7 +99,7 @@ const AddLocationPage = (props: AddLocationPageProps) => {
                 </div>
                 <MapComponent coords={mapCoords} />
                 <SearchStreetComponent onAddressPicked={onAddressPicked} />
-                <button className="btn btn-positive btn-block add-new" onClick={onAddNew}>ADD NEW</button>
+                <button disabled={!submitLocationEnabled} className="btn btn-positive btn-block add-new" onClick={onAddNew}>ADD NEW</button>
             </section>
         </div>
     )
