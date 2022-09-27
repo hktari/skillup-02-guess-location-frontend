@@ -13,7 +13,9 @@ const SearchStreetComponent = ({ onAddressPicked }: SearchStreetComponentProps) 
         const autocomplete = new GeocoderAutocomplete(
             document.getElementById("autocomplete")!,
             process.env.REACT_APP_OSM_API_KEY!,
-            { /* Geocoder options */ });
+            {
+                type: 'street'
+            });
 
         autocomplete.on('select', (location) => {
             onAddressPicked(location)

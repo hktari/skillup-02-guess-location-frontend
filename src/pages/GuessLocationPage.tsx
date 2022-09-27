@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import MapComponent from '../components/Common/MapComponent'
+import MapComponent, { Coordinates } from '../components/Common/MapComponent'
 import SearchStreetComponent from '../components/Common/SearchStreetComponent'
 import LocationImageComponent from '../components/Dashboard/LocationImageComponent'
 import LeaderboardComponent from '../components/GuessLocation/LeaderboardComponent'
@@ -17,6 +17,7 @@ const GuessLocationPage = () => {
     const [errorDistance, setErrorDistance] = useState<number | null>(null)
     const [inputEnabled, setInputEnabled] = useState(false)
     const [leaderboardItems, setLeaderboardItems] = useState<LeaderboardItem[]>([])
+    const [mapCoords, setMapCoords] = useState<Coordinates | null>(null)
 
     const location = useLocation()
     const locationImage = location.state as LocationImage
@@ -79,7 +80,7 @@ const GuessLocationPage = () => {
                         <div className="w3-margin-top">
                             <LocationImageComponent interactable={false} locationImage={locationImage} />
                         </div>
-                        <MapComponent searchTerm={searchTerm} />
+                        <MapComponent coords={mapCoords} />
                         <div className="input-container">
                             <div className="search-street">
                                 <SearchStreetComponent onAddressPicked={onAddressPicked} />

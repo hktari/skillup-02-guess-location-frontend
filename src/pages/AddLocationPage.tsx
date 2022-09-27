@@ -30,6 +30,8 @@ const AddLocationPage = (props: AddLocationPageProps) => {
             return
         }
 
+        console.log('setting mapCoords', selectedAddress)
+
         setMapCoords({ lat: selectedAddress.properties.lat, lng: selectedAddress.properties.lon })
     }, [selectedAddress])
 
