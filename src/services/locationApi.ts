@@ -43,6 +43,15 @@ function deleteLocation(locationId: string | number): Promise<void> {
     return axios.delete('/location/' + locationId)
 }
 
+async function addLocation(address: string, lat: number, lng: number, imageBase64: string) {
+    return axios.post('/location', {
+        address,
+        lat,
+        lng,
+        imageBase64
+    })
+}
+
 async function guessLocation(locationImageId: string, address: string, lat: number, lng: number) {
     return axios.post('/location/guess/' + locationImageId, {
         address,
@@ -58,6 +67,7 @@ const locationApi = {
     getUploads,
     getNewUploads,
     guessLocation,
+    addLocation,
     getBestGuesses
 }
 
