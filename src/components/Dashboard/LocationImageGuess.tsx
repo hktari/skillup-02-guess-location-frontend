@@ -21,7 +21,7 @@ const LocationImageGuess = ({ locationImage }: LocationImageGuessProps) => {
             <div className='location-img-container location-img-guess'>
                 <img src={locationImage.imageUrl} alt={locationImage.address} />
                 <div className="img-overlay"></div>
-                <div className="img-overlay-text">{locationImage.guessErrorMeters} m</div>
+                <div className="img-overlay-text">{locationImage.guessResult?.errorInMeters} m</div>
             </div>
         </button>
     )

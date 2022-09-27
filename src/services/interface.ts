@@ -6,7 +6,17 @@ interface LocationImage {
     imageUrl: string,
     userId: number,
     createdAt: Date,
-    guessErrorMeters?: number
+    guessResult?: GuessResult
+}
+export interface GuessResult {
+    lat: number;
+    lng: number;
+    address: string;
+    errorInMeters: number;
+    user: User;
+    location: Location;
+    id: string;
+    createdDate: Date;
 }
 
 interface User {

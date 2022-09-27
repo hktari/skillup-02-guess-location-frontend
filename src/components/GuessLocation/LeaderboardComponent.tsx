@@ -4,20 +4,10 @@ import locationApi from '../../services/locationApi'
 import '../../css/components/GuessLocation/LeaderboardComponent.css'
 
 type LeaderboardComponentProps = {
-    locationImageId: string | number
+    leaderboardItems: LeaderboardItem[]
 }
 
-const LeaderboardComponent = ({ locationImageId }: LeaderboardComponentProps) => {
-    const [leaderboardItems, setLeaderboardItems] = useState<LeaderboardItem[]>([])
-
-    useEffect(() => {
-        async function getLeaderboard() {
-            const leaderboardList = await locationApi.getLeaderboard(locationImageId)
-            setLeaderboardItems(leaderboardList.items)
-        }
-
-        getLeaderboard()
-    }, [locationImageId])
+const LeaderboardComponent = ({ leaderboardItems }: LeaderboardComponentProps) => {
 
     function getRankStyle(rank: number) {
         if (rank === 1) {
