@@ -12,12 +12,12 @@ import osmApi from '../services/osmApi'
 
 
 const GuessLocationPage = () => {
-    const [searchTerm, setSearchTerm] = useState('')
     const [selectedAddress, setSelectedAddress] = useState<OsmAddress | null>(null)
     const [errorDistance, setErrorDistance] = useState<number | null>(null)
     const [inputEnabled, setInputEnabled] = useState(false)
     const [leaderboardItems, setLeaderboardItems] = useState<LeaderboardItem[]>([])
     const [mapCoords, setMapCoords] = useState<Coordinates | null>(null)
+    const [guessResult, setGuessResult] = useState<GuessResult | null>(null)
 
     const location = useLocation()
     const locationImage = location.state as LocationImage
@@ -26,15 +26,23 @@ const GuessLocationPage = () => {
         console.error('no location image passed to GuessLocationPage')
     }
 
+
     useEffect(() => {
         console.log('refreshing...')
         if (locationImage.guessResult) {
-            populateWithGuessResult(locationImage.guessResult)
+            setGuessResult(locationImage.guessResult)
         }
 
         updateLeaderboard()
-    }, [locationImage, locationImage.guessResult])
+    }, [locationImage])
 
+    useEffect(() => {
+        if (guessResult) {
+            populateWithGuessResult(guessResult)
+        }
+        
+        updateLeaderboard()
+    }, [guessResult])
 
     async function updateLeaderboard() {
         console.log('leaderboards...')
@@ -42,15 +50,19 @@ const GuessLocationPage = () => {
         setLeaderboardItems(leaderboardList.items)
     }
 
-    function onAddressPicked(address: any) {
+    function onAddressPicked(address: OsmAddress) {
+        setMapCoords({
+            lat: address.properties.lat,
+            lng: address.properties.lon
+        })
         setSelectedAddress(address)
+        setInputEnabled(address !== null)
         console.log('address picked', address)
     }
 
     function populateWithGuessResult(guessResult: GuessResult) {
         console.log('guess results...')
         setInputEnabled(true)
-        setSearchTerm(guessResult.address)
         setErrorDistance(guessResult.errorInMeters)
     }
 
@@ -63,7 +75,7 @@ const GuessLocationPage = () => {
                     selectedAddress.properties.lat, selectedAddress.properties.lon)
                 console.log(guessResult)
 
-                locationImage.guessResult = guessResult
+                setGuessResult(guessResult)
             }
 
         } catch (error) {
@@ -87,7 +99,7 @@ const GuessLocationPage = () => {
                             </div>
                             <div className="error-distance w3-margin-top">
                                 <label className='body' htmlFor="errorDistance">Error distance</label>
-                                <div className='input input-border' id="errorDistance" >{errorDistance ?? ''} m</div>
+                                <div className='input input-border' id="errorDistance" >{errorDistance ? `${errorDistance} m` : ''}</div>
                             </div>
                         </div>
                         <button disabled={!inputEnabled} onClick={onGuessClicked}
