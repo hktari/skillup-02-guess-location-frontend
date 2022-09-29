@@ -3,14 +3,23 @@ import React, { MutableRefObject, useEffect, useRef } from 'react';
 
 import '../../css/components/common/MapComponent.css'
 import { Map } from 'maplibre-gl';
+import UserMapPin from '../../assets/images/user-map-pin.png'
 
 
+function mapToLngLatLike(coords: Coordinates): maplibregl.LngLatLike {
+    return {
+        lat: coords.lat,
+        lon: coords.lng
+    }
+}
 
 export interface Coordinates {
     lat: number,
     lng: number
 }
 interface MapComponentProps {
+    targetCoords?: Coordinates
+    guessCords?: Coordinates
     coords?: Coordinates | null,
     zoom?: number,
     mapIsReadyCallback?: (map: Map) => void
@@ -21,7 +30,7 @@ const defaultCoords = {
     lat: 46.154340,
 }
 
-const MyMap = ({ coords = defaultCoords, zoom = 14, mapIsReadyCallback }: MapComponentProps) => {
+const MyMap = ({ targetCoords, guessCords, coords = defaultCoords, zoom = 14, mapIsReadyCallback }: MapComponentProps) => {
     const mapContainer = useRef(null);
 
     if (!coords) {
@@ -48,6 +57,26 @@ const MyMap = ({ coords = defaultCoords, zoom = 14, mapIsReadyCallback }: MapCom
         });
 
         map.addControl(new maplibregl.NavigationControl());
+        if (guessCords) {
+            const userMarker = new maplibregl.Marker({
+                color: '#d85454'
+            })
+            userMarker.setLngLat({ lat: guessCords.lat, lon: guessCords.lng })
+            userMarker.addTo(map)
+        }
+        if (targetCoords) {
+            const targetMarker = new maplibregl.Marker({
+                color: '#60a83e'
+            })
+            targetMarker.setLngLat({ lat: targetCoords.lat, lon: targetCoords.lng })
+            targetMarker.addTo(map)
+        }
+
+        if (guessCords && targetCoords) {
+            map.fitBounds([mapToLngLatLike(guessCords), mapToLngLatLike(targetCoords)], { padding: 20 })
+        } else if (guessCords) {
+            map.setCenter(mapToLngLatLike(guessCords))
+        }
 
         mapIsReadyCallback && mapIsReadyCallback(map);
     }, [mapContainer.current, coords, zoom]);

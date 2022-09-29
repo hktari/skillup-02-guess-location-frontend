@@ -2,7 +2,7 @@ interface LocationImage {
     id: any,
     address: string,
     lat: number,
-    long: number,
+    lng: number,
     imageUrl: string,
     user: User,
     createdAt: Date,

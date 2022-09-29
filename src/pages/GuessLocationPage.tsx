@@ -18,6 +18,8 @@ const GuessLocationPage = () => {
     const [leaderboardItems, setLeaderboardItems] = useState<LeaderboardItem[]>([])
     const [mapCoords, setMapCoords] = useState<Coordinates | null>(null)
     const [guessResult, setGuessResult] = useState<GuessResult | null>(null)
+    const [guessCoords, setGuessCoords] = useState<Coordinates>()
+    const [targetCoords, setTargetCoords] = useState<Coordinates>()
 
     const location = useLocation()
     const locationImage = location.state as LocationImage
@@ -67,6 +69,14 @@ const GuessLocationPage = () => {
             lat: guessResult.lat,
             lng: guessResult.lng
         })
+        setGuessCoords({
+            lat: guessResult.lat,
+            lng: guessResult.lng
+        })
+        setTargetCoords({
+            lat: locationImage.lat,
+            lng: locationImage.lng
+        })
     }
 
     async function onGuessClicked() {
@@ -95,7 +105,7 @@ const GuessLocationPage = () => {
                         <div className="w3-margin-top">
                             <LocationImageComponent interactable={false} locationImage={locationImage} />
                         </div>
-                        <MapComponent coords={mapCoords} />
+                        <MapComponent targetCoords={targetCoords} guessCords={guessCoords} coords={mapCoords} />
                         <div className="input-container">
                             <div className="search-street">
                                 {inputEnabled ? <SearchStreetComponent onAddressPicked={onAddressPicked} />
