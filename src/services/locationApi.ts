@@ -6,7 +6,7 @@ async function getAll(startIdx: number, pageSize: number): Promise<ItemList<Loca
 }
 
 async function getNewUploads(startIdx: number, pageSize: number) {
-    return getAll(startIdx, pageSize)
+    return axios.get('/location/to-guess', { params: { startIdx, pageSize } })
 }
 
 
