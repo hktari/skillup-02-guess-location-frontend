@@ -49,7 +49,7 @@ async function addLocation(address: string, lat: number, lng: number, imageBase6
     })
 }
 
-async function guessLocation(locationImageId: string, address: string, lat: number, lng: number) {
+async function guessLocation(locationImageId: string, address: string, lat: number, lng: number): Promise<GuessResult> {
     return axios.post('/location/guess/' + locationImageId, {
         address,
         lat,
