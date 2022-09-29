@@ -6,7 +6,7 @@ import locationApi from '../../services/locationApi';
 export interface LocationContextType {
     // a number which a child component uses inside an effect to refresh its locations collection
     updateIndicatorIdx: number,
-    deleteLocation: (locationId: string | number) => Promise<void>,
+    deleteLocation: (locationId: string) => Promise<void>,
     addLocation: (address : string, lat: number, lng:number, imageBase64:string) => Promise<LocationImage>
 }
 
@@ -15,7 +15,7 @@ var LocationContext = React.createContext<LocationContextType>({ updateIndicator
 function LocationProvider({ children }: { children: React.ReactNode }) {
     const [updateIndicatorIdx, setUpdateIndicatorIdx] = useState<number>(0)
 
-    const deleteLocation = async (locationId: string | number) => {
+    const deleteLocation = async (locationId: string) => {
         const result = await locationApi.deleteLocation(locationId)
         // force a refresh 
         setUpdateIndicatorIdx(updateIndicatorIdx + 1)

@@ -5,6 +5,7 @@ import HorizontalImageList from '../components/Dashboard/HorizontalImageList'
 import '../css/pages/DashboardPage.css'
 import { ItemList, LocationImage } from '../services/interface'
 import locationApi from '../services/locationApi'
+import userApi from '../services/userApi'
 import { EmptyList } from '../util/LocationImageUtil'
 
 type Props = {}
@@ -26,7 +27,10 @@ const DashboardPage = (props: Props) => {
 
   async function getLocationGuesses(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
     try {
-      return await locationApi.getBestGuesses(user?.id, startIdx, pageSize)
+      if (!user) {
+        throw new Error('no user')
+      }
+      return await locationApi.getGuessesByUser(user.id, startIdx, pageSize)
     } catch (error) {
       console.error(error)
       window.alert('Failed to fetch quotes...')

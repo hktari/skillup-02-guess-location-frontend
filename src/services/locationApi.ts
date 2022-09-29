@@ -1,4 +1,4 @@
-import { ApiResult, ItemList, LeaderboardItem, LocationImage } from './interface'
+import { ApiResult, GuessResult, ItemList, LeaderboardItem, LocationImage } from './interface'
 import axios from './httpService'
 
 async function getAll(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
@@ -9,17 +9,9 @@ async function getNewUploads(startIdx: number, pageSize: number) {
     return getAll(startIdx, pageSize)
 }
 
-async function getBestGuesses(userId: any, startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
-    const user = await axios.get(`user/${userId}`)
-    return {
-        startIdx,
-        pageSize,
-        totalItems: user.guesses.length,
-        items: user.guesses
-    }
-}
 
-async function getUploads(userId: string | number, startIdx: number, pageSize: number) {
+
+async function getUploads(userId: string, startIdx: number, pageSize: number) {
     const user = await axios.get(`user/${userId}`)
     return {
         startIdx,
@@ -29,7 +21,7 @@ async function getUploads(userId: string | number, startIdx: number, pageSize: n
     }
 }
 
-async function getLeaderboard(locationId: string | number, startIdx: number = 0, pageSize: number = -1): Promise<ItemList<LeaderboardItem>> {
+async function getLeaderboard(locationId: string, startIdx: number = 0, pageSize: number = -1): Promise<ItemList<LeaderboardItem>> {
     const location = await axios.get('/location/' + locationId)
     return {
         startIdx,
@@ -39,7 +31,7 @@ async function getLeaderboard(locationId: string | number, startIdx: number = 0,
     }
 }
 
-function deleteLocation(locationId: string | number): Promise<void> {
+function deleteLocation(locationId: string): Promise<void> {
     return axios.delete('/location/' + locationId)
 }
 
@@ -60,6 +52,30 @@ async function guessLocation(locationImageId: string, address: string, lat: numb
     })
 }
 
+function mapGuessResultToLocationImage(guessResult: GuessResult): LocationImage {
+    const guess = { ...guessResult }
+
+    return {
+        ...guessResult.location,
+        guessResult: guessResult
+    }
+}
+
+async function getGuessesByUser(userId: string, startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
+    const userGuessList: ItemList<GuessResult> = await axios.get(`user/${userId}/guess`, {
+        params: {
+            startIdx,
+            pageSize,
+        }
+    })
+    return {
+        startIdx,
+        pageSize,
+        totalItems: userGuessList.totalItems,
+        items: userGuessList.items.map(mapGuessResultToLocationImage)
+    }
+}
+
 const locationApi = {
     deleteLocation,
     getAll,
@@ -67,8 +83,8 @@ const locationApi = {
     getUploads,
     getNewUploads,
     guessLocation,
+    getGuessesByUser,
     addLocation,
-    getBestGuesses
 }
 
 export default locationApi

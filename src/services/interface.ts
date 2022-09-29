@@ -4,7 +4,7 @@ interface LocationImage {
     lat: number,
     long: number,
     imageUrl: string,
-    userId: number,
+    user: User,
     createdAt: Date,
     guessResult?: GuessResult
 }
@@ -14,13 +14,13 @@ export interface GuessResult {
     address: string;
     errorInMeters: number;
     user: User;
-    location: Location;
+    location: LocationImage;
     id: string;
     createdDate: Date;
 }
 
 interface User {
-    id: string | number,
+    id: string,
     imageUrl: string,
     firstName: string,
     lastName: string,
@@ -28,7 +28,7 @@ interface User {
 }
 
 interface LeaderboardItem {
-    id: string | number,
+    id: string,
     rank: number,
     createdAt: Date,
     guessErrorMeters: number,

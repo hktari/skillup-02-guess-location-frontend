@@ -15,7 +15,11 @@ const UserProfilePage = () => {
 
   async function loadBestGuesses(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
     try {
-      return await locationApi.getBestGuesses(user.id, startIdx, pageSize)
+      if (!user) {
+        throw new Error('no user')
+      }
+
+      return await locationApi.getGuessesByUser(user.id, startIdx, pageSize)
     } catch (error) {
       console.error(error)
       return EmptyList()
