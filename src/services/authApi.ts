@@ -1,16 +1,15 @@
 import { ApiResult, JWT, LoginApiResult, User } from '../services/interface'
-import restClient from './httpService'
-const axios = require('axios')
+import axios from './httpService'
 
 async function login(email: string, password: string): Promise<JWT> {
-    return await restClient.post('/auth/login', {
+    return await axios.post('/auth/login', {
         email,
         password
     })
 }
 
 async function signup(email: string, firstName: string, lastName: string, password: string, imageBase64: string) {
-    return await restClient.post('/auth/signup', {
+    return await axios.post('/auth/signup', {
         email,
         firstName,
         lastName,
@@ -25,14 +24,14 @@ function logout() {
 }
 
 async function updateProfile(email: string, firstName: string, lastName: string): Promise<User> {
-    return restClient.put('/user/my-profile', {
+    return axios.put('/user/my-profile', {
         firstName,
         lastName
     })
 }
 
 async function updateProfileImage(email: string, imageBase64: string): Promise<User> {
-    return restClient.put('/user/my-profile/image', {
+    return axios.put('/user/my-profile/image', {
         imageBase64
     })
 }

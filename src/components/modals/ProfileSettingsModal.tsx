@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { useAuth } from '../context/AuthProvider'
 
@@ -14,9 +14,18 @@ export interface ProfileSettingsModalProps extends ModalProps {
 
 const ProfileSettingsModal = ({ isOpen, handleClose, handleChangePassword, onChangeProfileImage }: ProfileSettingsModalProps) => {
     const { user, updateProfile } = useAuth()
-    const [firstName, setFirstName] = useState<string>(user?.firstName ?? '')
-    const [lastName, setLastName] = useState<string>(user?.lastName ?? '')
+    const [firstName, setFirstName] = useState<string>('')
+    const [lastName, setLastName] = useState<string>('')
 
+    useEffect(() => {
+        console.debug('ProfileSettingsModal', 'useEffect')
+        setFirstName(user?.firstName ?? '')
+        setLastName(user?.lastName ?? '')
+    }, [user])
+    
+    
+    console.debug('ProfileSettingsModal', user)
+    
     async function onSubmit(event: FormEvent) {
         event.preventDefault()
         try {

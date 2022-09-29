@@ -98,7 +98,7 @@ const Header = (props: Props) => {
   function handleModalResult(result: ModalResult) {
     if (!result.errors) {
       setInfoModalTitle('Information changed.')
-      setInfoModalMessage('Password changed.')
+      setInfoModalMessage(result.message ?? '')
     } else {
       setInfoModalTitle('Error occured.')
       setInfoModalMessage(result.errors.join('<br/>'))
