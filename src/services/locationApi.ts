@@ -22,12 +22,17 @@ async function getUploads(userId: string, startIdx: number, pageSize: number) {
 }
 
 async function getLeaderboard(locationId: string, startIdx: number = 0, pageSize: number = -1): Promise<ItemList<LeaderboardItem>> {
-    const location = await axios.get('/location/' + locationId + '/leaderboard')
+    const guessList: ItemList<GuessResult> = await axios.get('/location/' + locationId + '/leaderboard')
+
+    const leaderboardList = guessList.items.map(mapGuessResultToLeaderboardItem)
+    leaderboardList.sort((a, b) => a.guessErrorMeters - b.guessErrorMeters)
+    leaderboardList.forEach((item, idx) => item.rank = idx)
+
     return {
         startIdx,
         pageSize,
-        totalItems: location.guesses.length,
-        items: location.guesses
+        totalItems: guessList.totalItems,
+        items: leaderboardList
     }
 }
 
@@ -58,6 +63,16 @@ function mapGuessResultToLocationImage(guessResult: GuessResult): LocationImage 
     return {
         ...guessResult.location,
         guessResult: guessResult
+    }
+}
+
+function mapGuessResultToLeaderboardItem(guessResult: GuessResult): LeaderboardItem {
+    return {
+        id: guessResult.id,
+        createdAt: guessResult.createdDate,
+        guessErrorMeters: guessResult.errorInMeters,
+        user: guessResult.user,
+        rank: -1
     }
 }
 

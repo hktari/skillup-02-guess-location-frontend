@@ -26,7 +26,6 @@ const GuessLocationPage = () => {
         console.error('no location image passed to GuessLocationPage')
     }
 
-
     useEffect(() => {
         console.log('refreshing...')
         if (locationImage.guessResult) {
