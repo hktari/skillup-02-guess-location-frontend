@@ -18,15 +18,12 @@ const ProfileSettingsModal = ({ isOpen, handleClose, handleChangePassword, onCha
     const [lastName, setLastName] = useState<string>('')
 
     useEffect(() => {
-        console.debug('ProfileSettingsModal', 'useEffect')
         setFirstName(user?.firstName ?? '')
         setLastName(user?.lastName ?? '')
     }, [user])
-    
-    
-    console.debug('ProfileSettingsModal', user)
-    
+
     async function onSubmit(event: FormEvent) {
+        console.debug('submit')
         event.preventDefault()
         try {
             await updateProfile(firstName, lastName)
@@ -50,7 +47,7 @@ const ProfileSettingsModal = ({ isOpen, handleClose, handleChangePassword, onCha
             isOpen={isOpen}>
             <h1 className='header4 w3-margin-bottom'>Profile <span className="text-positive">Settings</span></h1>
             <p className="body w3-padding-16">Change your information</p>
-            <form className='form' onSubmit={onSubmit}>
+            <form className='form' >
                 <label className='label' htmlFor="email">Email</label>
                 <input className='input' type="text" id="email" value={user?.email} disabled={true} />
 
@@ -74,7 +71,7 @@ const ProfileSettingsModal = ({ isOpen, handleClose, handleChangePassword, onCha
             </form>
 
             <div className="modal-footer w3-margin-top">
-                <input type='submit' className="btn btn-positive" value='SUBMIT' />
+                <button className="btn btn-positive" onClick={onSubmit}>SUBMIT</button>
                 <button onClick={handleClose} className="btn btn-title-only">Cancel</button>
             </div>
         </Modal>
