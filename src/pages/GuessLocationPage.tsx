@@ -39,7 +39,7 @@ const GuessLocationPage = () => {
         if (guessResult) {
             populateWithGuessResult(guessResult)
         }
-        
+
         updateLeaderboard()
     }, [guessResult])
 
@@ -61,8 +61,12 @@ const GuessLocationPage = () => {
 
     function populateWithGuessResult(guessResult: GuessResult) {
         console.log('guess results...')
-        setInputEnabled(true)
+        setInputEnabled(false)
         setErrorDistance(guessResult.errorInMeters)
+        setMapCoords({
+            lat: guessResult.lat,
+            lng: guessResult.lng
+        })
     }
 
     async function onGuessClicked() {
@@ -94,7 +98,13 @@ const GuessLocationPage = () => {
                         <MapComponent coords={mapCoords} />
                         <div className="input-container">
                             <div className="search-street">
-                                <SearchStreetComponent onAddressPicked={onAddressPicked} />
+                                {inputEnabled ? <SearchStreetComponent onAddressPicked={onAddressPicked} />
+                                    : (
+                                        <div className='location-address'>
+                                            <label htmlFor='address' className="body">Location</label>
+                                            <input className='input input-border' type='text' value={guessResult?.address} disabled={true} />
+                                        </div>
+                                    )}
                             </div>
                             <div className="error-distance w3-margin-top">
                                 <label className='body' htmlFor="errorDistance">Error distance</label>
