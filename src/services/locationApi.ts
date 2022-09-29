@@ -22,7 +22,7 @@ async function getUploads(userId: string, startIdx: number, pageSize: number) {
 }
 
 async function getLeaderboard(locationId: string, startIdx: number = 0, pageSize: number = -1): Promise<ItemList<LeaderboardItem>> {
-    const location = await axios.get('/location/' + locationId)
+    const location = await axios.get('/location/' + locationId + '/leaderboard')
     return {
         startIdx,
         pageSize,
