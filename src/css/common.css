@@ -422,13 +422,11 @@ width: 100%; */
 }
 
 .brand-logo .logo-top {
-    width: 200px;
-    transform: translateY(-110%) translateX(-50%);
+    transform: translateY(-200%) translateX(-50%) scale(2.75) ; 
 }
 
 .brand-logo .logo-bottom {
-    width: 180px;
-    transform: translateY(-15%) translateX(-50%);
+    transform: translateY(60%) translateX(-50%) scale(4.5) ;
 }
 
 

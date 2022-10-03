@@ -5,10 +5,13 @@ import locationImgSample1 from '../assets/images/location-img-sample01.png'
 import locationImgSample2 from '../assets/images/location-img-sample02.png'
 import locationImgSample3 from '../assets/images/location-img-sample03.png'
 import LocationImageLocked from '../components/Landing/LocationImageLocked'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {}
 
 const LandingPage = (props: Props) => {
+  const navigate = useNavigate()
+  
   return (
     <div className="container content-container landing-page-container">
       <section className="section explore">
@@ -16,7 +19,7 @@ const LandingPage = (props: Props) => {
           <div className="w3-third">
             <h2 className='header4 text-positive'>Explore the world with Geotagger !</h2>
             <p className="body">Geotagger is website that allows you to post picture and tag it on the map. Other user than try to locate it via Google Maps. </p>
-            <button className="btn btn-positive">SIGN IN</button>
+            <button className="btn btn-positive" onClick={() => navigate('/login')}>SIGN IN</button>
           </div>
           <div className="w3-twothird">
             <img className='world-map' src={worldMapImg} alt="world map" />
@@ -39,7 +42,7 @@ const LandingPage = (props: Props) => {
             <LocationImageLocked img={locationImgSample3} title="Venice" />
           </div>
         </div>
-        <button className="btn btn-positive">SIGN UP</button>
+        <button className="btn btn-positive" onClick={() => navigate('/signup')}>SIGN UP</button>
       </section>
 
     </div>
