@@ -24,10 +24,6 @@ axios.interceptors.response.use(
         return Promise.reject({ message: error.response?.data?.message, status: error.response?.status } as ApiError)
     })
 
-// restClient.defaults.validateStatus = function (status: number) {
-//     return status < 500; // Resolve only if the status code is less than 500
-// }
-
 
 export interface ApiError {
     message: string
