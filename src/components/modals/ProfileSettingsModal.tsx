@@ -47,7 +47,7 @@ const ProfileSettingsModal = ({ isOpen, handleClose, handleChangePassword, onCha
             isOpen={isOpen}>
             <h1 className='header4 w3-margin-bottom'>Profile <span className="text-positive">Settings</span></h1>
             <p className="body w3-padding-16">Change your information</p>
-            <form className='form' >
+            <div className='form' >
                 <label className='label' htmlFor="email">Email</label>
                 <input className='input' type="text" id="email" value={user?.email} disabled={true} />
 
@@ -68,7 +68,7 @@ const ProfileSettingsModal = ({ isOpen, handleClose, handleChangePassword, onCha
                 <button className="btn btn-alt w3-margin-top" style={{ backgroundColor: '#233D4D', color: '#fff' }}
                     onClick={handleChangePasswordInternal}>Change password</button>
                 <button className="btn btn-positive" onClick={onChangeProfileImage}>Change profile picture</button>
-            </form>
+            </div>
 
             <div className="modal-footer w3-margin-top">
                 <button className="btn btn-positive" onClick={onSubmit}>SUBMIT</button>

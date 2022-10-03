@@ -22,8 +22,6 @@ function getValidTokenOrNull() {
     const jwtJSON = localStorage.getItem('jwt')
 
     if (jwtJSON) {
-        console.log('parsing jwt from local storage', jwtJSON)
-
         const jwt = JSON.parse(jwtJSON, (key, val) => {
             if (key === 'expiresAt') {
                 return new Date(val)
@@ -31,7 +29,6 @@ function getValidTokenOrNull() {
             return val
         }) as JWT
 
-        console.log('Checking for token expiry jwt', jwt)
         if (jwt.expiresAt && jwt.expiresAt.getTime() > Date.now()) {
             return jwt.access_token
         } else {
@@ -44,7 +41,6 @@ function getValidTokenOrNull() {
 
 function setAccessToken(jwt: JWT) {
     localStorage.setItem("jwt", JSON.stringify(jwt));
-    console.log('setting access token to', jwt)
     setAuthBearer(jwt.access_token)
 }
 
@@ -63,7 +59,6 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
             try {
                 const user = await userApi.getMyUserProfile()
                 setUser(user)
-                console.log('navigating to dashboard')
                 navigate('/dashboard')
             } catch (error: any) {
                 console.error('Failed to get user profilo info', error.message)
@@ -72,7 +67,6 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
         const accessToken = getValidTokenOrNull()
         if (accessToken) {
-            console.log('logging in user...')
             setAuthBearer(accessToken)
             getUserProfile()
         }
@@ -84,9 +78,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
         const jwt = await authApi.login(username, pwd)
         setAccessToken(jwt)
 
-        console.log('retrieving user profile')
         const user = await userApi.getMyUserProfile()
-        console.debug('got user', user)
         setUser(user);
         return user
     }

@@ -2,6 +2,7 @@
     margin-top: 8px;
     width: 100%;
     height: 46px;
+    line-height: 46px;
 }
 
 @media (min-width:601px){

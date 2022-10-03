@@ -1,3 +1,7 @@
 .autocomplete-container {
     position: relative;
 }
+
+.geoapify-close-button {
+    transform: translateY(-12px);
+}

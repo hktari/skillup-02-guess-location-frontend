@@ -14,6 +14,7 @@ const ChangeProfileImageModal = ({ onFinished, isOpen, handleClose }: ChangeProf
 
     async function performUpdate() {
         try {
+            console.log('performing profile image update...')
             await updateProfileImage(selectedImageBase64.current)
             onFinished && onFinished({ message: 'Profile image saved' })
         } catch (error: any) {
