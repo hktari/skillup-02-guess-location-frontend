@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import MapComponent, { Coordinates } from '../components/Common/MapComponent'
 import SearchStreetComponent from '../components/Common/SearchStreetComponent'
@@ -9,7 +9,6 @@ import '../css/pages/GuessLocationPage.css'
 import { GuessResult, LeaderboardItem, LocationImage } from '../services/interface'
 import locationApi from '../services/locationApi'
 import { OsmAddress } from '../services/osm.interface'
-import osmApi from '../services/osmApi'
 
 
 const GuessLocationPage = () => {

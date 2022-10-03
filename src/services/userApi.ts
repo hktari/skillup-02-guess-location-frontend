@@ -1,4 +1,4 @@
-import { ApiResult, GuessResult, ItemList, User } from './interface'
+import { GuessResult, ItemList, User } from './interface'
 import axios from './httpService'
 
 async function getMyUserProfile(): Promise<User> {

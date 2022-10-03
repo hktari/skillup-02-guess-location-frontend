@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MapComponent, { Coordinates } from '../components/Common/MapComponent'
 import SearchStreetComponent from '../components/Common/SearchStreetComponent'
 import { useLocationsContext } from '../components/context/LocationProvider'
 import '../css/pages/AddLocationPage.css'
-import locationApi from '../services/locationApi'
 import { OsmAddress } from '../services/osm.interface'
 import { fileToBase64 } from '../util/fileUtil'
 

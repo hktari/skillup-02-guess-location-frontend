@@ -1,4 +1,4 @@
-import { ApiResult, GuessResult, ItemList, LeaderboardItem, LocationImage } from './interface'
+import { GuessResult, ItemList, LeaderboardItem, LocationImage } from './interface'
 import axios from './httpService'
 
 async function getAll(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {

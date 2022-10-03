@@ -1,4 +1,4 @@
-import { ApiResult, JWT, LoginApiResult, User } from '../services/interface'
+import { JWT, User } from '../services/interface'
 import axios from './httpService'
 
 async function login(email: string, password: string): Promise<JWT> {

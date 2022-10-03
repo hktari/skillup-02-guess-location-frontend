@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import ImageList, { LocationImageType } from '../components/Common/ImageList'
 import { useAuth } from '../components/context/AuthProvider'
 import HorizontalImageList from '../components/Dashboard/HorizontalImageList'
 import '../css/pages/DashboardPage.css'
 import { ItemList, LocationImage } from '../services/interface'
 import locationApi from '../services/locationApi'
-import userApi from '../services/userApi'
 import { EmptyList } from '../util/LocationImageUtil'
 
 type Props = {}
