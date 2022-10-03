@@ -60,8 +60,8 @@ const AddLocationPage = (props: AddLocationPageProps) => {
     async function onAddNew() {
         try {
             if (!selectedAddress || !imageBase64) {
-                console.error("can't add new. selected address is null or imageBase64 is null")
-                return;
+                console.error('can\'t add new. selected address is null or imageBase64 is null')
+                return
             }
 
             const newLocation = await addLocation(selectedAddress.properties.formatted, selectedAddress.properties.lat,
