@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ItemList, LeaderboardItem } from '../../services/interface'
 import locationApi from '../../services/locationApi'
 import '../../css/components/GuessLocation/LeaderboardComponent.css'
+import AvatarPlaceholder from '../../assets/images/avatar-placeholder.png'
 
 type LeaderboardComponentProps = {
     leaderboardItems: LeaderboardItem[]
@@ -23,12 +24,12 @@ const LeaderboardComponent = ({ leaderboardItems }: LeaderboardComponentProps) =
         return (
             <div className="leaderboard-item">
                 <div className={'rank ' + getRankStyle(rank)}>{rank}</div>
-                <div className="user-profile-img"><img src={item.user?.imageUrl}
+                <div className="user-profile-img"><img src={item.user?.imageUrl ?? AvatarPlaceholder}
                     alt={item.user?.firstName} /></div>
                 <div className="details">
                     <span className="username">{item.user?.firstName} {item.user?.lastName}</span>
                     <small className="caption">
-                        {item.createdAt?.toLocaleString()}
+                        {item.createdDate?.toLocaleString()}
                     </small>
                 </div>
                 <div className="guess-error text-positive">

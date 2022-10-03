@@ -5,7 +5,7 @@ interface LocationImage {
     lng: number,
     imageUrl: string,
     user: User,
-    createdAt: Date,
+    createdDate: Date,
     guessResult?: GuessResult
 }
 export interface GuessResult {
@@ -30,7 +30,7 @@ interface User {
 interface LeaderboardItem {
     id: string,
     rank: number,
-    createdAt: Date,
+    createdDate: Date,
     guessErrorMeters: number,
     user: User
 }

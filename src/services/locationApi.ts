@@ -69,7 +69,7 @@ function mapGuessResultToLocationImage(guessResult: GuessResult): LocationImage 
 function mapGuessResultToLeaderboardItem(guessResult: GuessResult): LeaderboardItem {
     return {
         id: guessResult.id,
-        createdAt: guessResult.createdDate,
+        createdDate: guessResult.createdDate,
         guessErrorMeters: guessResult.errorInMeters,
         user: guessResult.user,
         rank: -1
