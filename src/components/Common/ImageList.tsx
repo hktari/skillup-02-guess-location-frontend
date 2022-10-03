@@ -18,13 +18,15 @@ type ImageListProps = {
     loadMoreItems: (startIdx: number, pageSize: number) => Promise<ItemList<LocationImage>>
     pageSize?: number,
     colsPerRow?: number,
-    needsUpdate?: number
+    needsUpdate?: number,
+    noItemsText?: string
 }
 
-const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0, colsPerRow = 3 }: ImageListProps) => {
+const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0, colsPerRow = 3, noItemsText = 'nothing to see...' }: ImageListProps) => {
     const [curPage, setCurPage] = useState<number>(1)
     const [items, setItems] = useState<LocationImage[]>([])
     const [canLoadMore, setCanLoadMore] = useState(true)
+    const [anyItems, setAnyItems] = useState(true)
 
     async function loadItems(shouldConcatItems: boolean = true) {
         const list = await loadMoreItems((curPage - 1) * pageSize, pageSize)
@@ -39,6 +41,11 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0, col
 
 
     const { updateIndicatorIdx } = useLocationsContext();
+
+
+    useEffect(() => {
+        setAnyItems(items.length !== 0)
+    }, [items])
 
     //   refresh list
     useEffect(() => {
@@ -87,6 +94,7 @@ const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0, col
                 })
             }
 
+            <p hidden={anyItems} className="body">{noItemsText}</p>
             <div hidden={!canLoadMore} className="w3-center w3-col">
                 <button className="btn btn-outline" onClick={() => onLoadMoreClickedInternal()}>
                     load more

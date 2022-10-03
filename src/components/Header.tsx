@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import '../css/components/Header.css'
 import logo from '../assets/images/logo.png'
 import avatarPlaceholder from '../assets/images/avatar-placeholder.png'
@@ -7,7 +7,7 @@ import { useAuth } from './context/AuthProvider'
 import ProfileSettingsModal from './modals/ProfileSettingsModal'
 import ChangePasswordModal from './modals/ChangePasswordModal'
 import { ModalResult } from './ComponentInterface'
-import InfoModal, { InfoModalProps } from './modals/InfoModal'
+import InfoModal from './modals/InfoModal'
 import ChangeProfileImageModal from './modals/ChangeProfileImageModal'
 
 type Props = {}
