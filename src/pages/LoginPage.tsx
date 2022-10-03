@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import AsideSectionBrandDesktop from '../components/Signup/AsideSectionBrandDesktop'
 import '../css/pages/LoginPage.css'
 import logo from '../assets/images/logo.png'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../components/context/AuthProvider'
 import LayoutWithBrand from '../css/pages/LayoutWithBrand'
 import InfoModal from '../components/modals/InfoModal'
@@ -56,8 +56,7 @@ const LoginPage = (props: Props) => {
                 </form>
                 <div className="form-footer">
                     <p>
-
-                        <span className=''>Do you want to create an account ?<a href="/signup" className='link w3-right'>Sign up</a></span>
+                        <span className=''>Do you want to create an account ?<Link to="/signup" className='link w3-right'>Sign up</Link></span>
                     </p>
 
                 </div>
