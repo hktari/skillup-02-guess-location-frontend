@@ -128,7 +128,8 @@
 .btn:hover {
     opacity: 0.5;
 }
-.btn:disabled{
+
+.btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
@@ -237,7 +238,7 @@
 /*                                   modals                                   */
 /* -------------------------------------------------------------------------- */
 
-.ReactModalPortal{
+.ReactModalPortal {
     position: relative;
     z-index: 99;
 }
@@ -350,8 +351,7 @@ input:focus {
     height: 46px;
 }
 
-.form-footer {
-}
+.form-footer {}
 
 .link {
     font-family: inherit;
@@ -422,11 +422,11 @@ width: 100%; */
 }
 
 .brand-logo .logo-top {
-    transform: translateY(-200%) translateX(-50%) scale(2.75) ; 
+    transform: translateY(-200%) translateX(-50%) scale(2.75);
 }
 
 .brand-logo .logo-bottom {
-    transform: translateY(60%) translateX(-50%) scale(4.5) ;
+    transform: translateY(60%) translateX(-50%) scale(4.5);
 }
 
 
@@ -512,7 +512,7 @@ width: 100%; */
     scrollbar-width: none;
 
     padding-top: calc(3* 33px);
-    margin: -25px 0 -100px;
+    margin: -55px 0 -150px;
     transform: rotate(-90deg) translateY(calc(-100vw + 33px));
     transform-origin: right top;
 }
@@ -522,12 +522,24 @@ width: 100%; */
 }
 
 .horizontal-img-container .img-item {
-    width: calc(100vw - 2 * 33px);
-    margin-bottom: 135px;
+    width: 347px;
+    margin-bottom: 175px;
     transform: rotate(90deg);
 }
 
+
 /* ------------------------------- image list ------------------------------- */
-.img-list-container>* {
-    margin: 9px 0;
+.img-list-container>.img-item {
+    padding: 9px 0px;
+}
+
+@media (min-width:601px) {
+    .img-list-container>.img-item {
+        padding: 9px 10px;
+    }
+
+    .img-list-container> .img-item:nth-child(1) {
+        padding-left: 0;
+    }
+
 }
