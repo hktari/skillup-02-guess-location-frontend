@@ -14,9 +14,9 @@ const LandingPage = (props: Props) => {
   const navigate = useNavigate()
 
   return (
-    <div className="py-12">
+    <div className="space-y-16 py-12 md:space-y-48">
       <section>
-        <div className="relative space-y-6 px-6 py-8">
+        <div className="relative space-y-12 px-6 py-8">
           <div className="space-y-5 text-center md:w-96 md:text-start">
             <h2 className="text-patina-400 text-4xl font-bold md:text-start">
               Explore the world with Geotagger !
@@ -41,7 +41,7 @@ const LandingPage = (props: Props) => {
       </section>
 
       <section className="space-y-4 px-8 text-center">
-        <h3 className="text-patina-500 mx-auto w-3/4 text-2xl md:text-3xl">
+        <h3 className="text-patina-500 mx-auto w-3/4 text-3xl md:text-3xl">
           Try yourself at Geotagger !
         </h3>
         <p className="text-l">
