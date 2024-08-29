@@ -11,42 +11,51 @@ type Props = {}
 
 const LandingPage = (props: Props) => {
   const navigate = useNavigate()
-  
+
   return (
-    <div className="container content-container landing-page-container">
-      <section className="section explore">
-        <div className="w3-row">
-          <div className="w3-third">
-            <h2 className='header4 text-positive'>Explore the world with Geotagger !</h2>
-            <p className="body">Geotagger is website that allows you to post picture and tag it on the map. Other user than try to locate it via Google Maps. </p>
-            <button className="btn btn-positive" onClick={() => navigate('/login')}>SIGN IN</button>
+    <div>
+      <section>
+        <div>
+          <div>
+            <h2 className="text-3xl font-bold underline">
+              Explore the world with Geotagger !
+            </h2>
+            <p>
+              Geotagger is website that allows you to post picture and tag it on
+              the map. Other user than try to locate it via Google Maps.{' '}
+            </p>
+            <button onClick={() => navigate('/login')}>SIGN IN</button>
           </div>
-          <div className="w3-twothird">
-            <img className='world-map' src={worldMapImg} alt="world map" />
+          <div>
+            <img src={worldMapImg} alt="world map" />
           </div>
         </div>
       </section>
 
-      <section className="section tryit">
-        <h3 className="header5 text-positive">Try yourself at Geotagger !</h3>
-        <p className="body text-center">Try to guess the location of image by selecting position on the map. When you guess it, it gives you the error distance.</p>
+      <section>
+        <h3>Try yourself at Geotagger !</h3>
+        <p>
+          Try to guess the location of image by selecting position on the map.
+          When you guess it, it gives you the error distance.
+        </p>
 
-        <div className="w3-row img-list-container">
-          <div className="w3-mobile w3-third img-item">
-            <LocationImageLocked img={locationImgSample1} title="san francisco" />
+        <div>
+          <div>
+            <LocationImageLocked
+              img={locationImgSample1}
+              title="san francisco"
+            />
           </div>
-          <div className="w3-mobile w3-third img-item">
+          <div>
             <LocationImageLocked img={locationImgSample2} title="stone henge" />
           </div>
-          <div className="w3-mobile w3-third img-item">
+          <div>
             <LocationImageLocked img={locationImgSample3} title="Venice" />
           </div>
         </div>
-        <button className="btn btn-positive" onClick={() => navigate('/signup')}>SIGN UP</button>
+        <button onClick={() => navigate('/signup')}>SIGN UP</button>
       </section>
-
     </div>
   )
 }
-
 export default LandingPage
