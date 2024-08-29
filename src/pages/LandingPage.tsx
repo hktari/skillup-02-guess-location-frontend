@@ -15,20 +15,29 @@ const LandingPage = (props: Props) => {
   return (
     <div>
       <section>
-        <div>
-          <div>
-            <h2 className="text-3xl font-bold underline">
+        <div className="relative space-y-6 px-6 py-16">
+          <div className="space-y-5 text-center md:w-96 md:text-start">
+            <h2 className="text-patina-400 font-bold text-4xl md:text-start">
               Explore the world with Geotagger !
             </h2>
-            <p>
+            <p className="md:text-start text-lg">
               Geotagger is website that allows you to post picture and tag it on
               the map. Other user than try to locate it via Google Maps.{' '}
             </p>
-            <button onClick={() => navigate('/login')}>SIGN IN</button>
+            <div className="md:text-start">
+              <button
+                className="bg-patina-400 h-12 w-32 rounded text-white"
+                onClick={() => navigate('/login')}
+              >
+                SIGN IN
+              </button>
+            </div>
           </div>
-          <div>
-            <img src={worldMapImg} alt="world map" />
-          </div>
+          <img
+            className="inset-y-0 right-0 -z-10 md:absolute md:w-3/4"
+            src={worldMapImg}
+            alt="world map"
+          />
         </div>
       </section>
 
