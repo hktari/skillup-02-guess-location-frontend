@@ -1,13 +1,9 @@
-import React, { useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../components/context/AuthProvider'
 import InfoModal from '../components/modals/InfoModal'
-import AsideSectionBrandDesktop from '../components/Signup/AsideSectionBrandDesktop'
 import LayoutWithBrand from '../css/pages/LayoutWithBrand'
 import authApi, { SignupData } from '../services/authApi'
-import { fileToBase64 } from '../util/fileUtil'
-import PrimaryButton from '../components/PrimaryButton'
-import { useForm } from 'react-hook-form'
 import SignupForm from '../components/Signup/signupForm'
 
 type Props = {}

@@ -11,13 +11,19 @@ const AsideSectionBrandDesktop = (props: Props) => {
       <img
         src={bgImage}
         alt="google maps"
-        className="col-start-1 col-end-2 row-start-1 row-end-2 h-full bg-sky-300 object-cover"
+        className="col-start-1 col-end-2 row-start-1 row-end-2 h-full w-full bg-sky-300 object-cover"
       />
-      <div className="h-100 col-start-1 col-end-2 row-start-1 row-end-2 grid items-center justify-center bg-patina-400 opacity-75">
-        <div className="">
-          <img src={brandLogoTop} alt="" />
-          <img src={brandLogoBottom} alt="" />
-        </div>
+      <div className="h-100 relative col-start-1 col-end-2 row-start-1 row-end-2 bg-patina-400 opacity-75">
+        <img
+          src={brandLogoTop}
+          alt=""
+          className="absolute inset-x-1/2 inset-y-1/2 -translate-x-1/2 -translate-y-1/2"
+        />
+        <img
+          src={brandLogoBottom}
+          alt=""
+          className="absolute inset-x-1/2 inset-y-1/2 -translate-x-1/2 translate-y-5"
+        />
       </div>
     </div>
   )
