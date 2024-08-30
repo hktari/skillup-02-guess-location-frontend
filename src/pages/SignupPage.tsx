@@ -4,7 +4,7 @@ import { useAuth } from '../components/context/AuthProvider'
 import InfoModal from '../components/modals/InfoModal'
 import AsideSectionBrandDesktop from '../components/Signup/AsideSectionBrandDesktop'
 import LayoutWithBrand from '../css/pages/LayoutWithBrand'
-import authApi from '../services/authApi'
+import authApi, { SignupData } from '../services/authApi'
 import { fileToBase64 } from '../util/fileUtil'
 import PrimaryButton from '../components/PrimaryButton'
 import { useForm } from 'react-hook-form'
@@ -24,41 +24,35 @@ const SignupPage = (props: Props) => {
     setDisplayInfo(true)
   }
 
-  async function onSubmit(event: React.FormEvent) {
-    // event.preventDefault()
-    // let signupSuccess = false
-    // try {
-    //   await authApi.signup(
-    //     email,
-    //     firstName,
-    //     lastName,
-    //     password,
-    //     selectedImageBase64.current,
-    //   )
-    //   signupSuccess = true
-    //   showInfo('Successfully created profile')
-    // } catch (error: any) {
-    //   console.error(error)
-    //   showInfo('Failed to sign up: ' + error?.message)
-    // }
-    // let autologinSuccess = false
-    // try {
-    //   await login(email, password)
-    //   autologinSuccess = true
-    //   navigate('/dashboard')
-    // } catch (error) {
-    //   console.error('failed to login automatically')
-    //   console.error(error)
-    // }
-    // if (signupSuccess && !autologinSuccess) {
-    //   navigate('/login')
-    // }
+  async function onSignup(data: SignupData) {
+    let signupSuccess = false
+    try {
+      await authApi.signup(data)
+      signupSuccess = true
+      showInfo('Successfully created profile')
+    } catch (error: any) {
+      console.error(error)
+      showInfo('Failed to sign up: ' + error?.message)
+    }
+    let autologinSuccess = false
+    try {
+      const { email, password } = data
+      await login(email, password)
+      autologinSuccess = true
+      navigate('/dashboard')
+    } catch (error) {
+      console.error('failed to login automatically')
+      console.error(error)
+    }
+    if (signupSuccess && !autologinSuccess) {
+      navigate('/login')
+    }
   }
 
   return (
     <>
       <LayoutWithBrand>
-        <SignupForm onSubmit={onSubmit} />
+        <SignupForm onSubmit={onSignup} />
       </LayoutWithBrand>
 
       <InfoModal
