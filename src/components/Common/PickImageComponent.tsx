@@ -14,7 +14,7 @@ const PickImageComponent = ({
   const [selectedImage, setSelectedImage] = useState(image)
   const selectedImageRef = useRef<HTMLInputElement | null>(null)
 
-  const { register } = useFormContext()
+  const { register, setValue } = useFormContext()
 
   async function handleOnImagePicked(event: any) {
     if (event.target && event.target.files.length > 0) {
@@ -31,13 +31,15 @@ const PickImageComponent = ({
 
       const imgBase64 = await fileToBase64(event.target.files[0])
       onImagePicked(imgBase64)
+      setValue('profileImageBase64', imgBase64)
     }
   }
 
   return (
     <button
       type="button"
-      className="group relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-gray-200  hover:ring-gray-800 hover:bg-gray-600"
+      aria-labelledby="select profile image"
+      className="group relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-gray-200 hover:bg-gray-600 hover:ring-gray-800"
       onClick={() => selectedImageRef.current?.click()}
     >
       <span className="material-icons text-3xl text-gray-600 group-hover:text-white">
@@ -51,13 +53,13 @@ const PickImageComponent = ({
         hidden={!selectedImage}
       />
       <input
-        {...register('image')}
         accept="image/png, image/jpeg"
         type="file"
         ref={selectedImageRef}
         style={{ display: 'none' }}
         onChange={handleOnImagePicked}
       />
+      <input type="hidden" {...register('profileImageBase64')} />
     </button>
   )
 }
