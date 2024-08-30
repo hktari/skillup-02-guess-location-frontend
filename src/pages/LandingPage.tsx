@@ -1,6 +1,5 @@
 import React from 'react'
 import worldMapImg from '../assets/images/background-world-map.png'
-import '../css/pages/LandingPage.css'
 import locationImgSample1 from '../assets/images/location-img-sample01.png'
 import locationImgSample2 from '../assets/images/location-img-sample02.png'
 import locationImgSample3 from '../assets/images/location-img-sample03.png'
