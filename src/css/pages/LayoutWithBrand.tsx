@@ -7,9 +7,9 @@ interface LayoutWithBrandProps {
 
 const LayoutWithBrand = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="py-20">
+    <div className="grid-cols-2 py-20 md:grid">
       <div className="space-y-4 px-12 text-center">{children}</div>
-      <div className="hidden md:visible">
+      <div className="hidden md:block">
         <AsideSectionBrandDesktop />
       </div>
     </div>
