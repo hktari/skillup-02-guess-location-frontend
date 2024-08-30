@@ -17,6 +17,9 @@ const FormInput = ({ title, name, type, required }: Props) => {
         {...register(name, { required })}
         type={type}
       />
+      {hasError && (
+        <span className="text-sm text-red-500">This field is required</span>
+      )}
     </div>
   )
 }
