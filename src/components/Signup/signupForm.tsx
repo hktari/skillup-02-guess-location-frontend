@@ -9,8 +9,9 @@ import {
 import FormInput from '../Common/FormInput'
 import PrimaryButton from '../PrimaryButton'
 import PickImageComponent from '../Common/PickImageComponent'
+import { SignupData } from '../../services/authApi'
 
-type Props = { onSubmit: (data: any) => void }
+type Props = { onSubmit: (data: SignupData) => void }
 
 const SignupForm = ({ onSubmit }: Props) => {
   const methods = useForm()
@@ -18,8 +19,7 @@ const SignupForm = ({ onSubmit }: Props) => {
   const onSubmitValid: SubmitHandler<FieldValues> = (data) => {
     window.alert('Form submitted')
     console.log(data)
-    // window.alert(JSON.stringify(data))
-    // onSubmit(data)
+    onSubmit(data as SignupData)
   }
 
   const onSubmitErr = (errors: any) => {
@@ -36,8 +36,8 @@ const SignupForm = ({ onSubmit }: Props) => {
         <h1 className="text-5xl font-bold">Sign up</h1>
         <p>Your name will appear on posts and your public profile</p>
         <div className="mx-auto inline-block">
-            {/* TODO: remove after refactoring PickImageCOmponent to use react-hook-form completely */}
-          <PickImageComponent onImagePicked={()=>{}}/>
+          {/* TODO: remove after refactoring PickImageCOmponent to use react-hook-form completely */}
+          <PickImageComponent onImagePicked={() => {}} />
         </div>
         <FormInput title="First Name" name="firstName" type="text" required />
         <FormInput title="Last Name" name="lastName" type="text" required />

@@ -31,7 +31,7 @@ const PickImageComponent = ({
 
       const imgBase64 = await fileToBase64(event.target.files[0])
       onImagePicked(imgBase64)
-      setValue('profileImageBase64', imgBase64)
+      setValue('imageBase64', imgBase64)
     }
   }
 
@@ -59,7 +59,7 @@ const PickImageComponent = ({
         style={{ display: 'none' }}
         onChange={handleOnImagePicked}
       />
-      <input type="hidden" {...register('profileImageBase64')} />
+      <input type="hidden" {...register('imageBase64')} />
     </button>
   )
 }
