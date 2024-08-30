@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { fileToBase64 } from '../../util/fileUtil'
+import { useFormContext } from 'react-hook-form'
 
 type PickImageComponentProps = {
   onImagePicked: (imageBase64: string) => void
@@ -12,6 +13,8 @@ const PickImageComponent = ({
 }: PickImageComponentProps) => {
   const [selectedImage, setSelectedImage] = useState(image)
   const selectedImageRef = useRef<HTMLInputElement | null>(null)
+
+  const { register } = useFormContext()
 
   async function handleOnImagePicked(event: any) {
     if (event.target && event.target.files.length > 0) {
@@ -33,22 +36,24 @@ const PickImageComponent = ({
 
   return (
     <button
-      className="group flex h-16 w-16 items-center justify-center rounded-full bg-gray-200 hover:border-2 hover:border-gray-800 hover:bg-gray-600"
+      type="button"
+      className="group relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-gray-200  hover:ring-gray-800 hover:bg-gray-600"
       onClick={() => selectedImageRef.current?.click()}
     >
       <span className="material-icons text-3xl text-gray-600 group-hover:text-white">
         person
       </span>
       <img
+        className="w-100 absolute"
         id="selectedImage"
         src={selectedImage}
         alt=""
         hidden={!selectedImage}
       />
       <input
+        {...register('image')}
         accept="image/png, image/jpeg"
         type="file"
-        id="image"
         ref={selectedImageRef}
         style={{ display: 'none' }}
         onChange={handleOnImagePicked}

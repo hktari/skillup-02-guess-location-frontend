@@ -8,6 +8,7 @@ import {
 } from 'react-hook-form'
 import FormInput from '../Common/FormInput'
 import PrimaryButton from '../PrimaryButton'
+import PickImageComponent from '../Common/PickImageComponent'
 
 type Props = { onSubmit: (data: any) => void }
 
@@ -32,6 +33,12 @@ const SignupForm = ({ onSubmit }: Props) => {
         className="flex flex-col gap-4 space-y-4 text-start"
         onSubmit={methods.handleSubmit(onSubmitValid, onSubmitErr)}
       >
+        <h1 className="text-5xl font-bold">Sign up</h1>
+        <p>Your name will appear on posts and your public profile</p>
+        <div className="mx-auto inline-block">
+            {/* TODO: remove after refactoring PickImageCOmponent to use react-hook-form completely */}
+          <PickImageComponent onImagePicked={()=>{}}/>
+        </div>
         <FormInput title="First Name" name="firstName" type="text" required />
         <FormInput title="Last Name" name="lastName" type="text" required />
         <FormInput title="Email" name="email" type="email" required />
