@@ -8,12 +8,12 @@ const FormInput = ({ title, name, type, required }: Props) => {
   const { errors } = useFormState()
   const hasError = errors[name]
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1">
       <label className="font-medium" htmlFor={name}>
         {title}
       </label>
       <input
-        className={`box-border rounded-sm border-b-[0.5px] border-black py-3 focus:border-2 focus:bg-patina-100 focus:px-3 focus:outline-none focus:ring-patina-800 focus-visible:border-patina-500 ${hasError ? 'border-red-500' : 'border-patina-200'}`}
+        className={`box-border rounded-sm border-b-[0.5px] border-black py-2 focus:border-2 focus:bg-patina-100 focus:px-3 focus:outline-none focus:ring-patina-800 focus-visible:border-patina-500 ${hasError ? 'border-red-500' : 'border-patina-200'}`}
         {...register(name, { required })}
         type={type}
       />

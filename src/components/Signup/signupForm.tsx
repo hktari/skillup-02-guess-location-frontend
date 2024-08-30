@@ -33,8 +33,10 @@ const SignupForm = ({ onSubmit }: Props) => {
         className="flex flex-col gap-4 space-y-4 text-start"
         onSubmit={methods.handleSubmit(onSubmitValid, onSubmitErr)}
       >
-        <h1 className="text-5xl font-bold">Sign up</h1>
-        <p>Your name will appear on posts and your public profile</p>
+        <h1 className="text-5xl font-bold md:text-center">Sign up</h1>
+        <p className="md:text-center">
+          Your name will appear on posts and your public profile
+        </p>
         <div className="mx-auto inline-block">
           {/* TODO: remove after refactoring PickImageCOmponent to use react-hook-form completely */}
           <PickImageComponent onImagePicked={() => {}} />
@@ -53,6 +55,15 @@ const SignupForm = ({ onSubmit }: Props) => {
         <PrimaryButton block className="w-100 block" type="submit">
           SIGN UP
         </PrimaryButton>
+        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+          Already have an account?{' '}
+          <a
+            className="font-medium text-patina-600 hover:underline dark:text-patina-500"
+            href="/login"
+          >
+            Login
+          </a>
+        </p>
       </form>
     </FormProvider>
   )
