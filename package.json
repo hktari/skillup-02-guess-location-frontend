@@ -17,6 +17,7 @@
     "material-icons": "^1.11.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.53.0",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
