@@ -18,7 +18,7 @@ const LandingPage = (props: Props) => {
       <section>
         <div className="relative space-y-12 px-6 py-8">
           <div className="space-y-5 text-center md:w-96 md:text-start">
-            <h2 className="text-patina-400 text-4xl font-bold md:text-start">
+            <h2 className="text-4xl font-bold text-patina-400 md:text-start">
               Explore the world with Geotagger !
             </h2>
             <p className="text-lg md:text-start">
@@ -26,10 +26,9 @@ const LandingPage = (props: Props) => {
               the map. Other user than try to locate it via Google Maps.{' '}
             </p>
             <div className="md:text-start">
-              <PrimaryButton
-                onClick={() => navigate('/signup')}
-                text="SIGN IN"
-              />
+              <PrimaryButton onClick={() => navigate('/signup')}>
+                SIGN IN
+              </PrimaryButton>
             </div>
           </div>
           <img
@@ -41,7 +40,7 @@ const LandingPage = (props: Props) => {
       </section>
 
       <section className="space-y-4 px-8 text-center">
-        <h3 className="text-patina-500 mx-auto w-3/4 text-3xl md:text-3xl">
+        <h3 className="mx-auto w-3/4 text-3xl text-patina-500 md:text-3xl">
           Try yourself at Geotagger !
         </h3>
         <p className="text-l">
@@ -54,7 +53,9 @@ const LandingPage = (props: Props) => {
           <LocationImageLocked img={locationImgSample2} title="stone henge" />
           <LocationImageLocked img={locationImgSample3} title="Venice" />
         </div>
-        <PrimaryButton onClick={() => navigate('/signup')} text="SIGN UP" />
+        <PrimaryButton onClick={() => navigate('/signup')}>
+          SIGN UP
+        </PrimaryButton>
       </section>
     </div>
   )

@@ -1,17 +1,17 @@
 import React from 'react'
 
-type Props = {
-  onClick: () => void
-  text: string
-}
-
-const PrimaryButton = ({ text, onClick }: Props) => {
+const PrimaryButton = ({
+  onClick,
+  type,
+  children,
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <button
-      className="bg-patina-400 hover:bg-patina-200 hover:ring-patina-400 h-12 w-32 rounded text-white hover:text-slate-800 hover:ring-2"
+      type={type}
+      className="h-12 w-32 rounded bg-patina-400 text-white hover:bg-patina-200 hover:text-slate-800 hover:ring-2 hover:ring-patina-400"
       onClick={onClick}
     >
-      {text}
+      {children}
     </button>
   )
 }
