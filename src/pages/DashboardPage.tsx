@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import ImageList, { LocationImageType } from '../components/Common/ImageList'
 import { useAuth } from '../components/context/AuthProvider'
-import HorizontalImageList from '../components/Dashboard/HorizontalImageList'
+import HorizontalScrollingList from '../components/Dashboard/HorizontalScrollingList'
 import { ItemList, LocationImage } from '../services/interface'
 import locationApi from '../services/locationApi'
 import { EmptyList } from '../util/LocationImageUtil'
+import LocationImageGuess from '../components/Dashboard/LocationImageGuess'
 
 type Props = {}
 
@@ -64,7 +65,16 @@ const DashboardPage = (props: Props) => {
           personal records or set a new one!
         </p>
         <div className="md:hidden">
-          <HorizontalImageList images={locationGuessList} />
+          <HorizontalScrollingList>
+            {locationGuessList.map((img) => (
+              <div
+                key={`horizontal-img-list-${img.id}`}
+                className="inline-block"
+              >
+                <LocationImageGuess locationImage={img} />
+              </div>
+            ))}
+          </HorizontalScrollingList>
         </div>
         <div className="hidden pt-12 md:block">
           <ImageList
