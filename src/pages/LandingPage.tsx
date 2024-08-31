@@ -25,7 +25,7 @@ const LandingPage = (props: Props) => {
               the map. Other user than try to locate it via Google Maps.{' '}
             </p>
             <div className="md:text-start">
-              <PrimaryButton onClick={() => navigate('/signup')}>
+              <PrimaryButton onClick={() => navigate('/login')}>
                 SIGN IN
               </PrimaryButton>
             </div>

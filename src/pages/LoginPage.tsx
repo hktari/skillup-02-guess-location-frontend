@@ -1,84 +1,73 @@
-import React, { useEffect, useState } from "react";
-import AsideSectionBrandDesktop from "../components/Signup/AsideSectionBrandDesktop";
-import "../css/pages/LoginPage.css";
-import logo from "../assets/images/logo.png";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../components/context/AuthProvider";
-import LayoutWithBrand from "../css/pages/LayoutWithBrand";
-import InfoModal from "../components/modals/InfoModal";
-import { ApiError } from "../services/httpService";
+import React, { useEffect, useState } from 'react'
+import AsideSectionBrandDesktop from '../components/Signup/AsideSectionBrandDesktop'
+import '../css/pages/LoginPage.css'
+import logo from '../assets/images/logo.png'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../components/context/AuthProvider'
+import LayoutWithBrand from '../css/pages/LayoutWithBrand'
+import InfoModal from '../components/modals/InfoModal'
+import { ApiError } from '../services/httpService'
+import { FormProvider, useForm } from 'react-hook-form'
+import FormInput from '../components/Common/FormInput'
+import PrimaryButton from '../components/PrimaryButton'
 
-type Props = {};
+type Props = {}
 
 const LoginPage = (props: Props) => {
   const [email, setEmail] = useState(
-    process.env.REACT_APP_DEMO_USER_EMAIL || ""
-  );
+    process.env.REACT_APP_DEMO_USER_EMAIL || '',
+  )
   const [password, setPassword] = useState(
-    process.env.REACT_APP_DEMO_USER_PASSWORD || ""
-  );
-  const [displayInfo, setDisplayInfo] = useState(false);
-  const [infoMessage, setInfoMessage] = useState("");
+    process.env.REACT_APP_DEMO_USER_PASSWORD || '',
+  )
+  const [displayInfo, setDisplayInfo] = useState(false)
+  const [infoMessage, setInfoMessage] = useState('')
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const { login } = useAuth();
+  const { login } = useAuth()
 
   async function onSubmit(event: React.FormEvent) {
-    event.preventDefault();
+    event.preventDefault()
     try {
-      await login(email, password);
-      navigate("/dashboard");
+      await login(email, password)
+      navigate('/dashboard')
     } catch (error: any) {
-      console.error(error);
+      console.error(error)
 
-      setInfoMessage("Invalid credentials. Please try again.");
-      setDisplayInfo(true);
+      setInfoMessage('Invalid credentials. Please try again.')
+      setDisplayInfo(true)
     }
   }
 
+  const methods = useForm()
   return (
     <>
-      <LayoutWithBrand>
-        <h1 className="header3 text-center">Sign in</h1>
-        <p className="body text-center w3-padding-16">
+      <LayoutWithBrand className='space-y-6'>
+        <h1 className="text-5xl font-bold text-center">Sign in</h1>
+        <p className="text-lg text-center">
           Welcome back to Geotagger. We are glad that you are back.
         </p>
-        <form className="form" onSubmit={onSubmit}>
-          <label htmlFor="email">Email</label>
-          <input
-            className="input-border"
-            type="text"
-            value={email}
-            id="email"
-            onChange={(e) => setEmail(e.currentTarget.value)}
-          />
+        <FormProvider {...methods}>
+          <form className="space-y-6 text-start" onSubmit={onSubmit}>
+            <FormInput title="Email" name="email" type="text" required />
+            <FormInput
+              title="Password"
+              name="password"
+              type="password"
+              required
+            />
 
-          <label htmlFor="password">Password</label>
-          <input
-            className="input-border"
-            type="password"
-            value={password}
-            id="password"
-            onChange={(e) => setPassword(e.currentTarget.value)}
-          />
-
-          <div className="w3-margin-top"></div>
-          <input
-            type="submit"
-            className="btn btn-positive btn-block"
-            value="SIGN IN"
-          />
-        </form>
-        <div className="form-footer">
-          <p>
-            <span className="">
-              Do you want to create an account ?
-              <Link to="/signup" className="link w3-right">
-                Sign up
-              </Link>
-            </span>
-          </p>
+            <PrimaryButton type="submit" block>
+              SIGN IN
+            </PrimaryButton>
+          </form>
+        </FormProvider>
+        <div className="text-start">
+          Don't have an account yet ?
+          <Link to="/signup" className="ms-4 text-patina-400">
+            Sign up
+          </Link>
         </div>
       </LayoutWithBrand>
       <InfoModal
@@ -89,6 +78,6 @@ const LoginPage = (props: Props) => {
         onFinished={(result) => setDisplayInfo(false)}
       />
     </>
-  );
-};
-export default LoginPage;
+  )
+}
+export default LoginPage
