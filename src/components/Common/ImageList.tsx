@@ -7,102 +7,108 @@ import LocationImageLocked from '../Landing/LocationImageLocked'
 import EditableLocationImage from '../Profile/EditableLocationImage'
 
 export enum LocationImageType {
-    GuessResult,
-    LocationImage,
-    EditableLocationImage,
-    Locked,
+  GuessResult,
+  LocationImage,
+  EditableLocationImage,
+  Locked,
 }
 
 type ImageListProps = {
-    itemType: LocationImageType,
-    loadMoreItems: (startIdx: number, pageSize: number) => Promise<ItemList<LocationImage>>
-    pageSize?: number,
-    colsPerRow?: number,
-    needsUpdate?: number,
-    noItemsText?: string
+  itemType: LocationImageType
+  loadMoreItems: (
+    startIdx: number,
+    pageSize: number,
+  ) => Promise<ItemList<LocationImage>>
+  pageSize?: number
+  colsPerRow?: number
+  needsUpdate?: number
+  noItemsText?: string
 }
 
-const ImageList = ({ itemType, loadMoreItems, pageSize = 3, needsUpdate = 0, colsPerRow = 3, noItemsText = 'nothing to see...' }: ImageListProps) => {
-    const [curPage, setCurPage] = useState<number>(1)
-    const [items, setItems] = useState<LocationImage[]>([])
-    const [canLoadMore, setCanLoadMore] = useState(true)
-    const [anyItems, setAnyItems] = useState(true)
+const ImageList = ({
+  itemType,
+  loadMoreItems,
+  pageSize = 3,
+  needsUpdate = 0,
+  colsPerRow = 3,
+  noItemsText = 'nothing to see...',
+}: ImageListProps) => {
+  const [curPage, setCurPage] = useState<number>(1)
+  const [items, setItems] = useState<LocationImage[]>([])
+  const [canLoadMore, setCanLoadMore] = useState(true)
+  const [anyItems, setAnyItems] = useState(true)
 
-    async function loadItems(shouldConcatItems: boolean = true) {
-        const list = await loadMoreItems((curPage - 1) * pageSize, pageSize)
-        if (shouldConcatItems) {
-            setItems(items.concat(list.items))
-        } else {
-            setItems(list.items)
-        }
-        setCurPage(list.startIdx / list.pageSize + 1)
-        setCanLoadMore(+list.startIdx + +list.pageSize < +list.totalItems)
+  async function loadItems(shouldConcatItems: boolean = true) {
+    const list = await loadMoreItems((curPage - 1) * pageSize, pageSize)
+    if (shouldConcatItems) {
+      setItems(items.concat(list.items))
+    } else {
+      setItems(list.items)
     }
+    setCurPage(list.startIdx / list.pageSize + 1)
+    setCanLoadMore(+list.startIdx + +list.pageSize < +list.totalItems)
+  }
 
+  const { updateIndicatorIdx } = useLocationsContext()
 
-    const { updateIndicatorIdx } = useLocationsContext();
+  useEffect(() => {
+    setAnyItems(items.length !== 0)
+  }, [items])
 
+  //   refresh list
+  useEffect(() => {
+    loadItems(false)
+  }, [updateIndicatorIdx])
 
-    useEffect(() => {
-        setAnyItems(items.length !== 0)
-    }, [items])
+  // initialize
+  useEffect(() => {
+    setItems([])
+    loadItems()
+  }, [needsUpdate])
 
-    //   refresh list
-    useEffect(() => {
-        loadItems(false)
-    }, [updateIndicatorIdx])
+  useEffect(() => {
+    loadItems()
+  }, [curPage])
 
-    // initialize
-    useEffect(() => {
-        setItems([])
-        loadItems()
-    }, [needsUpdate])
+  function onLoadMoreClickedInternal() {
+    setCurPage(curPage + 1)
+  }
 
-    useEffect(() => {
-        loadItems()
-    }, [curPage])
-
-    function onLoadMoreClickedInternal() {
-        setCurPage(curPage + 1)
+  function GetLocationImage({ img }: { img: LocationImage }) {
+    switch (itemType) {
+      case LocationImageType.GuessResult:
+        return <LocationImageGuess locationImage={img} />
+      case LocationImageType.LocationImage:
+        return <LocationImageComponent locationImage={img} />
+      case LocationImageType.EditableLocationImage:
+        return <EditableLocationImage locationImage={img} />
+      case LocationImageType.Locked:
+        return <LocationImageLocked title={img.address} img={img} />
+      default:
+        return <>no image</>
     }
+  }
 
+  return (
+    <div className="flex gap-4">
+      {items.map((item, index) => {
+        return (
+          <div key={index} className={` ${colsPerRow === 3 ? '' : ''}`}>
+            <GetLocationImage key={item.id} img={item} />
+          </div>
+        )
+      })}
 
-    function GetLocationImage({ img }: { img: LocationImage }) {
-        switch (itemType) {
-            case LocationImageType.GuessResult:
-                return (<LocationImageGuess locationImage={img} />)
-            case LocationImageType.LocationImage:
-                return (<LocationImageComponent locationImage={img} />);
-            case LocationImageType.EditableLocationImage:
-                return (<EditableLocationImage locationImage={img} />);
-            case LocationImageType.Locked:
-                return (<LocationImageLocked title={img.address} img={img} />)
-            default:
-                return <>no image</>
-        }
-    }
-
-    return (
-        <div className="w3-row img-list-container">
-            {
-                items.map((item, index) => {
-                    return (
-                        <div key={index} className={`w3-mobile img-item ${colsPerRow === 3 ? 'w3-third' : 'w3-quarter'}`} >
-                            < GetLocationImage key={item.id} img={item} />
-                        </div>
-                    )
-                })
-            }
-
-            <p hidden={anyItems} className="body">{noItemsText}</p>
-            <div hidden={!canLoadMore} className="w3-center w3-col">
-                <button className="btn btn-outline" onClick={() => onLoadMoreClickedInternal()}>
-                    load more
-                </button>
-
-            </div>
-        </div >
-    )
+      <p hidden={anyItems} className="">
+        {noItemsText}
+      </p>
+      <div hidden={!canLoadMore} className="">
+        <button className="" onClick={() => onLoadMoreClickedInternal()}>
+          load more
+        </button>
+      </div>
+    </div>
+  )
 }
 
 export default ImageList
