@@ -12,11 +12,11 @@ const LocationImageGuess = ({ locationImage }: LocationImageGuessProps) => {
     <Link
       state={locationImage}
       to={'/location/guess'}
-      className="group relative block overflow-hidden rounded-lg bg-green-500"
+      className="group relative block overflow-hidden rounded-lg"
     >
       {/* TODO: remove hardcoded image after cloudinary implementation */}
       <img
-        className="w-96 h-64 max-w-md"
+        className="w-72 h-48 max-w-md"
         src={SampleLocationImage}
         alt={locationImage.address}
       />
