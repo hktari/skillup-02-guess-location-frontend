@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import ImageList, { LocationImageType } from '../components/Common/ImageList'
 import { useAuth } from '../components/context/AuthProvider'
 import HorizontalImageList from '../components/Dashboard/HorizontalImageList'
-import '../css/pages/DashboardPage.css'
 import { ItemList, LocationImage } from '../services/interface'
 import locationApi from '../services/locationApi'
 import { EmptyList } from '../util/LocationImageUtil'
@@ -10,8 +9,9 @@ import { EmptyList } from '../util/LocationImageUtil'
 type Props = {}
 
 const DashboardPage = (props: Props) => {
-
-  const [locationGuessList, setLocationGuessList] = useState<LocationImage[]>([])
+  const [locationGuessList, setLocationGuessList] = useState<LocationImage[]>(
+    [],
+  )
 
   const { user } = useAuth()
 
@@ -24,7 +24,10 @@ const DashboardPage = (props: Props) => {
     loadData()
   }, [])
 
-  async function getLocationGuesses(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
+  async function getLocationGuesses(
+    startIdx: number,
+    pageSize: number,
+  ): Promise<ItemList<LocationImage>> {
     try {
       if (!user) {
         throw new Error('no user')
@@ -37,7 +40,10 @@ const DashboardPage = (props: Props) => {
     }
   }
 
-  async function getNewUploads(startIdx: number, pageSize: number): Promise<ItemList<LocationImage>> {
+  async function getNewUploads(
+    startIdx: number,
+    pageSize: number,
+  ): Promise<ItemList<LocationImage>> {
     try {
       return await locationApi.getNewUploads(startIdx, pageSize)
     } catch (error) {
@@ -48,30 +54,43 @@ const DashboardPage = (props: Props) => {
   }
 
   return (
-    <div className="container dashboard-page-container">
-      <section className="section personal">
-        <h2 className='header4 text-positive'>Personal best guesses</h2>
-        <p className="body">Your personal best guesses appear here. Go on and try to beat your personal records or set a new one!</p>
-        <div className="w3-hide-medium w3-hide-large">
+    <div className="container space-y-12 px-8 py-12">
+      <section className="space-y-2">
+        <h2 className="text-3xl text-patina-400">
+          Personal best <br className="md:hidden" /> guesses
+        </h2>
+        <p className="">
+          Your personal best guesses appear here. Go on and try to beat your
+          personal records or set a new one!
+        </p>
+        <div className="bg-orange-500">
           <HorizontalImageList images={locationGuessList} />
         </div>
-        <div className="w3-hide-small">
-          <ImageList itemType={LocationImageType.GuessResult} needsUpdate={0} pageSize={3} loadMoreItems={getLocationGuesses} />
+        <div className="bg-orange-500 pt-12 hidden md:block">
+          <ImageList
+            itemType={LocationImageType.GuessResult}
+            needsUpdate={0}
+            pageSize={3}
+            loadMoreItems={getLocationGuesses}
+          />
         </div>
       </section>
 
-      <section className="section new-uploads">
-        <h2 className="header4 text-positive">
-          New uploads
-        </h2>
-        <p className="body">
-          New uploads from users. Try to guess all the locations by pressing on a picture.
+      <section className="space-y-2">
+        <h2 className="text-3xl text-patina-400">New uploads</h2>
+        <p className="">
+          New uploads from users. Try to guess all the locations by pressing on
+          a picture.
         </p>
-        <ImageList itemType={LocationImageType.LocationImage} needsUpdate={0} pageSize={4}
-          loadMoreItems={getNewUploads} />
-
+        <div className="pt-6">
+          <ImageList
+            itemType={LocationImageType.LocationImage}
+            needsUpdate={0}
+            pageSize={4}
+            loadMoreItems={getNewUploads}
+          />
+        </div>
       </section>
-
     </div>
   )
 }
