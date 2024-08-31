@@ -7,19 +7,13 @@ import { useAuth } from '../components/context/AuthProvider'
 import LayoutWithBrand from '../css/pages/LayoutWithBrand'
 import InfoModal from '../components/modals/InfoModal'
 import { ApiError } from '../services/httpService'
-import { FormProvider, useForm } from 'react-hook-form'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import FormInput from '../components/Common/FormInput'
 import PrimaryButton from '../components/PrimaryButton'
 
 type Props = {}
 
 const LoginPage = (props: Props) => {
-  const [email, setEmail] = useState(
-    process.env.REACT_APP_DEMO_USER_EMAIL || '',
-  )
-  const [password, setPassword] = useState(
-    process.env.REACT_APP_DEMO_USER_PASSWORD || '',
-  )
   const [displayInfo, setDisplayInfo] = useState(false)
   const [infoMessage, setInfoMessage] = useState('')
 
@@ -27,9 +21,12 @@ const LoginPage = (props: Props) => {
 
   const { login } = useAuth()
 
-  async function onSubmit(event: React.FormEvent) {
-    event.preventDefault()
+  const onSubmit: SubmitHandler<{ email: string; password: string }> = async ({
+    email,
+    password,
+  }) => {
     try {
+      console.log('login', email, password)
       await login(email, password)
       navigate('/dashboard')
     } catch (error: any) {
@@ -40,16 +37,25 @@ const LoginPage = (props: Props) => {
     }
   }
 
-  const methods = useForm()
+  const methods = useForm({
+    defaultValues: {
+      email: process.env.REACT_APP_DEMO_USER_EMAIL || '',
+      password: process.env.REACT_APP_DEMO_USER_PASSWORD || '',
+    },
+  })
+
   return (
     <>
-      <LayoutWithBrand className='space-y-6'>
-        <h1 className="text-5xl font-bold text-center">Sign in</h1>
-        <p className="text-lg text-center">
+      <LayoutWithBrand className="space-y-6">
+        <h1 className="text-center text-5xl font-bold">Sign in</h1>
+        <p className="text-center text-lg">
           Welcome back to Geotagger. We are glad that you are back.
         </p>
         <FormProvider {...methods}>
-          <form className="space-y-6 text-start" onSubmit={onSubmit}>
+          <form
+            className="space-y-6 text-start"
+            onSubmit={methods.handleSubmit(onSubmit)}
+          >
             <FormInput title="Email" name="email" type="text" required />
             <FormInput
               title="Password"
