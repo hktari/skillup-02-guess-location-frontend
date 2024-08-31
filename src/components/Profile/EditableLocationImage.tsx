@@ -49,18 +49,18 @@ const EditableLocationImage = ({ locationImage }: EditableLocationImageProps) =>
     }
 
     return (
-        <div onClick={onClick} className='location-img-container editable'>
+        <div onClick={onClick} className=''>
             <img src={locationImage.imageUrl} alt={locationImage.address} />
             <button
                 onMouseOver={ev => toggleHoverOnParent(ev, true)}
                 onMouseLeave={ev => toggleHoverOnParent(ev, false)}
-                onClick={onDeleteLocation} className="btn btn-cancel">
+                onClick={onDeleteLocation} className="">
                 <span className="material-icons">close</span>
             </button>
             <button
                 onMouseOver={ev => toggleHoverOnParent(ev, true)}
                 onMouseLeave={ev => toggleHoverOnParent(ev, false)}
-                onClick={onEditLocation} className="btn btn-edit">
+                onClick={onEditLocation} className="">
                 <span className="material-icons">edit</span>
             </button>
             <DeleteLocationModal
