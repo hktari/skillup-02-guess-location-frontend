@@ -90,11 +90,11 @@ const ImageList = ({
   }
 
   return (
-    <div className="flex gap-4">
-      {items.map((item, index) => {
+    <div className="flex flex-wrap gap-4">
+      {items.map((image, index) => {
         return (
-          <div key={index} className={` ${colsPerRow === 3 ? '' : ''}`}>
-            <GetLocationImage key={item.id} img={item} />
+          <div key={image.id} className={` ${colsPerRow === 3 ? '' : ''}`}>
+            <GetLocationImage img={image} />
           </div>
         )
       })}
