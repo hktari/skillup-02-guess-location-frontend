@@ -17,7 +17,7 @@ const HoriznotalImageList = ({ images }: HoriznotalImageListProps) => {
 
   return (
     <div className="hide-scroll-bar flex overflow-x-scroll -me-8 pe-8">
-      <div className="ml-10 flex flex-nowrap space-x-12 first:ml-0 md:ml-20 lg:ml-40">
+      <div className="ml-10 flex flex-nowrap space-x-6 first:ml-0 md:ml-20 lg:ml-40">
         {' '}
         {images.map((img) => (
           <RenderImageItem key={`horizontal-img-list-${img.id}`} img={img} />

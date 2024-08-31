@@ -63,10 +63,10 @@ const DashboardPage = (props: Props) => {
           Your personal best guesses appear here. Go on and try to beat your
           personal records or set a new one!
         </p>
-        <div className="bg-orange-500">
+        <div className="md:hidden">
           <HorizontalImageList images={locationGuessList} />
         </div>
-        <div className="bg-orange-500 pt-12 hidden md:block">
+        <div className="hidden pt-12 md:block">
           <ImageList
             itemType={LocationImageType.GuessResult}
             needsUpdate={0}
