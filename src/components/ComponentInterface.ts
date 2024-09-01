@@ -1,16 +1,12 @@
-
 interface ModalResult {
-    message?: string,
-    errors?: string[]
+  message?: string
+  errors?: string[]
 }
 
 interface ModalProps {
-    isOpen: boolean,
-    onFinished?: (result: ModalResult) => void,
-    handleClose: VoidFunction
+  isOpen: boolean
+  onFinished?: (result: ModalResult) => void
+  handleClose: VoidFunction
 }
 
-export type {
-    ModalResult,
-    ModalProps
-}
+export type { ModalResult, ModalProps }

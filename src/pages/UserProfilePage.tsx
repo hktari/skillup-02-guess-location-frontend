@@ -46,7 +46,7 @@ const UserProfilePage = () => {
   return (
     <>
       <Container className="">
-        <div className="flex items-center justify-start gap-5 outline">
+        <div className="flex items-center justify-start gap-5">
           <div className="inline-block h-16 w-16">
             <Avatar
               imageUrl={

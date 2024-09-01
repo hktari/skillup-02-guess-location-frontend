@@ -30,7 +30,7 @@ const FloatingIconButton = (props: FloatingIconButtonProps) => {
   return (
     <button
       {...props}
-      className={`absolute m-2 flex items-center justify-center hover border-none rounded-md p-1 transition-transform hover:scale-105 hover:ring-2 ${backgroundColorClass} ${positionClass}`}
+      className={`hover absolute m-2 flex items-center justify-center rounded-md border-none p-1 transition-transform hover:scale-105 hover:ring-2 ${backgroundColorClass} ${positionClass}`}
     >
       <span className="material-icons">{icon}</span>
     </button>

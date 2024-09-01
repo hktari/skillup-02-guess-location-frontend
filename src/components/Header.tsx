@@ -15,7 +15,7 @@ type Props = {}
 enum HeaderNavItemsType {
   NoItems,
   NewUser,
-  LoggedIn
+  LoggedIn,
 }
 
 const Header = (props: Props) => {
@@ -24,7 +24,6 @@ const Header = (props: Props) => {
   const location = useLocation()
   const navigate = useNavigate()
   const { user, isLoggedIn, logout } = useAuth()
-
 
   function toggleSidebar() {
     const body = document.querySelector('body')
@@ -37,8 +36,7 @@ const Header = (props: Props) => {
     let val: HeaderNavItemsType = HeaderNavItemsType.NewUser
     if (isLoggedIn()) {
       val = HeaderNavItemsType.LoggedIn
-    }
-    else if (pagePath.includes('login')) {
+    } else if (pagePath.includes('login')) {
       val = HeaderNavItemsType.NoItems
     } else if (pagePath.includes('signup')) {
       val = HeaderNavItemsType.NoItems
@@ -62,7 +60,7 @@ const Header = (props: Props) => {
 
   function navigateToUserProfile() {
     navigate('user-profile', {
-      state: user
+      state: user,
     })
     toggleSidebar()
   }
@@ -90,7 +88,6 @@ const Header = (props: Props) => {
 
   const [changeProfileImageOpen, setChangeProfileImageOpen] = useState(false)
 
-
   const [infoModalTitle, setInfoModalTitle] = useState('')
   const [infoModalMessage, setInfoModalMessage] = useState('')
   const [infoModalOpen, setInfoModalOpen] = useState(false)
@@ -108,133 +105,183 @@ const Header = (props: Props) => {
 
   return (
     <>
-      <header className='header'>
-
+      <header className="header">
         {/* mobile header */}
 
         <div className="mobile w3-hide-medium w3-hide-large">
           <div hidden={navItemsType !== HeaderNavItemsType.LoggedIn}>
-            <button className="add-location btn btn-circle btn-positive" onClick={navigateToAddLocation}>
+            <button
+              className="add-location btn btn-circle btn-positive"
+              onClick={navigateToAddLocation}
+            >
               <span className="material-icons">add</span>
             </button>
           </div>
 
-          <img className='logo' src={logo} alt="geotagger logo" />
+          <img className="logo" src={logo} alt="geotagger logo" />
 
-          <button className='menu-btn' onClick={toggleSidebar}>
-            <span className="material-icons">
-              menu
-            </span>
+          <button className="menu-btn" onClick={toggleSidebar}>
+            <span className="material-icons">menu</span>
           </button>
         </div>
         <div className="desktop w3-hide-small">
           <div className="">
-            <img className='logo' src={logo} alt="geotagger logo" />
+            <img className="logo" src={logo} alt="geotagger logo" />
           </div>
 
-          <nav className="nav-items-desktop new-user"
-            hidden={navItemsType !== HeaderNavItemsType.NewUser}>
+          <nav
+            className="nav-items-desktop new-user"
+            hidden={navItemsType !== HeaderNavItemsType.NewUser}
+          >
             <ul className="nav-item-list">
               <li className="nav-item">
-                <p className='sign-in-text'>
-                  <Link to='login' className="body text-small link">Sign in</Link>
+                <p className="sign-in-text">
+                  <Link to="login" className="body text-small link">
+                    Sign in
+                  </Link>
                   <span>or</span>
                 </p>
               </li>
               <li className="nav-item">
-                <Link to='signup' className="btn text-small btn-positive">SIGN UP</Link>
+                <Link to="signup" className="btn text-small btn-positive">
+                  SIGN UP
+                </Link>
               </li>
             </ul>
           </nav>
 
-
           <div hidden={navItemsType !== HeaderNavItemsType.LoggedIn}>
             <nav className="nav-items-desktop logged-in">
-              <ul className='nav-item-list'>
+              <ul className="nav-item-list">
                 <li className="nav-item">
-                  <Link className='link' to='/dashboard'>Home</Link>
+                  <Link className="link" to="/dashboard">
+                    Home
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <button className='link' onClick={showProfileSettings}>Profile Settings</button>
+                  <button className="link" onClick={showProfileSettings}>
+                    Profile Settings
+                  </button>
                 </li>
                 <li className="nav-item">
-                  <button className='link' onClick={onLogout}>Logout</button>
+                  <button className="link" onClick={onLogout}>
+                    Logout
+                  </button>
                 </li>
               </ul>
               <div className="nav-buttons">
-                <button className='btn btn-circle btn-gray' onClick={navigateToUserProfile}>
-                  <img src={user?.imageUrl ?? avatarPlaceholder} alt="user profile" className="profile-img" />
+                <button
+                  className="btn btn-circle btn-gray"
+                  onClick={navigateToUserProfile}
+                >
+                  <img
+                    src={user?.imageUrl ?? avatarPlaceholder}
+                    alt="user profile"
+                    className="profile-img"
+                  />
                 </button>
-                <button onClick={navigateToAddLocation} className="btn btn-circle btn-positive">
+                <button
+                  onClick={navigateToAddLocation}
+                  className="btn btn-circle btn-positive"
+                >
                   <span className="material-icons">add</span>
                 </button>
               </div>
             </nav>
           </div>
-
         </div>
       </header>
 
       {/* todo: move to seperate file */}
-      <nav className={'side-nav w3-animate-left w3-animate-opacity w3-hide-medium w3-hide-large'} hidden={!sidebarOpen}>
+      <nav
+        className={
+          'side-nav w3-animate-left w3-animate-opacity w3-hide-medium w3-hide-large'
+        }
+        hidden={!sidebarOpen}
+      >
         <div className="nav-header">
           <button className="menu-btn" onClick={toggleSidebar}>
             <div className="material-icons">close</div>
           </button>
         </div>
         <div className="nav-profile" onClick={navigateToUserProfile}>
-          <img className='profile-img' src={user?.imageUrl ?? avatarPlaceholder} alt="user profile" />
-          <span className='body user-name'>{user?.firstName} {user?.lastName}</span>
+          <img
+            className="profile-img"
+            src={user?.imageUrl ?? avatarPlaceholder}
+            alt="user profile"
+          />
+          <span className="body user-name">
+            {user?.firstName} {user?.lastName}
+          </span>
         </div>
-        <ul className='nav-items-list'>
+        <ul className="nav-items-list">
           <li className="nav-item link" onClick={navigateHome}>
-            <span className='body'>Home</span>
-            <span className='material-icons'>chevron_right</span>
+            <span className="body">Home</span>
+            <span className="material-icons">chevron_right</span>
           </li>
           <li className="nav-item link" onClick={showProfileSettings}>
-            <span className='body'>Profile Settings</span>
-            <span className='material-icons'>chevron_right</span>
+            <span className="body">Profile Settings</span>
+            <span className="material-icons">chevron_right</span>
           </li>
           <li className="nav-item nav-item-positive link" onClick={onLogout}>
-            <span className='body'>Logout</span>
-            <span className='material-icons'>chevron_right</span>
+            <span className="body">Logout</span>
+            <span className="material-icons">chevron_right</span>
           </li>
         </ul>
         <div hidden={navItemsType === HeaderNavItemsType.LoggedIn}>
           <div className="nav-buttons">
-            <button onClick={navigateToSignup} className="btn btn-positive btn-block">SIGN UP</button>
-            <button onClick={navigateToLogin} className="btn btn-outline btn-block">SIGN IN</button>
+            <button
+              onClick={navigateToSignup}
+              className="btn btn-positive btn-block"
+            >
+              SIGN UP
+            </button>
+            <button
+              onClick={navigateToLogin}
+              className="btn btn-outline btn-block"
+            >
+              SIGN IN
+            </button>
           </div>
         </div>
       </nav>
 
       {/* todo:  move to seperate file*/}
-      <div id='all-modals'>
-        <ProfileSettingsModal isOpen={profileSettingsOpen}
+      <div id="all-modals">
+        <ProfileSettingsModal
+          isOpen={profileSettingsOpen}
           handleClose={() => setProfileSettingsOpen(false)}
-          handleChangePassword={() => { setChangePasswordOpen(true) }}
+          handleChangePassword={() => {
+            setChangePasswordOpen(true)
+          }}
           onChangeProfileImage={() => {
             setChangeProfileImageOpen(true)
-          }} />
+          }}
+        />
 
         <ChangeProfileImageModal
           isOpen={changeProfileImageOpen}
           handleClose={() => setChangeProfileImageOpen(false)}
-          onFinished={result => {
+          onFinished={(result) => {
             setChangeProfileImageOpen(false)
             handleModalResult(result)
           }}
         />
 
-        <ChangePasswordModal isOpen={changePasswordOpen}
+        <ChangePasswordModal
+          isOpen={changePasswordOpen}
           handleClose={() => setChangePasswordOpen(false)}
           onFinished={(result) => {
             setChangePasswordOpen(false)
             handleModalResult(result)
           }}
         />
-        <InfoModal isOpen={infoModalOpen} handleClose={() => setInfoModalOpen(false)}
-          title={infoModalTitle} message={infoModalMessage} />
+        <InfoModal
+          isOpen={infoModalOpen}
+          handleClose={() => setInfoModalOpen(false)}
+          title={infoModalTitle}
+          message={infoModalMessage}
+        />
       </div>
     </>
   )

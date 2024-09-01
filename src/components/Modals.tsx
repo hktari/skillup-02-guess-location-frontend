@@ -4,9 +4,7 @@ import DeleteLocationModal from './modals/DeleteLocationModal'
 type Props = {}
 
 const Modals = (props: Props) => {
-    return (
-        <>
-        </>)
+  return <></>
 }
 
 export default Modals

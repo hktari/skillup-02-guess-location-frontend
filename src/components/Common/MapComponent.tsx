@@ -88,7 +88,10 @@ const MyMap = ({
   }, [mapContainer.current, coords, zoom])
 
   return (
-    <div className="h-56 overflow-hidden rounded-md bg-gray-400" ref={mapContainer}></div>
+    <div
+      className="h-56 overflow-hidden rounded-md bg-gray-400"
+      ref={mapContainer}
+    ></div>
   )
 }
 
