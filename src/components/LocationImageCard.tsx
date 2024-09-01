@@ -21,7 +21,7 @@ const LocationImageCard = ({ overlay = true, address, imageUrl }: Props) => {
         {/* <img src={locationImage.imageUrl} alt={locationImage.address} /> */}
       </div>
       <div
-        className={`w-100 h-100 col-start-1 col-end-2 row-start-1 row-end-2 ${overlay ? 'bg-patina-300 opacity-75 group-hover:opacity-50' : ''}`}
+        className={`w-100 h-100 col-start-1 col-end-2 row-start-1 row-end-2 transition-opacity ${overlay ? 'bg-patina-300 opacity-75 group-hover:opacity-50' : ''}`}
       ></div>
     </div>
   )
