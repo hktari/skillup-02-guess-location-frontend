@@ -41,12 +41,6 @@ const Dialog = ({
               <div>{children}</div>
             </div>
           </div>
-          <div className="mt-5 sm:mt-4 sm:flex space-y-4 sm:flex-row-reverse">
-            <PrimaryButton block onClick={handleClose}>{acceptText}</PrimaryButton>
-            <SecondaryButton block onClick={handleClose}>
-              {cancelText}
-            </SecondaryButton>
-          </div>
         </div>
       </div>
     </div>
