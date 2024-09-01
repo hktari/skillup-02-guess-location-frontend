@@ -55,7 +55,7 @@ const LeaderboardComponent = ({
             {item.createdDate?.toLocaleString()}
           </small>
         </div>
-        <div className="text-lg text-patina-400">{item.guessErrorMeters} m</div>
+        <div className="text-lg text-patina-400 whitespace-nowrap">{item.guessErrorMeters} m</div>
       </div>
     )
   }

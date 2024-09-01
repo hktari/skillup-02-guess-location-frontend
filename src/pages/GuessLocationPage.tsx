@@ -15,6 +15,30 @@ import { OsmAddress } from '../services/osm.interface'
 import Container from '../components/Common/Container'
 import PrimaryButton from '../components/PrimaryButton'
 
+type Props = {
+  label: string
+  id: string
+  value: string | undefined
+}
+
+const DisabledInput = (props: Props) => {
+  const inputProps = {
+    ...props,
+    disabled: true,
+    label: undefined,
+    className: 'h-10 w-full rounded-md bg-white px-2 ring-1 ring-gray-300',
+  }
+  const inputId = props.id || ''
+
+  return (
+    <div className="space-y-2">
+      <label className="text-2xl" htmlFor={inputId}>
+        {props.label}
+      </label>
+      <input {...inputProps}></input>
+    </div>
+  )
+}
 const GuessLocationPage = () => {
   const [selectedAddress, setSelectedAddress] = useState<OsmAddress | null>(
     null,
@@ -115,7 +139,7 @@ const GuessLocationPage = () => {
 
   return (
     <>
-      <Container className="grid-cols-2 gap-10 space-y-8 md:space-y-0 md:grid">
+      <Container className="grid-cols-2 gap-10 space-y-8 md:grid md:space-y-0">
         <section className="space-y-4">
           <h2 className="text-4xl">
             Take a <span className="text-patina-400">guess</span> !
@@ -137,28 +161,18 @@ const GuessLocationPage = () => {
               {inputEnabled ? (
                 <SearchStreetComponent onAddressPicked={onAddressPicked} />
               ) : (
-                <div>
-                  <label htmlFor="address">Location</label>
-                  <input
-                    type="text"
-                    value={guessResult?.address}
-                    disabled={true}
-                  />
-                </div>
+                <DisabledInput
+                  id="address"
+                  label="Location"
+                  value={guessResult?.address}
+                />
               )}
             </div>
-            <div className="space-y-2">
-              <label className="text-2xl" htmlFor="errorDistance">
-                Error distance
-              </label>
-              <input
-                value={errorDistance ? `${errorDistance} m` : ''}
-                type="text"
-                disabled
-                className="h-10 w-full rounded-md bg-white ring-1 ring-gray-300 px-2"
-                id="errorDistance"
-              ></input>
-            </div>
+            <DisabledInput
+              value={errorDistance ? `${errorDistance} m` : ''}
+              label="Error distance"
+              id="errorDistance"
+            />
 
             <div className="pt-2 text-end">
               <PrimaryButton
