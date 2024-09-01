@@ -26,12 +26,12 @@ const LocationImageComponent = ({
       aria-label={`Link to guess image ${locationImage.id}`}
       disabled={!interactable}
       onClick={onClick}
-      className={`group grid grid-cols-1 grid-rows-1 overflow-hidden rounded-md`}
+      className={`group grid h-48 w-72 grid-cols-1 grid-rows-1 overflow-hidden rounded-md ${fullContainerWidth ? 'w-full' : 'max-w-md'}`}
     >
       <div className="col-start-1 col-end-2 row-start-1 row-end-2">
         {/* TODO: remove after cloudinary intergration */}
         <img
-          className={`h-48 w-72 ${fullContainerWidth ? 'w-full' : 'max-w-md'}`}
+          className={`h-full w-full object-cover`}
           src={SampleLocationImage}
           alt={locationImage.address}
         />
