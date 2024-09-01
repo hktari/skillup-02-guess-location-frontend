@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { fileToBase64 } from '../../util/fileUtil'
 import LocationImageCard from '../LocationImageCard'
+import FloatingIconButton from '../buttons/IconButton'
 
 type Props = {
   setImageBase64: (imageBase64: string | null) => void
@@ -42,7 +43,7 @@ const PickImageCard = ({
     }
   }
   return (
-    <>
+    <div className="relative">
       <button
         aria-labelledby="pick image"
         onClick={() => selectedImageRef.current?.click()}
@@ -67,10 +68,17 @@ const PickImageCard = ({
         style={{ display: 'none' }}
         onChange={onImagePicked}
       />
-      <button onClick={clearImage}>
-        <span>close</span>
-      </button>
-    </>
+
+      {selectedImageUrl && (
+        <FloatingIconButton
+          backgroundColor="red"
+          aria-labelledby="clear image"
+          position="top-right"
+          onClick={clearImage}
+          icon="close"
+        ></FloatingIconButton>
+      )}
+    </div>
   )
 }
 
