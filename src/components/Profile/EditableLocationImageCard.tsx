@@ -5,6 +5,7 @@ import { useLocationsContext } from '../context/LocationProvider'
 import DeleteLocationModal from '../modals/DeleteLocationModal'
 import LocationImageCard from '../LocationImageCard'
 import { LocationImage } from '../../services/interface'
+import FloatingIconButton from '../buttons/IconButton'
 
 type EditableLocationImageCardProps = {
   locationImage: LocationImage
@@ -55,20 +56,22 @@ const EditableLocationImageCard = ({
     >
       <LocationImageCard {...locationImage} />
 
-      <button
+      <FloatingIconButton
         onClick={onDeleteLocation}
         aria-labelledby="delete image"
-        className="absolute right-0 top-0 m-2 flex items-center justify-center rounded-md bg-red-200 p-1 transition-transform hover:scale-105 hover:ring-2 hover:ring-red-700"
+        position="top-right"
+        backgroundColor="red"
+        icon="close"
       >
         <span className="material-icons">close</span>
-      </button>
-      <button
+      </FloatingIconButton>
+      <FloatingIconButton
         aria-labelledby="edit image"
         onClick={onEditLocation}
-        className="absolute left-0 top-0 m-2 flex items-center justify-center rounded-md bg-gray-100 p-1"
-      >
-        <span className="material-icons">edit</span>
-      </button>
+        position="top-left"
+        backgroundColor="gray"
+        icon="edit"
+      ></FloatingIconButton>
       <DeleteLocationModal
         isOpen={deleteImageModalOpen}
         onChoicePicked={(areYouSure) => {
