@@ -47,10 +47,9 @@ const ProfileSettingsModal = ({
     e.preventDefault()
     handleChangePassword()
   }
-
-  const { email = '', firstName = '', lastName = '' } = user || {}
+  const { email = '', firstName = '', lastName = 'test' } = user || {}
   const methods = useForm({
-    defaultValues: { email, firstName, lastName },
+    values: { email, firstName, lastName },
   })
   return (
     <Dialog
@@ -65,7 +64,7 @@ const ProfileSettingsModal = ({
           onSubmit={methods.handleSubmit(onSubmit)}
         >
           <div className="space-y-2">
-            <FormInput type="email" disabled name="Email" title="Email" />
+            <FormInput type="email" disabled name="email" title="Email" />
 
             <FormInput
               name="firstName"
@@ -89,7 +88,7 @@ const ProfileSettingsModal = ({
               Change profile picture
             </PrimaryButton>
           </div>
-          <div className="space-between flex">
+          <div className="space-between flex flex-wrap">
             <div className="flex-grow">
               <PrimaryButton type="submit">SUBMIT</PrimaryButton>
             </div>
