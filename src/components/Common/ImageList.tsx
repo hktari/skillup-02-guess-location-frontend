@@ -4,7 +4,7 @@ import { useLocationsContext } from '../context/LocationProvider'
 import LocationImageCardLink from '../Dashboard/LocationImageCardLink'
 import LocationImageGuess from '../Dashboard/LocationImageCardGuess'
 import LocationImageLocked from '../Landing/LocationImageLocked'
-import EditableLocationImage from '../Profile/EditableLocationImage'
+import EditableLocationImageCard from '../Profile/EditableLocationImageCard'
 
 export enum LocationImageType {
   GuessResult,
@@ -80,7 +80,7 @@ const ImageList = ({
       case LocationImageType.LocationImage:
         return <LocationImageCardLink locationImage={img} />
       case LocationImageType.EditableLocationImage:
-        return <EditableLocationImage locationImage={img} />
+        return <EditableLocationImageCard locationImage={img} />
       case LocationImageType.Locked:
         return <LocationImageLocked title={img.address} img={img} />
       default:

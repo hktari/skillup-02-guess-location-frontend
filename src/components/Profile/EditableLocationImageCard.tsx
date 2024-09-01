@@ -6,13 +6,13 @@ import DeleteLocationModal from '../modals/DeleteLocationModal'
 import LocationImageCard from '../LocationImageCard'
 import { LocationImage } from '../../services/interface'
 
-type EditableLocationImageProps = {
+type EditableLocationImageCardProps = {
   locationImage: LocationImage
 }
 
-const EditableLocationImage = ({
+const EditableLocationImageCard = ({
   locationImage,
-}: EditableLocationImageProps) => {
+}: EditableLocationImageCardProps) => {
   const [deleteImageModalOpen, setDeleteImageModalOpen] =
     useState<boolean>(false)
   const { deleteLocation } = useLocationsContext()
@@ -87,4 +87,4 @@ const EditableLocationImage = ({
   )
 }
 
-export default EditableLocationImage
+export default EditableLocationImageCard
