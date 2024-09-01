@@ -9,7 +9,7 @@ const PrimaryButton = (props: Props) => {
   return (
     <button
       {...buttonProps}
-      className={`h-12 w-32 rounded bg-patina-400 text-white hover:bg-patina-200 hover:text-slate-800 hover:ring-2 hover:ring-patina-400 ${block}`}
+      className={`h-12 w-32 rounded border border-transparent bg-patina-400 text-white hover:bg-patina-200 hover:text-slate-800 hover:ring-2 hover:ring-patina-400 disabled:border-gray-400 disabled:bg-patina-100 disabled:text-gray-400 ${block}`}
     >
       {props?.children}
     </button>
