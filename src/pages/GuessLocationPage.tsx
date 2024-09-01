@@ -12,6 +12,7 @@ import {
 } from '../services/interface'
 import locationApi from '../services/locationApi'
 import { OsmAddress } from '../services/osm.interface'
+import Container from '../components/Common/Container'
 
 const GuessLocationPage = () => {
   const [selectedAddress, setSelectedAddress] = useState<OsmAddress | null>(
@@ -113,70 +114,56 @@ const GuessLocationPage = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="w3-row">
-          <div className="w3-col s12 m8">
-            <section className="section guess-location">
-              <h2 className="header4">
-                Take a <span className="text-positive">guess</span> !
-              </h2>
-              <div className="w3-margin-top">
-                <LocationImageComponent
-                  interactable={false}
-                  locationImage={locationImage}
-                />
-              </div>
-              <MapComponent
-                targetCoords={targetCoords}
-                guessCords={guessCoords}
-                coords={mapCoords}
-              />
-              <div className="input-container">
-                <div className="search-street">
-                  {inputEnabled ? (
-                    <SearchStreetComponent onAddressPicked={onAddressPicked} />
-                  ) : (
-                    <div className="location-address">
-                      <label htmlFor="address" className="body">
-                        Location
-                      </label>
-                      <input
-                        className="input input-border"
-                        type="text"
-                        value={guessResult?.address}
-                        disabled={true}
-                      />
-                    </div>
-                  )}
-                </div>
-                <div className="error-distance w3-margin-top">
-                  <label className="body" htmlFor="errorDistance">
-                    Error distance
-                  </label>
-                  <div className="input input-border" id="errorDistance">
-                    {errorDistance ? `${errorDistance} m` : ''}
-                  </div>
-                </div>
-              </div>
-              <button
-                disabled={!inputEnabled}
-                onClick={onGuessClicked}
-                className="btn btn-positive w3-right w3-margin-top"
-              >
-                GUESS
-              </button>
-            </section>
+      <Container className="md:columns-2 space-y-80 bg-orange-300">
+        <section className="space-y-4">
+          <h2 className="text-4xl">
+            Take a <span className="text-patina-400">guess</span> !
+          </h2>
+          <div className="w-100 bg-sky-100">
+            <LocationImageComponent
+              fullContainerWidth
+              interactable={false}
+              locationImage={locationImage}
+            />
           </div>
-          <div className="w3-col s12 m4">
-            <section className="section leaderboards">
-              <h2 className="header4">Leaderboard</h2>
-              <div className="w3-margin-top">
-                <LeaderboardComponent leaderboardItems={leaderboardItems} />
+          <MapComponent
+            targetCoords={targetCoords}
+            guessCords={guessCoords}
+            coords={mapCoords}
+          />
+          <div>
+            <div>
+              {inputEnabled ? (
+                <SearchStreetComponent onAddressPicked={onAddressPicked} />
+              ) : (
+                <div>
+                  <label htmlFor="address">Location</label>
+                  <input
+                    type="text"
+                    value={guessResult?.address}
+                    disabled={true}
+                  />
+                </div>
+              )}
+            </div>
+            <div>
+              <label htmlFor="errorDistance">Error distance</label>
+              <div id="errorDistance">
+                {errorDistance ? `${errorDistance} m` : ''}
               </div>
-            </section>
+            </div>
           </div>
-        </div>
-      </div>
+          <button disabled={!inputEnabled} onClick={onGuessClicked}>
+            GUESS
+          </button>
+        </section>
+        <section className="break-before-column">
+          <h2>Leaderboard</h2>
+          <div>
+            <LeaderboardComponent leaderboardItems={leaderboardItems} />
+          </div>
+        </section>
+      </Container>
       <InfoModal
         isOpen={infoModalOpen}
         handleClose={() => setInfoModalOpen(false)}
