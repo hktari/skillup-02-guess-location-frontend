@@ -3,11 +3,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import { LocationImage } from '../../services/interface'
 import SampleLocationImage from '../../assets/images/location-img-sample01.png'
 
-type LocationImageGuessProps = {
+type LocationImageGuessCardProps = {
   locationImage: LocationImage
 }
 
-const LocationImageGuess = ({ locationImage }: LocationImageGuessProps) => {
+const LocationImageGuessCard = ({
+  locationImage,
+}: LocationImageGuessCardProps) => {
   return (
     <Link
       state={locationImage}
@@ -16,7 +18,7 @@ const LocationImageGuess = ({ locationImage }: LocationImageGuessProps) => {
     >
       {/* TODO: remove hardcoded image after cloudinary implementation */}
       <img
-        className="w-72 h-48 max-w-md"
+        className="h-48 w-72 max-w-md"
         src={SampleLocationImage}
         alt={locationImage.address}
       />
@@ -28,4 +30,4 @@ const LocationImageGuess = ({ locationImage }: LocationImageGuessProps) => {
   )
 }
 
-export default LocationImageGuess
+export default LocationImageGuessCard

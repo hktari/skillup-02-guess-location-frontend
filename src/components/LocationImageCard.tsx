@@ -9,7 +9,7 @@ type Props = {
 const LocationImageCard = ({ overlay = true, address, imageUrl }: Props) => {
   return (
     <div
-      className={`rounded-md} group grid h-full w-full grid-cols-1 grid-rows-1 overflow-hidden`}
+      className={`group grid h-full w-full grid-cols-1 grid-rows-1 overflow-hidden rounded-md`}
     >
       <div className="col-start-1 col-end-2 row-start-1 row-end-2">
         {/* TODO: remove after cloudinary intergration */}

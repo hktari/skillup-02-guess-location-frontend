@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import MapComponent, { Coordinates } from '../components/Common/MapComponent'
 import SearchStreetComponent from '../components/Common/SearchStreetComponent'
-import LocationImageComponent from '../components/Dashboard/LocationImageComponent'
+import LocationImageCardLink from '../components/Dashboard/LocationImageCardLink'
 import LeaderboardComponent from '../components/GuessLocation/LeaderboardComponent'
 import InfoModal from '../components/modals/InfoModal'
 import {
@@ -145,7 +145,7 @@ const GuessLocationPage = () => {
             Take a <span className="text-patina-400">guess</span> !
           </h2>
           <div className="w-100">
-            <LocationImageComponent
+            <LocationImageCardLink
               interactable={false}
               locationImage={locationImage}
             />

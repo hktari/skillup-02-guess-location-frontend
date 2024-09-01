@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { ItemList, LocationImage } from '../../services/interface'
 import { useLocationsContext } from '../context/LocationProvider'
-import LocationImageComponent from '../Dashboard/LocationImageComponent'
-import LocationImageGuess from '../Dashboard/LocationImageGuess'
+import LocationImageCardLink from '../Dashboard/LocationImageCardLink'
+import LocationImageGuess from '../Dashboard/LocationImageCardGuess'
 import LocationImageLocked from '../Landing/LocationImageLocked'
 import EditableLocationImage from '../Profile/EditableLocationImage'
 
@@ -78,7 +78,7 @@ const ImageList = ({
       case LocationImageType.GuessResult:
         return <LocationImageGuess locationImage={img} />
       case LocationImageType.LocationImage:
-        return <LocationImageComponent locationImage={img} />
+        return <LocationImageCardLink locationImage={img} />
       case LocationImageType.EditableLocationImage:
         return <EditableLocationImage locationImage={img} />
       case LocationImageType.Locked:

@@ -5,7 +5,7 @@ import HorizontalScrollingList from '../components/Dashboard/HorizontalScrolling
 import { ItemList, LocationImage } from '../services/interface'
 import locationApi from '../services/locationApi'
 import { EmptyList } from '../util/LocationImageUtil'
-import LocationImageGuess from '../components/Dashboard/LocationImageGuess'
+import LocationImageGuess from '../components/Dashboard/LocationImageCardGuess'
 
 type Props = {}
 

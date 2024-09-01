@@ -51,7 +51,7 @@ const EditableLocationImage = ({
       state={locationImage}
       to={'/location/edit'}
       aria-labelledby="image details"
-      className=""
+      className="overflow-hidden"
     >
       <LocationImageCard {...locationImage} />
 

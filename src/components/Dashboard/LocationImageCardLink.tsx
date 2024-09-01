@@ -8,7 +8,7 @@ type LocationImageProps = {
   interactable?: boolean
 }
 
-const LocationImageComponent = ({
+const LocationImageCardLink = ({
   locationImage,
   interactable = true,
 }: LocationImageProps) => {
@@ -17,7 +17,6 @@ const LocationImageComponent = ({
       aria-label={`Link to guess image ${locationImage.id}`}
       to={'/location/guess'}
       state={locationImage}
-      className={`rounded-md} group grid h-full w-full grid-cols-1 grid-rows-1 overflow-hidden`}
     >
       <LocationImage {...locationImage} />
     </Link>
@@ -26,4 +25,4 @@ const LocationImageComponent = ({
   )
 }
 
-export default LocationImageComponent
+export default LocationImageCardLink
