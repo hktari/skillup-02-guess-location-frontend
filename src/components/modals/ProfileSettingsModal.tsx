@@ -23,18 +23,13 @@ const ProfileSettingsModal = ({
   onChangeProfileImage,
 }: ProfileSettingsModalProps) => {
   const { user, updateProfile } = useAuth()
-  const [firstName, setFirstName] = useState<string>('')
-  const [lastName, setLastName] = useState<string>('')
-
-  useEffect(() => {
-    setFirstName(user?.firstName ?? '')
-    setLastName(user?.lastName ?? '')
-  }, [user])
 
   async function onSubmit({
+    email,
     firstName,
     lastName,
   }: {
+    email: string
     firstName: string
     lastName: string
   }) {
@@ -52,8 +47,10 @@ const ProfileSettingsModal = ({
     e.preventDefault()
     handleChangePassword()
   }
+
+  const { email = '', firstName = '', lastName = '' } = user || {}
   const methods = useForm({
-    defaultValues: { email: user?.email, firstName, lastName },
+    defaultValues: { email, firstName, lastName },
   })
   return (
     <Dialog
