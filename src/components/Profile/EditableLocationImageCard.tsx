@@ -50,26 +50,22 @@ const EditableLocationImageCard = ({
     <Link
       state={locationImage}
       to={'/location/edit'}
-      aria-labelledby="image details"
-      className="overflow-hidden"
+      aria-labelledby="edit location image"
+      className="relative inline-block"
     >
       <LocationImageCard {...locationImage} />
 
       <button
-        onMouseOver={(ev) => toggleHoverOnParent(ev, true)}
-        onMouseLeave={(ev) => toggleHoverOnParent(ev, false)}
         onClick={onDeleteLocation}
         aria-labelledby="delete image"
-        className=""
+        className="absolute right-0 top-0 m-2 flex items-center justify-center rounded-md bg-red-200 p-1 transition-transform hover:scale-105 hover:ring-2 hover:ring-red-700"
       >
         <span className="material-icons">close</span>
       </button>
       <button
-        onMouseOver={(ev) => toggleHoverOnParent(ev, true)}
-        onMouseLeave={(ev) => toggleHoverOnParent(ev, false)}
         aria-labelledby="edit image"
         onClick={onEditLocation}
-        className=""
+        className="absolute left-0 top-0 m-2 flex items-center justify-center rounded-md bg-gray-100 p-1"
       >
         <span className="material-icons">edit</span>
       </button>
