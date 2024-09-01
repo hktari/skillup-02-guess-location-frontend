@@ -21,7 +21,7 @@ const Dialog = ({
   children,
 }: Props) => {
   return (
-    <div className="fixed inset-0 z-10 overflow-y-auto" hidden={!open}>
+    <div className="fixed inset-0 z-50 overflow-y-auto" hidden={!open}>
       <div className="flex min-h-screen items-center justify-center px-4 pb-20 pt-4 text-center sm:block sm:p-0">
         <div className="fixed inset-0 transition-opacity">
           <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
