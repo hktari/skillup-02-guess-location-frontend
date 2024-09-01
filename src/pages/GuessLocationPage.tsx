@@ -13,6 +13,7 @@ import {
 import locationApi from '../services/locationApi'
 import { OsmAddress } from '../services/osm.interface'
 import Container from '../components/Common/Container'
+import PrimaryButton from '../components/PrimaryButton'
 
 const GuessLocationPage = () => {
   const [selectedAddress, setSelectedAddress] = useState<OsmAddress | null>(
@@ -114,7 +115,7 @@ const GuessLocationPage = () => {
 
   return (
     <>
-      <Container className="md:columns-2 space-y-80 bg-orange-300">
+      <Container className="space-y-80 bg-orange-300 md:columns-2">
         <section className="space-y-4">
           <h2 className="text-4xl">
             Take a <span className="text-patina-400">guess</span> !
@@ -131,7 +132,7 @@ const GuessLocationPage = () => {
             guessCords={guessCoords}
             coords={mapCoords}
           />
-          <div>
+          <div className="space-y-4">
             <div>
               {inputEnabled ? (
                 <SearchStreetComponent onAddressPicked={onAddressPicked} />
@@ -146,16 +147,29 @@ const GuessLocationPage = () => {
                 </div>
               )}
             </div>
-            <div>
-              <label htmlFor="errorDistance">Error distance</label>
-              <div id="errorDistance">
-                {errorDistance ? `${errorDistance} m` : ''}
-              </div>
+            <div className="space-y-2">
+              <label className="text-2xl" htmlFor="errorDistance">
+                Error distance
+              </label>
+              <input
+                value={errorDistance ? `${errorDistance} m` : ''}
+                type="text"
+                disabled
+                className="h-10 w-full rounded-md bg-white ring-1 ring-gray-300"
+                id="errorDistance"
+              ></input>
+            </div>
+
+            <div className="text-end pt-2">
+              <PrimaryButton
+                className="ms-auto inline-block bg-red-300"
+                disabled={!inputEnabled}
+                onClick={onGuessClicked}
+              >
+                GUESS
+              </PrimaryButton>
             </div>
           </div>
-          <button disabled={!inputEnabled} onClick={onGuessClicked}>
-            GUESS
-          </button>
         </section>
         <section className="break-before-column">
           <h2>Leaderboard</h2>
