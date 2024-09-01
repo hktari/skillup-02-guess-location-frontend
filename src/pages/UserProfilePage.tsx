@@ -46,21 +46,21 @@ const UserProfilePage = () => {
   return (
     <>
       <Container className="">
-        <section className="">
-          <div className="h-12 w-12">
+        <div className="flex items-center justify-start gap-5 ">
+          <div className="inline-block h-16 w-16">
             <Avatar
               imageUrl={
                 'https://plus.unsplash.com/premium_photo-1674854858248-8987c02e74cf?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
               }
             />
           </div>
-          <p className="user-name header5 w3-left">
+          <span className="text-xl">
             {user.firstName} {user.lastName}
-          </p>
-        </section>
+          </span>
+        </div>
 
-        <section className="section best-guesses">
-          <h2 className="header5 text-positive w3-left">
+        <section className="space-y-4">
+          <h2 className="text-3xl text-patina-400 text-start">
             {isLoggedInUser() ? 'My best guesses' : 'Best guesses'}{' '}
           </h2>
           <ImageList

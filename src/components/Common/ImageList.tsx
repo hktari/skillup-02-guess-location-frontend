@@ -92,7 +92,7 @@ const ImageList = ({
     <div className="flex flex-wrap gap-4">
       {items.map((image, index) => {
         return (
-          <div key={image.id}>
+          <div key={image.id} className={`h-48 w-full md:w-72 md:max-w-md`}>
             <GetLocationImage img={image} />
           </div>
         )
