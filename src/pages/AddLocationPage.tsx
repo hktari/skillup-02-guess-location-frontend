@@ -3,17 +3,17 @@ import { useNavigate } from 'react-router-dom'
 import MapComponent, { Coordinates } from '../components/Common/MapComponent'
 import SearchStreetComponent from '../components/Common/SearchStreetComponent'
 import { useLocationsContext } from '../components/context/LocationProvider'
-import '../css/pages/AddLocationPage.css'
 import { OsmAddress } from '../services/osm.interface'
-import { fileToBase64 } from '../util/fileUtil'
+import Container from '../components/Common/Container'
+import LocationImageCard from '../components/LocationImageCard'
+import PickImageCard from '../components/AddLocation/PickImageCard'
 
 type AddLocationPageProps = {}
 
 const AddLocationPage = (props: AddLocationPageProps) => {
   const [imageBase64, setImageBase64] = useState<string | null>(null)
-
+  const [selectedImageUrl, setSelectedImageUrl] = useState('')
   const [mapCoords, setMapCoords] = useState<Coordinates | null>(null)
-  const selectedImageRef = useRef<HTMLInputElement | null>(null)
   const [selectedAddress, setSelectedAddress] = useState<OsmAddress | null>(
     null,
   )
@@ -38,32 +38,6 @@ const AddLocationPage = (props: AddLocationPageProps) => {
       lng: selectedAddress.properties.lon,
     })
   }, [selectedAddress])
-
-  async function onImagePicked(event: any) {
-    if (event.target.files.length > 0) {
-      try {
-        const selectedImgEl: HTMLImageElement = document.getElementById(
-          'selectedImage',
-        ) as HTMLImageElement
-
-        selectedImgEl.src = URL.createObjectURL(event.target.files[0])
-        selectedImgEl.onload = () => {
-          URL.revokeObjectURL(selectedImgEl.src)
-        }
-
-        setImageBase64(await fileToBase64(event.target.files[0]))
-      } catch (error) {
-        console.error('failed to process image', error)
-      }
-    }
-  }
-
-  function clearImage() {
-    const selectedImgEl: HTMLImageElement = document.getElementById(
-      'selectedImage',
-    ) as HTMLImageElement
-    selectedImgEl.src = ''
-  }
 
   async function onAddNew() {
     try {
@@ -90,51 +64,30 @@ const AddLocationPage = (props: AddLocationPageProps) => {
     setSelectedAddress(address)
   }
 
-  return (
-    <div className="add-location-page container">
-      <section className="section" id="add-location">
-        <h2 className="header4 text-center">
-          Add a new <span className="text-positive">location</span>
-        </h2>
-        <div className="pick-image">
-          <div hidden={imageBase64 !== null}>
-            <span className="material-icons">image</span>
-          </div>
+  const pickImageCardProps = {
+    setImageBase64,
+    setSelectedImageUrl,
+    imageBase64,
+    selectedImageUrl,
+  }
 
-          <img id="selectedImage" alt="" hidden={imageBase64 === null} />
-        </div>
-        <div className="btn-container">
-          <button
-            className="btn btn-positive"
-            onClick={() => selectedImageRef.current?.click()}
-          >
-            UPLOAD IMAGE
-            <input
-              accept="image/png, image/jpeg"
-              type="file"
-              id="image"
-              ref={selectedImageRef}
-              style={{ display: 'none' }}
-              onChange={onImagePicked}
-            />
-          </button>
-          <button onClick={clearImage} className="btn btn-cancel">
-            <span className="material-icons">close</span>
-          </button>
-        </div>
+  return (
+    <Container>
+      <div className="space-y-4">
+        <h2 className="text-3xl">
+          Add a new <span className="text-patina-400">location</span>
+        </h2>
+        <PickImageCard {...pickImageCardProps} />
+
         <MapComponent coords={mapCoords} />
-        <div className="search-street">
+        <div>
           <SearchStreetComponent onAddressPicked={onAddressPicked} />
         </div>
-        <button
-          disabled={!submitLocationEnabled}
-          className="btn btn-positive btn-block add-new"
-          onClick={onAddNew}
-        >
+        <button disabled={!submitLocationEnabled} onClick={onAddNew}>
           ADD NEW
         </button>
-      </section>
-    </div>
+      </div>
+    </Container>
   )
 }
 
