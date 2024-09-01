@@ -31,13 +31,6 @@ const EditableLocationImageCard = ({
     })
   }
 
-  function toggleHoverOnParent(
-    ev: React.MouseEvent<HTMLButtonElement>,
-    noHover: boolean,
-  ) {
-    ev.currentTarget.parentElement?.classList.toggle('no-hover', noHover)
-  }
-
   async function deleteImage() {
     try {
       await deleteLocation(locationImage.id)
