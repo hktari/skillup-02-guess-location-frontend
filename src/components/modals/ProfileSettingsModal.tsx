@@ -3,6 +3,8 @@ import Dialog from '../Common/Dialog'
 import { useAuth } from '../context/AuthProvider'
 import { FormProvider, useForm } from 'react-hook-form'
 import FormInput from '../Common/FormInput'
+import PrimaryButton from '../PrimaryButton'
+import SecondaryButton from '../buttons/SecondaryButton'
 
 interface ModalProps {
   isOpen: boolean
@@ -54,13 +56,20 @@ const ProfileSettingsModal = ({
     defaultValues: { email: user?.email, firstName, lastName },
   })
   return (
-    <Dialog title="Profile Settings" handleClose={handleClose} open={isOpen}>
-      <p className="body w3-padding-16">Change your information</p>
+    <Dialog
+      title="Profile Settings"
+      description="Change your information"
+      handleClose={handleClose}
+      open={isOpen}
+    >
       <FormProvider {...methods}>
-        <form className="form" onSubmit={methods.handleSubmit(onSubmit)}>
-          <FormInput type="email" disabled name="Email" title="Email" />
+        <form
+          className="space-y-8 text-start"
+          onSubmit={methods.handleSubmit(onSubmit)}
+        >
+          <div className="space-y-2">
+            <FormInput type="email" disabled name="Email" title="Email" />
 
-          <div className="w3-row w3-padding-16">
             <FormInput
               name="firstName"
               title="First Name"
@@ -70,28 +79,24 @@ const ProfileSettingsModal = ({
             <FormInput name="lastName" title="Last Name" required type="text" />
           </div>
 
-          <button
-            type="button"
-            className="btn btn-alt w3-margin-top"
-            style={{ backgroundColor: '#233D4D', color: '#fff' }}
-            onClick={handleChangePasswordInternal}
-          >
-            Change password
-          </button>
-          <button
-            type="button"
-            className="btn btn-positive"
-            onClick={onChangeProfileImage}
-          >
-            Change profile picture
-          </button>
-          <div className="modal-footer w3-margin-top">
-            <button type="submit" className="btn btn-positive">
-              SUBMIT
-            </button>
-            <button onClick={handleClose} className="btn btn-title-only">
-              Cancel
-            </button>
+          <div className="space-y-2">
+            <PrimaryButton
+              type="button"
+              block
+              style={{ backgroundColor: '#233D4D', color: '#fff' }}
+              onClick={handleChangePasswordInternal}
+            >
+              Change password
+            </PrimaryButton>
+            <PrimaryButton block type="button" onClick={onChangeProfileImage}>
+              Change profile picture
+            </PrimaryButton>
+          </div>
+          <div className="space-between flex">
+            <div className="flex-grow">
+              <PrimaryButton type="submit">SUBMIT</PrimaryButton>
+            </div>
+            <SecondaryButton onClick={handleClose}>Cancel</SecondaryButton>
           </div>
         </form>
       </FormProvider>

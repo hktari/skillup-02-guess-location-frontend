@@ -38,7 +38,7 @@ const Dialog = ({
                   </p>
                 </div>
               )}
-              <div>{children}</div>
+              <div className="px-4 py-8">{children}</div>
             </div>
           </div>
         </div>
