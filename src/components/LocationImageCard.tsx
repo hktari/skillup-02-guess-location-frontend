@@ -4,9 +4,11 @@ import SampleLocationImage from '../assets/images/location-img-sample01.png'
 
 type Props = {
   overlay?: boolean
-} & LocationImage
+  imageUrl: string
+  address?: string
+}
 
-const LocationImageCard = ({ overlay = true, address, imageUrl }: Props) => {
+const LocationImageCard = ({ overlay = true, imageUrl, address = 'geotagger image' }: Props) => {
   return (
     <div
       className={`group grid h-full w-full grid-cols-1 grid-rows-1 overflow-hidden rounded-md`}
