@@ -46,7 +46,7 @@ const UserProfilePage = () => {
   return (
     <>
       <Container className="">
-        <div className="flex items-center justify-start gap-5 ">
+        <div className="flex items-center justify-start gap-5 outline">
           <div className="inline-block h-16 w-16">
             <Avatar
               imageUrl={
@@ -59,8 +59,8 @@ const UserProfilePage = () => {
           </span>
         </div>
 
-        <section className="space-y-4">
-          <h2 className="text-3xl text-patina-400 text-start">
+        <section className="space-y-8 py-px">
+          <h2 className="text-start text-3xl text-patina-400">
             {isLoggedInUser() ? 'My best guesses' : 'Best guesses'}{' '}
           </h2>
           <ImageList
@@ -71,8 +71,8 @@ const UserProfilePage = () => {
           />
         </section>
 
-        <section className="section uploads">
-          <h2 className="header5 text-positive w3-left">
+        <section className="space-y-8">
+          <h2 className="text-start text-3xl text-patina-400">
             {isLoggedInUser() ? 'My uploads' : 'Uploads'}
           </h2>
           <ImageList

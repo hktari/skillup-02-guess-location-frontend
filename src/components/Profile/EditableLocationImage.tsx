@@ -1,9 +1,10 @@
 import React, { EventHandler, useState } from 'react'
-import { Link as div, useLocation, useNavigate } from 'react-router-dom'
-import { LocationImage } from '../../services/interface'
+import { Link as div, Link, useLocation, useNavigate } from 'react-router-dom'
 import locationApi from '../../services/locationApi'
 import { useLocationsContext } from '../context/LocationProvider'
 import DeleteLocationModal from '../modals/DeleteLocationModal'
+import LocationImageCard from '../LocationImageCard'
+import { LocationImage } from '../../services/interface'
 
 type EditableLocationImageProps = {
   locationImage: LocationImage
@@ -16,13 +17,6 @@ const EditableLocationImage = ({
     useState<boolean>(false)
   const { deleteLocation } = useLocationsContext()
   const navigate = useNavigate()
-
-  function onClick(ev: React.MouseEvent<HTMLDivElement>) {
-    ev.preventDefault()
-    navigate('/location/guess', {
-      state: locationImage,
-    })
-  }
 
   function onDeleteLocation(event: React.MouseEvent<HTMLButtonElement>) {
     event.stopPropagation()
@@ -53,12 +47,19 @@ const EditableLocationImage = ({
   }
 
   return (
-    <div onClick={onClick} className="">
-      <img src={locationImage.imageUrl} alt={locationImage.address} />
+    <Link
+      state={locationImage}
+      to={'/location/edit'}
+      aria-labelledby="image details"
+      className=""
+    >
+      <LocationImageCard {...locationImage} />
+
       <button
         onMouseOver={(ev) => toggleHoverOnParent(ev, true)}
         onMouseLeave={(ev) => toggleHoverOnParent(ev, false)}
         onClick={onDeleteLocation}
+        aria-labelledby="delete image"
         className=""
       >
         <span className="material-icons">close</span>
@@ -66,6 +67,7 @@ const EditableLocationImage = ({
       <button
         onMouseOver={(ev) => toggleHoverOnParent(ev, true)}
         onMouseLeave={(ev) => toggleHoverOnParent(ev, false)}
+        aria-labelledby="edit image"
         onClick={onEditLocation}
         className=""
       >
@@ -81,7 +83,7 @@ const EditableLocationImage = ({
         }}
         handleClose={() => setDeleteImageModalOpen(false)}
       />
-    </div>
+    </Link>
   )
 }
 

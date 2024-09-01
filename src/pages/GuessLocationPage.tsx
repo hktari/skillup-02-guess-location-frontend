@@ -146,7 +146,6 @@ const GuessLocationPage = () => {
           </h2>
           <div className="w-100">
             <LocationImageComponent
-              fullContainerWidth
               interactable={false}
               locationImage={locationImage}
             />

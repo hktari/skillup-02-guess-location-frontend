@@ -5,7 +5,7 @@ const Container = ({
   className,
 }: React.HtmlHTMLAttributes<HTMLDivElement>) => {
   return (
-    <div className={`container mx-auto space-y-32 px-8 py-12 ${className}`}>
+    <div className={`container mx-auto space-y-16 px-8 py-12 ${className}`}>
       {children}
     </div>
   )
