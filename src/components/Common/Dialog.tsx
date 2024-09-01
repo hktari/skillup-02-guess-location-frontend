@@ -27,9 +27,9 @@ const Dialog = ({
           <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
         <span className="hidden sm:inline-block sm:h-screen sm:align-middle"></span>
-        <div className="inline-block transform overflow-hidden rounded-md bg-white px-4 pb-4 pt-5 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle">
+        <div className="inline-block transform overflow-hidden rounded-md bg-white px-2 pb-4 pt-5 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle">
           <div className="sm:flex sm:items-start">
-            <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+            <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left md:mx-auto">
               <h3 className="text-2xl font-medium text-gray-900">{title}</h3>
               {description && (
                 <div className="mt-2">
