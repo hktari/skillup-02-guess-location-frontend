@@ -7,6 +7,7 @@ import { OsmAddress } from '../services/osm.interface'
 import Container from '../components/Common/Container'
 import LocationImageCard from '../components/LocationImageCard'
 import PickImageCard from '../components/AddLocation/PickImageCard'
+import PrimaryButton from '../components/PrimaryButton'
 
 type AddLocationPageProps = {}
 
@@ -83,9 +84,15 @@ const AddLocationPage = (props: AddLocationPageProps) => {
         <div>
           <SearchStreetComponent onAddressPicked={onAddressPicked} />
         </div>
-        <button disabled={!submitLocationEnabled} onClick={onAddNew}>
+
+        
+        <PrimaryButton
+          block
+          disabled={!submitLocationEnabled}
+          onClick={onAddNew}
+        >
           ADD NEW
-        </button>
+        </PrimaryButton>
       </div>
     </Container>
   )
