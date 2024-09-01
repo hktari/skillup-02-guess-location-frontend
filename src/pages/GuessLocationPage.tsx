@@ -115,12 +115,12 @@ const GuessLocationPage = () => {
 
   return (
     <>
-      <Container className="space-y-80 bg-orange-300 md:columns-2">
+      <Container className="grid-cols-2 gap-10 space-y-8 md:space-y-0 md:grid">
         <section className="space-y-4">
           <h2 className="text-4xl">
             Take a <span className="text-patina-400">guess</span> !
           </h2>
-          <div className="w-100 bg-sky-100">
+          <div className="w-100">
             <LocationImageComponent
               fullContainerWidth
               interactable={false}
@@ -155,12 +155,12 @@ const GuessLocationPage = () => {
                 value={errorDistance ? `${errorDistance} m` : ''}
                 type="text"
                 disabled
-                className="h-10 w-full rounded-md bg-white ring-1 ring-gray-300"
+                className="h-10 w-full rounded-md bg-white ring-1 ring-gray-300 px-2"
                 id="errorDistance"
               ></input>
             </div>
 
-            <div className="text-end pt-2">
+            <div className="pt-2 text-end">
               <PrimaryButton
                 className="ms-auto inline-block bg-red-300"
                 disabled={!inputEnabled}
@@ -171,8 +171,8 @@ const GuessLocationPage = () => {
             </div>
           </div>
         </section>
-        <section className="break-before-column">
-          <h2>Leaderboard</h2>
+        <section className="space-y-4">
+          <h2 className="text-4xl">Leaderboard</h2>
           <div>
             <LeaderboardComponent leaderboardItems={leaderboardItems} />
           </div>
