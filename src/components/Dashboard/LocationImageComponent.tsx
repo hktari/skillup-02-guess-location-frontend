@@ -14,22 +14,19 @@ const LocationImageComponent = ({
 }: LocationImageProps) => {
   const navigate = useNavigate()
 
-  function onClick(ev: React.MouseEvent<HTMLAnchorElement>) {
-    ev.preventDefault()
-
+  function onClick(ev: React.MouseEvent<HTMLButtonElement>) {
     navigate('/location/guess', {
       state: locationImage,
     })
   }
   return (
     <button
-      className={`group grid grid-cols-1 grid-rows-1 overflow-hidden rounded-md ${!interactable ? '' : ''}`}
+      aria-label={`Link to guess image ${locationImage.id}`}
+      disabled={!interactable}
+      onClick={onClick}
+      className={`group grid grid-cols-1 grid-rows-1 overflow-hidden rounded-md`}
     >
-      <Link
-        className="col-start-1 col-end-2 row-start-1 row-end-2"
-        onClick={onClick}
-        to={`/location/guess/${locationImage.id}`}
-      >
+      <div className="col-start-1 col-end-2 row-start-1 row-end-2">
         {/* TODO: remove after cloudinary intergration */}
         <img
           className="h-48 w-72 max-w-md"
@@ -37,7 +34,7 @@ const LocationImageComponent = ({
           alt={locationImage.address}
         />
         {/* <img src={locationImage.imageUrl} alt={locationImage.address} /> */}
-      </Link>
+      </div>
       <div className="w-100 h-100 col-start-1 col-end-2 row-start-1 row-end-2 bg-patina-300 opacity-75 group-hover:opacity-50"></div>
     </button>
   )
