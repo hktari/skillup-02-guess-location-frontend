@@ -47,7 +47,7 @@ const PickImageCard = ({
       <button
         aria-labelledby="pick image"
         onClick={() => selectedImageRef.current?.click()}
-        className="grid h-40 w-full grid-cols-1 overflow-hidden rounded-md bg-gray-200"
+        className="grid h-40 md:h-60 w-full grid-cols-1 overflow-hidden rounded-md bg-gray-200"
       >
         <div
           className="col-span-1 row-span-full flex grid-cols-1 items-center justify-center"
