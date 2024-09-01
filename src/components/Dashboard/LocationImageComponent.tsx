@@ -37,7 +37,9 @@ const LocationImageComponent = ({
         />
         {/* <img src={locationImage.imageUrl} alt={locationImage.address} /> */}
       </div>
-      <div className="w-100 h-100 col-start-1 col-end-2 row-start-1 row-end-2 bg-patina-300 opacity-75 group-hover:opacity-50"></div>
+      <div
+        className={`w-100 h-100 col-start-1 col-end-2 row-start-1 row-end-2 ${interactable ? 'bg-patina-300 opacity-75 group-hover:opacity-50' : ''}`}
+      ></div>
     </button>
   )
 }

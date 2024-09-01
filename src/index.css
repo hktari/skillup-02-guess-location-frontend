@@ -2,11 +2,9 @@
 @tailwind components;
 
 .c-autocomplete .geoapify-autocomplete-input {
-  @apply inline-block w-full rounded-md focus:bg-patina-200 focus:placeholder-gray-500;
+  @apply inline-block h-10 w-full rounded-md focus:bg-patina-100 focus:placeholder-gray-500;
 }
 
-.geoapify-close-button {
-}
 
 @tailwind utilities;
 

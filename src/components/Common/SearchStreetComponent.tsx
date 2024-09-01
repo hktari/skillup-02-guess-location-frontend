@@ -29,8 +29,13 @@ const SearchStreetComponent = ({
   }, [])
 
   return (
-    <div key={1} id="autocomplete" className="relative space-y-2 c-autocomplete">
+    <div className=" ">
       <label className="text-2xl">Location</label>
+      <div
+        key={'895ABFA9-B7F8-42C2-8B70-73211FD769E5'}
+        id="autocomplete"
+        className="c-autocomplete relative mt-2"
+      ></div>
     </div>
   )
 }
