@@ -30,7 +30,6 @@ const ImageList = ({
   loadMoreItems,
   pageSize = 3,
   needsUpdate = 0,
-  colsPerRow = 3,
   noItemsText = 'nothing to see...',
 }: ImageListProps) => {
   const [curPage, setCurPage] = useState<number>(1)
@@ -93,7 +92,7 @@ const ImageList = ({
     <div className="flex flex-wrap gap-4">
       {items.map((image, index) => {
         return (
-          <div key={image.id} className={` ${colsPerRow === 3 ? '' : ''}`}>
+          <div key={image.id}>
             <GetLocationImage img={image} />
           </div>
         )

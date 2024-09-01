@@ -65,16 +65,10 @@ const DashboardPage = (props: Props) => {
           personal records or set a new one!
         </p>
         <div className="md:hidden">
-          <HorizontalScrollingList>
-            {locationGuessList.map((img) => (
-              <div
-                key={`horizontal-img-list-${img.id}`}
-                className="inline-block"
-              >
-                <LocationImageGuess locationImage={img} />
-              </div>
-            ))}
-          </HorizontalScrollingList>
+          <HorizontalScrollingList
+            items={locationGuessList}
+            ItemComponent={LocationImageGuess}
+          ></HorizontalScrollingList>
         </div>
         <div className="hidden pt-12 md:block">
           <ImageList
