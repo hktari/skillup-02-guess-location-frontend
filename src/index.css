@@ -6,6 +6,20 @@
 }
 
 
+
+.c-leaderboard-item .rank.gold {
+  background: linear-gradient(41.75deg, #FE7F2D 22.78%, #FCCA46 87.18%);
+}
+
+.c-leaderboard-item .rank.silver {
+  background: linear-gradient(41.75deg, #D8D8D8 22.78%, #999999 87.18%);
+}
+
+.c-leaderboard-item .rank.bronze {
+  background: linear-gradient(41.75deg, #956956 22.78%, #D79376 87.18%);
+}
+
+
 @tailwind utilities;
 
 body {
