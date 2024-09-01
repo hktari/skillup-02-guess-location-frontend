@@ -5,10 +5,12 @@ import { LocationImage } from '../../services/interface'
 import SampleLocationImage from '../../assets/images/location-img-sample01.png'
 type LocationImageProps = {
   locationImage: LocationImage
+  fullContainerWidth?: boolean
   interactable?: boolean
 }
 
 const LocationImageComponent = ({
+  fullContainerWidth = false,
   locationImage,
   interactable = true,
 }: LocationImageProps) => {
@@ -29,7 +31,7 @@ const LocationImageComponent = ({
       <div className="col-start-1 col-end-2 row-start-1 row-end-2">
         {/* TODO: remove after cloudinary intergration */}
         <img
-          className="h-48 w-72 max-w-md"
+          className={`h-48 w-72 ${fullContainerWidth ? 'w-full' : 'max-w-md'}`}
           src={SampleLocationImage}
           alt={locationImage.address}
         />
