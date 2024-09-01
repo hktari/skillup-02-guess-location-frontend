@@ -45,7 +45,7 @@ const EditableLocationImageCard = ({
       state={locationImage}
       to={'/location/edit'}
       aria-labelledby="edit location image"
-      className="relative inline-block"
+      className="relative inline-block h-full w-full"
     >
       <LocationImageCard {...locationImage} />
 

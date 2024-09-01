@@ -15,7 +15,7 @@ const LocationImageGuessCard = ({
     <Link
       state={locationImage}
       to={'/location/guess'}
-      className="group relative inline-block"
+      className="group relative inline-block h-full w-full"
     >
       <LocationImageCard {...locationImage} />
       <div className="absolute inset-0 z-20 flex items-center justify-center text-3xl font-medium text-white transition-transform group-hover:scale-105">
