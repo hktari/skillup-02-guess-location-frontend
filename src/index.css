@@ -1,5 +1,13 @@
 @tailwind base;
 @tailwind components;
+
+.geoapify-autocomplete-input {
+  @apply inline-block w-full rounded-md focus:bg-patina-200 focus:placeholder-gray-500;
+}
+
+.geoapify-close-button {
+}
+
 @tailwind utilities;
 
 body {
