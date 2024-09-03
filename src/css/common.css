@@ -235,64 +235,6 @@
 }
 
 /* -------------------------------------------------------------------------- */
-/*                                   modals                                   */
-/* -------------------------------------------------------------------------- */
-
-.ReactModalPortal {
-    position: relative;
-    z-index: 99;
-}
-
-.modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 90vw;
-    transform: translate(-50%, -50%);
-    padding: 25px;
-    overflow: auto;
-    outline: none;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
-}
-
-.modal-overlay {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.25);
-}
-
-.modal-no-overlay {
-    background-color: transparent;
-}
-
-.modal-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-@media (min-width: 601px) {
-    .modal .input-half:nth-child(1) {
-        padding-right: 16px;
-    }
-
-    .modal .input-half:nth-child(2) {
-        padding-left: 16px;
-    }
-
-    .modal .modal-footer {
-        justify-content: start;
-
-    }
-}
-
-/* -------------------------------------------------------------------------- */
 /*                                    forms                                   */
 /* -------------------------------------------------------------------------- */
 

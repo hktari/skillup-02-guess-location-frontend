@@ -5,20 +5,73 @@
   @apply inline-block h-10 w-full rounded-md focus:bg-patina-100 focus:placeholder-gray-500;
 }
 
-
-
 .c-leaderboard-item .rank.gold {
-  background: linear-gradient(41.75deg, #FE7F2D 22.78%, #FCCA46 87.18%);
+  background: linear-gradient(41.75deg, #fe7f2d 22.78%, #fcca46 87.18%);
 }
 
 .c-leaderboard-item .rank.silver {
-  background: linear-gradient(41.75deg, #D8D8D8 22.78%, #999999 87.18%);
+  background: linear-gradient(41.75deg, #d8d8d8 22.78%, #999999 87.18%);
 }
 
 .c-leaderboard-item .rank.bronze {
-  background: linear-gradient(41.75deg, #956956 22.78%, #D79376 87.18%);
+  background: linear-gradient(41.75deg, #956956 22.78%, #d79376 87.18%);
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                   modals                                   */
+/* -------------------------------------------------------------------------- */
+
+.ReactModalPortal {
+  position: relative;
+  z-index: 99;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90vw;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+  overflow: auto;
+  outline: none;
+  background: #ffffff;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+.modal-overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.modal-no-overlay {
+  background-color: transparent;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (min-width: 601px) {
+  .modal .input-half:nth-child(1) {
+    padding-right: 16px;
+  }
+
+  .modal .input-half:nth-child(2) {
+    padding-left: 16px;
+  }
+
+  .modal .modal-footer {
+    justify-content: start;
+  }
+}
 
 @tailwind utilities;
 
