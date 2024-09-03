@@ -25,24 +25,25 @@ const DeleteLocationModal = ({
 
   return (
     <Dialog
+      Header={<h1 className="">Please confirm</h1>}
       Footer={
-        <div className="flex gap-2">
+        <>
           <PrimaryButton onClick={(ev) => onChoicePickedInternal(ev, true)}>
             Accept
           </PrimaryButton>
           <SecondaryButton onClick={(ev) => onChoicePickedInternal(ev, false)}>
             Cancel
           </SecondaryButton>
-        </div>
+        </>
+      }
+      Body={
+        <p className="">
+          This location will be deleted. There is no undo of this action.
+        </p>
       }
       handleClose={handleClose}
       isOpen={isOpen}
-    >
-      <h1 className="text-3xl">Are you sure ?</h1>
-      <p className="mt-2 text-lg">
-        This location will be deleted. There is no undo of this action.
-      </p>
-    </Dialog>
+    ></Dialog>
   )
 }
 
