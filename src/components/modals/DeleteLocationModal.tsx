@@ -2,6 +2,9 @@ import React from 'react'
 import Modal from 'react-modal'
 import { LocationImage } from '../../services/interface'
 import { ModalProps } from '../ComponentInterface'
+import Dialog from '../Common/Dialog'
+import PrimaryButton from '../PrimaryButton'
+import SecondaryButton from '../buttons/SecondaryButton'
 
 interface DeleteLocationModalProps extends ModalProps {
   onChoicePicked: (areYouSure: boolean) => void
@@ -21,33 +24,25 @@ const DeleteLocationModal = ({
   }
 
   return (
-    <Modal
-      className="modal modal-delete-location"
-      overlayClassName="modal-overlay"
-      onRequestClose={handleClose}
-      shouldCloseOnOverlayClick={false}
+    <Dialog
+      Footer={
+        <div className="flex gap-2">
+          <PrimaryButton onClick={(ev) => onChoicePickedInternal(ev, true)}>
+            Accept
+          </PrimaryButton>
+          <SecondaryButton onClick={(ev) => onChoicePickedInternal(ev, false)}>
+            Cancel
+          </SecondaryButton>
+        </div>
+      }
+      handleClose={handleClose}
       isOpen={isOpen}
     >
-      <h1 className="header4">Are you sure ?</h1>
-      <p className="body">
+      <h1 className="text-3xl">Are you sure ?</h1>
+      <p className="mt-2 text-lg">
         This location will be deleted. There is no undo of this action.
       </p>
-      <div className="w3-padding"></div>
-      <div className="modal-footer">
-        <button
-          onClick={(ev) => onChoicePickedInternal(ev, true)}
-          className="btn btn-positive"
-        >
-          SUBMIT
-        </button>
-        <button
-          onClick={(ev) => onChoicePickedInternal(ev, false)}
-          className="btn btn-title-only"
-        >
-          Cancel
-        </button>
-      </div>
-    </Modal>
+    </Dialog>
   )
 }
 
