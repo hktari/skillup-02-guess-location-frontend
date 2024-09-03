@@ -15,24 +15,28 @@ const EditableLocationImageCard = ({
   locationImage,
 }: EditableLocationImageCardProps) => {
   const [deleteImageModalOpen, setDeleteImageModalOpen] =
-    useState<boolean>(false)
+    useState<boolean>(true)
   const { deleteLocation } = useLocationsContext()
   const navigate = useNavigate()
+  const { state } = useLocation()
 
   function onDeleteLocation(event: React.MouseEvent<HTMLButtonElement>) {
+    debugger
     event.stopPropagation()
     setDeleteImageModalOpen(true)
   }
 
   function onEditLocation(event: React.MouseEvent<HTMLButtonElement>) {
+    debugger
     event.stopPropagation()
     navigate('/location/edit', {
-      state: locationImage,
+      state: { ...(state || {}), locationImage },
     })
   }
 
   async function deleteImage() {
     try {
+      debugger
       await deleteLocation(locationImage.id)
     } catch (error) {
       console.error(error)
@@ -41,12 +45,7 @@ const EditableLocationImageCard = ({
   }
 
   return (
-    <Link
-      state={locationImage}
-      to={'/location/edit'}
-      aria-labelledby="edit location image"
-      className="relative inline-block h-full w-full"
-    >
+    <div className="relative inline-block h-full w-full">
       <LocationImageCard {...locationImage} />
 
       <FloatingIconButton
@@ -75,7 +74,7 @@ const EditableLocationImageCard = ({
         }}
         handleClose={() => setDeleteImageModalOpen(false)}
       />
-    </Link>
+    </div>
   )
 }
 
